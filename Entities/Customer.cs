@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmallStore.Entities
+namespace SmallStore
 {
     class Customer
     {

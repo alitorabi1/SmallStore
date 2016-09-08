@@ -107,6 +107,7 @@
     <Compile Include="CashierCustomer.xaml.cs" />
     <Compile Include="CashierOrder.xaml.cs" />
     <Compile Include="CashierPassword.xaml.cs" />
+    <Compile Include="Database\Database.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\OrderItem.cs" />
