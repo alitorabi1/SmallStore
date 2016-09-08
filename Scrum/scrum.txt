@@ -12,5 +12,6 @@
 
 08 Sep----------Behnaz-------------------
 *After discuss and cahnge our Tables with Ali and Teacher I created
-Database "Strore "in Azure and Created All our tables in Db in azure
-* I created All entites that relate to our Table in Folder Entites inside our Soulution
+Database "Store "in Azure and Created All our tables in Db in azure
+* I created All entites that related to our Tables in Folder Entites inside our Soulution
+* I will implemented Database class 
