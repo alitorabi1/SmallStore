@@ -24,11 +24,10 @@
             </MenuItem>
         </Menu>
         <Label x:Name="label" Content="Management of:" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="40" FontWeight="Bold"  Height="75" Margin="44,62,0,0" VerticalAlignment="Top" Width="491"/>
-        <Button x:Name="btnGroupOfProducts" Content="Group Of Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,154,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnGroupOfProducts" Content="Category Of Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,154,0,0" VerticalAlignment="Top" Width="464"/>
         <Button x:Name="btnProducts" Content="Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,214,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnCashiers" Content="Cashiers" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,274,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnCashiers" Content="Employees" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,274,0,0" VerticalAlignment="Top" Width="464"/>
         <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,334,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnMyProfile" Content="My Profile" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,394,0,0" VerticalAlignment="Top" Width="464"/>
 
     </Grid>
 </Window>
