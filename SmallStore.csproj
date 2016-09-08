@@ -107,6 +107,12 @@
     <Compile Include="CashierCustomer.xaml.cs" />
     <Compile Include="CashierOrder.xaml.cs" />
     <Compile Include="CashierPassword.xaml.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Entities\OrderSummary.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>

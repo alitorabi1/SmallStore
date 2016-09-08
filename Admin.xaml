@@ -9,7 +9,7 @@
     <Window.Background>
         <ImageBrush>
             <ImageBrush.ImageSource>
-                <BitmapImage UriSource="C:\\Users\\lenovo\\Documents\\Visual Studio 2015\\Projects\\SmallStore\\images\\background.jpg" />
+                <BitmapImage UriSource="pack://application:,,,/Images/background.jpg" />
             </ImageBrush.ImageSource>
         </ImageBrush>
     </Window.Background>

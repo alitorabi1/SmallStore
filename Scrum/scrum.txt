@@ -1,0 +1,8 @@
+07 Sep------Ali-------
+create gitHub repository and invite Behnazand 
+change proposal as teacher's opinion
+
+07 Sep------Behnaz-------
+create project files SmallStore and commit to git
+I will implemented DB and Tables 
+
