@@ -23,6 +23,7 @@ namespace SmallStore
         public Login()
         {
             InitializeComponent();
+            tbUsername.Focus();
         }
     }
 }

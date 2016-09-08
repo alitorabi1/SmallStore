@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallStore"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Login" Height="550" Width="700">
+        Title="Small Store" Height="421.349" Width="536.263" >
     <Window.Background>
         <ImageBrush>
             <ImageBrush.ImageSource>
@@ -14,24 +14,18 @@
         </ImageBrush>
     </Window.Background>
     <Grid>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
-            <MenuItem Header="File">
-                <MenuItem Header="E_xit" />
-            </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="_Info" />
-                <MenuItem Header="A_bout" />
-            </MenuItem>
-        </Menu>
-        <Label x:Name="label" Content="Login As:" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="40" FontWeight="Bold"  Height="75" Margin="44,62,0,0" VerticalAlignment="Top" Width="491"/>
-        <RadioButton x:Name="rbAdmin" Content="Administrator" HorizontalAlignment="Left" Foreground="AntiqueWhite" Height="33" Margin="130,156,0,0" VerticalAlignment="Top" Width="167" FontSize="22" FontWeight="Bold"/>
-        <RadioButton x:Name="rbCashier" Content="Cashier" HorizontalAlignment="Left" Foreground="AntiqueWhite" Height="33" Margin="389,156,0,0" VerticalAlignment="Top" Width="184" FontSize="22" FontWeight="Bold"/>
-        <Label x:Name="label1" Content="Username:" Foreground="AntiqueWhite" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Height="38" Margin="162,225,0,0" VerticalAlignment="Top" Width="156"/>
-        <Label x:Name="label2" Content="Password:" Foreground="AntiqueWhite" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Height="38" Margin="162,285,0,0" VerticalAlignment="Top" Width="156"/>
-        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="34" Background="Transparent" FontSize="18" BorderBrush="AntiqueWhite" BorderThickness="2" Margin="359,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="34" Background="Transparent" FontSize="18" BorderBrush="AntiqueWhite" BorderThickness="2" Margin="359,285,0,0" VerticalAlignment="Top" Width="198"/>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="34" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="359,345,0,0" VerticalAlignment="Top" Width="198"/>
-        <Label x:Name="label3" Foreground="Red" FontSize="18" FontWeight="Bold" Content="Invalid Username or Password. Please Try again" HorizontalAlignment="Left" Height="39" Margin="156,392,0,0" VerticalAlignment="Top" Width="424"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="592*"/>
+            <ColumnDefinition Width="49*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="label1" Content="Username:" Foreground="AntiqueWhite" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Height="38" Margin="25,69,0,0" VerticalAlignment="Top" Width="156" Grid.Column="1"/>
+        <Label x:Name="label2" Content="Password:" Foreground="AntiqueWhite" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Height="38" Margin="25,129,0,0" VerticalAlignment="Top" Width="156" Grid.Column="1"/>
+        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="34" Background="Transparent" FontSize="18" BorderBrush="AntiqueWhite" BorderThickness="2" Margin="222,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="34" Background="Transparent" FontSize="18" BorderBrush="AntiqueWhite" BorderThickness="2" Margin="222,129,0,0" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Height="34" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="222,189,0,0" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
+        <Label x:Name="label3" Foreground="Red" FontSize="18" FontWeight="Bold" Content="Invalid Username or Password. Please Try again" HorizontalAlignment="Left" Height="39" Margin="19,236,0,0" VerticalAlignment="Top" Width="424" Grid.Column="1"/>
 
     </Grid>
 </Window>

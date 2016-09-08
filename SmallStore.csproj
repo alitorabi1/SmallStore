@@ -164,7 +164,6 @@
     <Resource Include="images\CashierOrder.jpg" />
     <Resource Include="images\CashierPassword.jpg" />
     <Resource Include="images\CashierSubmitOrder.jpg" />
-    <Resource Include="images\DBRelationship.jpg" />
     <Resource Include="images\Login.jpg" />
     <Resource Include="images\LoginTryAgain.jpg" />
   </ItemGroup>

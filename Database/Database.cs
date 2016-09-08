@@ -77,7 +77,7 @@ namespace SmallStore
                 cmd.Parameters.AddWithValue("@FirstName", e.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", e.LastName);
                 cmd.Parameters.AddWithValue("@Phone", e.Phone);
-                cmd.Parameters.AddWithValue("@CellPhone", e.CellPhone);|
+             //   cmd.Parameters.AddWithValue("@CellPhone", e.CellPhone);|
                  cmd.Parameters.AddWithValue("@Address", e.Address);
                 cmd.Parameters.AddWithValue("@PostalCode", e.PostalCode);
                 cmd.Parameters.AddWithValue("@BirthDate", e.BirthDate);
@@ -115,6 +115,14 @@ namespace SmallStore
             }
 
         }
+        /* Linq 
+         * IQueryable<Whatever> query = ctx.TheTable;
+               if(fooHasValue)
+     query = query.Where(x => x.Foo == foo);
+          if(barHasValue)
+    query = query.Where(x => x.Bar == bar);
+foreach(var row in query) {...}
+         */
 
 
     }
