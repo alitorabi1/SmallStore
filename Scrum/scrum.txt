@@ -1,8 +1,14 @@
 07 Sep------Ali-------
-create gitHub repository and invite Behnazand 
-change proposal as teacher's opinion
+*create gitHub repository and invite Behnazand 
+*change proposal as teacher's opinion
+I Created trello for our project And wrote some thing for approved and invite Behnaz 
 
 07 Sep------Behnaz-------
-create project files SmallStore and commit to git
-I will implemented DB and Tables 
+*create project files SmallStore and commit to git
+*I will implemented DB and Tables 
+*After discuss and cahnge our Tables with Ali and Teacher I created
+Database "Strore "in Azure and Created All our tables in Db in azure
 
+
+
+08 Sep----------Behnaz-------------------
