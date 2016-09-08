@@ -1,0 +1,45 @@
+﻿<Window x:Class="SmallStore.AdminReports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmallStore"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="Reports" Height="349.415" Width="700">
+    <Grid>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
+            <MenuItem Header="File">
+                <MenuItem Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="_Info" />
+                <MenuItem Header="A_bout" />
+            </MenuItem>
+        </Menu>
+        <TreeView FontSize="18" FontWeight="Bold" Margin="10, 40, 400, 70">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeViewItem Header="Human Resources Reports" Foreground="Green">
+                <TreeViewItem Header="Cashiers Attendance"></TreeViewItem>
+                <TreeViewItem Header="Cashier Details"></TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="Financial Reports" Foreground="Green">
+                <TreeViewItem Header="Order details"></TreeViewItem>
+                <TreeViewItem Header="Revenu"></TreeViewItem>
+                <TreeViewItem Header="Salary"></TreeViewItem>
+                <TreeViewItem Header="Net Profit"></TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+
+        <Label x:Name="label" Content="From:" HorizontalAlignment="Left" Margin="322,75,0,0" Height="35" VerticalAlignment="Top" Width="88" FontSize="18" FontWeight="Bold"/>
+        <DatePicker HorizontalAlignment="Left" Margin="449,75,0,0" VerticalAlignment="Top" Height="35" Width="210"/>
+        <Label x:Name="label1" Content="To:" HorizontalAlignment="Left" Margin="322,158,0,0" Height="35" VerticalAlignment="Top" Width="88" FontSize="18" FontWeight="Bold"/>
+        <DatePicker HorizontalAlignment="Left" Margin="449,165,0,0" VerticalAlignment="Top" Height="35" Width="210"/>
+        <Button x:Name="btnReport" Content="Report" HorizontalAlignment="Left" Margin="239,276,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="399,276,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

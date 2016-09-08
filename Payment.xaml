@@ -1,0 +1,57 @@
+﻿<Window x:Class="SmallStore.Payment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmallStore"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="Payment" Height="550" Width="656">
+    <Grid>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="650">
+            <MenuItem Header="File">
+                <MenuItem Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="_Info" />
+                <MenuItem Header="A_bout" />
+            </MenuItem>
+        </Menu>
+        <DataGrid Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="16,43,16,0" Height="210" VerticalAlignment="Top" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding PName}" Width="5*" />
+                <DataGridTextColumn Header="Number" Binding="{Binding PNumber}" Width="1.3*" />
+                <DataGridTextColumn Header="Price (CAD)" Binding="{Binding PName}" Width="3*" />
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu x:Name="DeleteContextMenu">
+                    <MenuItem Header="Delete Record" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <ComboBox Text="Is not open" Height="35" Width="200" Margin="434,269,16,217">
+            <ComboBoxItem Name="cbi1">-- Select a payment method --</ComboBoxItem>
+            <ComboBoxItem Name="cbi2">Visa</ComboBoxItem>
+            <ComboBoxItem Name="cbi4">Master</ComboBoxItem>
+            <ComboBoxItem Name="cbi5">Paypal</ComboBoxItem>
+            <ComboBoxItem Name="cbi3">Check</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="label" Content="Payment Method:" HorizontalAlignment="Left" Margin="318,273,0,0" VerticalAlignment="Top" Width="111"/>
+        <Label x:Name="label1" Content="Name on card:" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label x:Name="label2" Content="Card number:" HorizontalAlignment="Left" Margin="359,334,0,0" VerticalAlignment="Top" Width="89"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="146,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="457,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+        <Label x:Name="label11" Content="Expiration date:" HorizontalAlignment="Left" Margin="16,371,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="146,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
+        <Label x:Name="label3" Content="YYYY-MM" HorizontalAlignment="Left" Margin="267,371,0,0" VerticalAlignment="Top" Width="65"/>
+        <Label x:Name="label4" Content="Security code:" HorizontalAlignment="Left" Margin="359,370,0,0" VerticalAlignment="Top" Width="89"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="30" Margin="457,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+        <Label x:Name="label5" Content="Total Amount + TAX:" HorizontalAlignment="Left" Margin="16,273,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label x:Name="label6" Content="678.87    CAD" HorizontalAlignment="Left" Margin="146,274,0,0" VerticalAlignment="Top" Width="138"/>
+        <Label x:Name="label7" Content="Check number:" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="30" Margin="146,422,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="186"/>
+        <Button x:Name="button" Content="Submit" FontWeight="Bold" HorizontalAlignment="Left" Margin="534,422,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
+        <Label x:Name="label8" Content="Purchase record submitted successfuly in database" FontSize="21" FontWeight="Bold" Foreground="Green" HorizontalAlignment="Left" Margin="75,466,0,0" VerticalAlignment="Top" Width="516"/>
+
+    </Grid>
+</Window>

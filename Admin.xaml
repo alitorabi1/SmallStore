@@ -1,0 +1,34 @@
+﻿<Window x:Class="SmallStore.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmallStore"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="Admin Page" Height="550" Width="700">
+    <Window.Background>
+        <ImageBrush>
+            <ImageBrush.ImageSource>
+                <BitmapImage UriSource="C:\\Users\\lenovo\\Documents\\Visual Studio 2015\\Projects\\SmallStore\\images\\background.jpg" />
+            </ImageBrush.ImageSource>
+        </ImageBrush>
+    </Window.Background>
+    <Grid>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
+            <MenuItem Header="File">
+                <MenuItem Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="_Info" />
+                <MenuItem Header="A_bout" />
+            </MenuItem>
+        </Menu>
+        <Label x:Name="label" Content="Management of:" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="40" FontWeight="Bold"  Height="75" Margin="44,62,0,0" VerticalAlignment="Top" Width="491"/>
+        <Button x:Name="btnGroupOfProducts" Content="Group Of Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,154,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnProducts" Content="Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,214,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnCashiers" Content="Cashiers" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,274,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,334,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnMyProfile" Content="My Profile" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,394,0,0" VerticalAlignment="Top" Width="464"/>
+
+    </Grid>
+</Window>
