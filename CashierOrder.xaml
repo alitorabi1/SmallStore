@@ -16,22 +16,15 @@
                 <MenuItem Header="A_bout" />
             </MenuItem>
         </Menu>
-        <DataGrid Name="dgCustomers" AutoGenerateColumns="False" Margin="16,43,410,0" Height="208" VerticalAlignment="Top" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding CId}" Width="5*" />
-                <DataGridTextColumn Header="Name" Binding="{Binding CName}" Width="5*" />
-                <DataGridTextColumn Header="Mobile" Binding="{Binding CMobile}" Width="5*" />
-            </DataGrid.Columns>
-        </DataGrid>
 
-        <DataGrid Name="dgProducts" AutoGenerateColumns="False" Margin="16,263,410,0" Height="208" VerticalAlignment="Top" >
+        <DataGrid Name="dgProducts" AutoGenerateColumns="False" Margin="16,109,410,0" Height="362" VerticalAlignment="Top" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
                 <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
                 <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="dgOrders" AutoGenerateColumns="False" Margin="355,43,20,0" Height="338" VerticalAlignment="Top" >
+        <DataGrid Name="dgOrders" AutoGenerateColumns="False" Margin="355,109,20,0" Height="272" VerticalAlignment="Top" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding PName}" Width="5*" />
                 <DataGridTextColumn Header="Number" Width="1.3*" >
@@ -55,7 +48,13 @@
         <Label x:Name="label5" FontWeight="Bold" Content="Total Price - Reduction + TAX:" HorizontalAlignment="Left" Margin="305,401,0,0" VerticalAlignment="Top" Width="178"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="30" Margin="497,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112"/>
         <Label x:Name="label" Content="CAD" HorizontalAlignment="Left" Margin="612,398,0,0" VerticalAlignment="Top" Width="48" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="btnAdd" Content="Add ->" FontWeight="Bold" HorizontalAlignment="Left" Margin="298,138,0,0" VerticalAlignment="Top" Width="45" Height="38"/>
+        <Button x:Name="btnAdd" Content="Add&#xD;&#xA;  -&gt;" FontWeight="Bold" HorizontalAlignment="Left" Margin="289,197,0,0" VerticalAlignment="Top" Width="61" Height="38"/>
+        <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="16,41,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="tbProdNameOrBarcode" HorizontalAlignment="Left" Height="30" Margin="16,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <Label Content="Customer name or ID" HorizontalAlignment="Left" Margin="355,41,0,0" VerticalAlignment="Top" Width="158"/>
+        <TextBox x:Name="tbCustomerNameOrId" HorizontalAlignment="Left" Height="30" Margin="355,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <Button Content="Find Customer" HorizontalAlignment="Left" Margin="554,71,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Button Content="Remove&#xD;&#xA;    &lt;-" HorizontalAlignment="Left" Margin="289,257,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="61" Height="39"/>
 
     </Grid>
 </Window>
