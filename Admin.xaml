@@ -14,20 +14,63 @@
         </ImageBrush>
     </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"  SelectedIndex="0" Margin="0,0,0,172">
+            <!-- Help Pane, located at the right-hand side -->
+            <!--Ribbon.HelpPaneContent>
+                <RibbonButton SmallImageSource="pack://application:,,,/images/help.png" />
+            </Ribbon.HelpPaneContent-->
+            <!-- Application Menu, located at the left-hand side (down arrow) -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Options" />
+                    <RibbonApplicationMenuItem Header="Exit" />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <!-- Ribbon Tab #1: Home -->
+            <RibbonTab Header="Home" KeyTip="H" >
+                <!-- Employee And Payroll group-->
+                <RibbonGroup x:Name="Employee" Header="Employee And Payroll">
+                    <RibbonMenuButton Label="Employee" KeyTip="V">
+                        <RibbonMenuItem Header="Keep Text Only" KeyTip="T"/>
+                        <RibbonMenuItem Header="Paste Special..." KeyTip="S"/>
+                    </RibbonMenuButton>
+                    <RibbonButton Label="Add" KeyTip="C" />
+                </RibbonGroup>
+            </RibbonTab>
+            <!-- Ribbon Tab #2: -->
+            <RibbonTab Header="Insert" KeyTip="I">
+            </RibbonTab>
+            <!-- Ribbon Tab #3: -->
+            <RibbonTab Header="PageLayout" KeyTip="L">
+            </RibbonTab>
+        </Ribbon>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
             <MenuItem Header="File">
+                <MenuItem Header="_Go to login page" />
+                <Separator />
                 <MenuItem Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="Dashboard">
+                <MenuItem Header="Cate_gory of products" />
+                <MenuItem Header="P_roducts" />
+                <MenuItem Header="Emplo_yees" />
+                <MenuItem Header="_Reports" />
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="_Info" />
                 <MenuItem Header="A_bout" />
             </MenuItem>
         </Menu>
-        <Label x:Name="label" Content="Management of:" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="40" FontWeight="Bold"  Height="75" Margin="44,62,0,0" VerticalAlignment="Top" Width="491"/>
-        <Button x:Name="btnGroupOfProducts" Content="Category Of Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,154,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnProducts" Content="Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,214,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnCashiers" Content="Employees" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,274,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,334,0,0" VerticalAlignment="Top" Width="464"/>
+
+        <Label x:Name="lblWelcome" Content="" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="21" FontWeight="Bold"  Height="75" Margin="44,138,0,0" VerticalAlignment="Top" Width="491"/>
+        <Button x:Name="btnCategoryOfProducts" Content="Category Of Products" HorizontalAlignment="Left" Height="54" FontSize="18" FontWeight="Bold" Margin="117,208,0,0" VerticalAlignment="Top" Width="464"/>
+        <Button x:Name="btnProducts" Content="Products" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,272,0,0" VerticalAlignment="Top" Width="464" Grid.RowSpan="2"/>
+        <Button x:Name="btnCashiers" Content="Employees" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,31,0,0" VerticalAlignment="Top" Width="464" Grid.Row="1"/>
+        <Button x:Name="btnReports" Content="Reports" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,100,0,0" VerticalAlignment="Top" Width="464" Grid.Row="1"/>
 
     </Grid>
 </Window>
