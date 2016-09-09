@@ -20,11 +20,23 @@ namespace SmallStore
     /// </summary>
     public partial class Cashier : Window
     {
-        public string userName;
-        public DateTime loginDate; 
+         string userName;
+         DateTime loginDate;
+        Database db;
+        List<Product> productL;
 
         public Cashier(string user,DateTime d)
         {
+            try
+            {
+                db = new Database();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Fatal error:unable to connect to database", "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                // Environment.Exit(1);
+                throw e;
+            }
             InitializeComponent();
             userName = user;
             loginDate = d;
@@ -33,7 +45,8 @@ namespace SmallStore
 
         private void tbProdNameOrBarcode_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            productL = db.GetAllProductByNameOrBarcode(tbProdNameOrBarcode.Text);
+            dgProducts.ItemsSource = productL;
         }
     }
 }

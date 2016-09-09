@@ -40,3 +40,9 @@
 	Delete database class and my Entites(class for each table ) and implemented with LINQ
 * I will implemented cashier main page with tab
 * I will implemented login window
+
+10-11 Sep ------------------------ Behnaz ----------------------
+*I will complete cashier window
+*I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
+* I will complete methods in DB wich is nedd for product and category and OrderSummery
+* I will learn about Barcode
