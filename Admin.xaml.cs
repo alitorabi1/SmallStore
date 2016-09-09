@@ -25,5 +25,16 @@ namespace SmallStore
             InitializeComponent();
         }
 
+        private void RibbonGoToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login dialog = new Login();
+            dialog.ShowDialog();
+        }
+
+        private void RibbonExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
