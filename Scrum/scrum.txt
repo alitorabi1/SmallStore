@@ -41,6 +41,13 @@
 * I will implemented cashier main page with tab
 * I will implemented login window
 
+
+10-11 Sep --------------------------- Ali ----------------------
+* Implementing Ribbons in AdminGroup, AdminProduct and AdminProfile pages
+* Implementing Ribbons in AdminReports, CashierCustomer and CashierOrder pages
+* Implementing Ribbons in CashierPassword and Payment pages* Continue working on Admin pages
+* Implementing methods for Employee and Customer for CRUD operation in database
+
 10-11 Sep ------------------------ Behnaz ----------------------
 *I will complete cashier window
 *I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
