@@ -15,3 +15,9 @@
 Database "Store "in Azure and Created All our tables in Db in azure
 * I created All entites that related to our Tables in Folder Entites inside our Soulution
 * I will implemented Database class 
+
+09----------------Behnaz--------------------------------
+*yesterday night I Learned LINQ ,Searched about insert update delete in LinQ and Now I want to talk with Ali and teacher for
+Delete database class and my Entites(class for each table ) and implemented with LINQ
+*I will implemented cashier main page with tab
+*I will implemented login window
