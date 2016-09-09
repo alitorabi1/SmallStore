@@ -1,23 +1,42 @@
-07 Sep------Ali-------
-*create gitHub repository and invite Behnaz and 
-*change proposal as teacher's opinion
-*I Created trello for our project And wrote some thing for approved and invite Behnaz 
+07 Sep --------------------------- Ali ----------------------
+* create project files SmallStore and commit to git
+* create gitHub repository and invite Behnaz
+* change proposal as teacher's opinion
+* I Created trello for our project And wrote some thing for approved and invite Behnaz 
 
-07 Sep------Behnaz-------
-*create project files SmallStore and commit to git
-*I will implemented DB and Tables 
+07 Sep ------------------------ Behnaz ----------------------
+* create project files SmallStore and commit to git
+* I will implemented DB and Tables 
 
 
 
+08 Sep --------------------------- Ali ----------------------
+* Working on how to push-pull project on GitHub, also directly in "Visual Studio"
+* Change Lists and cards in Trello as teacher said
+* Change Orders page
+* Capture and change images as well, the related description in proposal file
+* Find how to open forms by clicking on a button and how to pass variables between them
+* Learn how to use Ribbons in our pages
+* Implement Ribbon in Admin page
 
-08 Sep----------Behnaz-------------------
-*After discuss and cahnge our Tables with Ali and Teacher I created
-Database "Store "in Azure and Created All our tables in Db in azure
+08 Sep ------------------------ Behnaz ----------------------
+* Working on how to push-pull project on GitHub, also directly in "Visual Studio"
+* After discuss and cahnge our Tables with Ali and Teacher I created
+	Database "Store "in Azure and Created All our tables in Db in azure
 * I created All entites that related to our Tables in Folder Entites inside our Soulution
 * I will implemented Database class 
 
-09----------------Behnaz--------------------------------
-*yesterday night I Learned LINQ ,Searched about insert update delete in LinQ and Now I want to talk with Ali and teacher for
-Delete database class and my Entites(class for each table ) and implemented with LINQ
-*I will implemented cashier main page with tab
-*I will implemented login window
+
+
+09 Sep --------------------------- Ali ----------------------
+* Continue implementing Ribbons in Admin page
+* Learning how to use LINQ with Behnaz
+* Implementing Ribbons in AdminGroup, AdminProduct and AdminProfile pages
+* Implementing Ribbons in AdminReports, CashierCustomer and CashierOrder pages
+* Implementing Ribbons in CashierPassword and Payment pages
+
+09 Sep ------------------------ Behnaz ----------------------
+* yesterday night I Learned LINQ ,Searched about insert update delete in LinQ and Now I want to talk with Ali and teacher for
+	Delete database class and my Entites(class for each table ) and implemented with LINQ
+* I will implemented cashier main page with tab
+* I will implemented login window
