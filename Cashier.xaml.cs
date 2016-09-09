@@ -20,10 +20,20 @@ namespace SmallStore
     /// </summary>
     public partial class Cashier : Window
     {
-        public Cashier()
+        public string userName;
+        public DateTime loginDate; 
+
+        public Cashier(string user,DateTime d)
         {
             InitializeComponent();
+            userName = user;
+            loginDate = d;
+            this.Title = userName+" entered in "+loginDate.ToString("yyyy-MM-dd HH:mm");
         }
 
+        private void tbProdNameOrBarcode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

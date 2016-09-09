@@ -8,10 +8,10 @@ namespace SmallStore
 {
     class OrderItem
     {
-        public int OrderId;
-        public int ProductId;
-        public decimal SalePricePerUnit;
-        public decimal NumberOfUnit;
-        public string ProductName;
+        public int OrderId {set; get; }
+        public int ProductId {set; get; }
+        public decimal SalePricePerUnit {set; get; }
+        public decimal NumberOfUnit {set; get; }
+        public string ProductName {set; get; }
     }
 }

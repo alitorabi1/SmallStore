@@ -21,42 +21,72 @@ namespace SmallStore
     public partial class Login : Window
     {
 
+         Database db;
+
         public Login()
         {
+            try
+            {
+                db = new Database();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Fatal error:unable to connect to database", "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                // Environment.Exit(1);
+                throw e;
+            }
+
             InitializeComponent();
             tbUsername.Focus();
+
+
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if ( tbUsername.Text.Length < 1 || pbPassword.Password.Length <1 )
             {
-                MessageBox.Show("Please enter username or password", "User Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Please enter username and password", "User Error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
+            bool isManager;
+            try
+            {
 
-            if ( isAuthenticated() == "ADMINISTRATOR")
-            {
-                Admin dialog = new Admin();
-                dialog.lblWelcome.Content = "Welcome: " + tbUsername.Text;
-                dialog.ShowDialog();
-                this.Close();
+                if (db.LoginUser(tbUsername.Text, pbPassword.Password, out isManager) && isManager == true)
+                {
+                    Admin dialog = new Admin();
+                    dialog.lblWelcome.Content = "Welcome: " + tbUsername.Text;
+                    dialog.ShowDialog();
+                    this.Close();
+                }
+                else if (db.LoginUser(tbUsername.Text, pbPassword.Password, out isManager) && isManager == false)
+                {
+                    Cashier dialog = new Cashier(tbUsername.Text, DateTime.Now);                  
+                   
+                    dialog.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    
+                    MessageBox.Show("Invalid Username or Password. Please Try again", "User Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    return;
+                }
             }
-            else if (isAuthenticated() == "CASHIER" )
-            {
-                Cashier dialog = new Cashier();
-                dialog.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                lblErrorMessage.Content = "Invalid Username or Password. Please Try again";
-                return;
+            catch (Exception ex) {
+                MessageBox.Show("Unable fetch data from database", "database Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                 Environment.Exit(1);
             }
         }
 
-       
-
-        
+        private void bpPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key==Key.Enter)
+            {
+                btnSubmit.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            
+        }
     }
 }

@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallStore"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Cashier Page" Height="550" Width="700">
-    <Window.Background>
-        <ImageBrush>
-            <ImageBrush.ImageSource>
-                <BitmapImage UriSource="C:\\Users\\lenovo\\Documents\\Visual Studio 2015\\Projects\\SmallStore\\images\\background.jpg" />
-            </ImageBrush.ImageSource>
-        </ImageBrush>
-    </Window.Background>
-    <Grid>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
-            <MenuItem Header="File">
+        Title="Cashier Page" Height="960.687" Width="1257.554">
+
+    <Grid Margin="0,0,0,30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="437*"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693" Grid.ColumnSpan="2">
+            <MenuItem Header="Change password">
                 <MenuItem Header="E_xit" />
             </MenuItem>
             <MenuItem Header="Help">
@@ -23,10 +21,50 @@
                 <MenuItem Header="A_bout" />
             </MenuItem>
         </Menu>
-        <Label x:Name="label" Content="Management of:" HorizontalAlignment="Left" Foreground="AntiqueWhite" FontSize="40" FontWeight="Bold"  Height="75" Margin="44,62,0,0" VerticalAlignment="Top" Width="491"/>
-        <Button x:Name="btnCustomers" Content="Customers" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,154,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnCustomerRequests" Content="Customer Requests" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,274,0,0" VerticalAlignment="Top" Width="464"/>
-        <Button x:Name="btnMyPassword" Content="My Password" HorizontalAlignment="Left" Height="54" FontSize="18" Foreground="Black" FontWeight="Bold" Margin="117,394,0,0" VerticalAlignment="Top" Width="464"/>
+        <Grid Grid.ColumnSpan="2" Margin="0,0,0,26" HorizontalAlignment="Left" Width="1155">
+            <TabControl HorizontalAlignment="Left"
+		    Height="897"
+		    Margin="0,25,-91,-45"
+		    VerticalAlignment="Top"
+		    Width="1246"
+		    RenderTransformOrigin="0.518,-0.166">
+                <TabItem Header="Orders" Width="240">
+                    <Grid Background="#FFE5E5E5" Margin="0,-3,-6,-6">
+                        <DataGrid x:Name="dgProducts" AutoGenerateColumns="False" Margin="20,81,697,0" Height="783" VerticalAlignment="Top" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
+                                <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
+                                <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalAlignment="Top" Width="154"/>
+                        <TextBox x:Name="tbProdNameOrBarcode" KeyDown="ProductORBarcode_keyDown" HorizontalAlignment="Left" Height="30" Margin="20,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" TextChanged="tbProdNameOrBarcode_TextChanged"/>
+                        <DataGrid x:Name="dgProducts_Copy" AutoGenerateColumns="False" Margin="674,81,43,0" Height="783" VerticalAlignment="Top" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
+                                <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
+                                <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button x:Name="button"   HorizontalAlignment="Left" Height="51" Margin="570,360,0,0" VerticalAlignment="Top" Width="81" ToolTip="Add Item to purches List">
+                            <Image Source="pack://application:,,,/Images/add_to_basket.png"></Image>
 
+
+                        </Button>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Customers" Width="240">
+                    <Grid Background="#FFE5E5E5" Margin="0,0,-107,0">
+                        <TextBlock HorizontalAlignment="Left"
+			       Margin="10"
+			       TextWrapping="Wrap"
+			       Text="I want some cheese."
+			       VerticalAlignment="Top"
+			       Width="471"/>
+                    </Grid>
+
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

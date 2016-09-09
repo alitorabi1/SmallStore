@@ -8,14 +8,15 @@ namespace SmallStore
 {
     class OrderSummary
     {
-        public int OrderId;
-        public int EmployeeId;
-        public int CustomerId;
-        public DateTime DatePurches;
-        public decimal TotalPrice;
-        public decimal Discount;
-        public decimal Tax;
-        public decimal TotalAndTax;
-        public string PaidMethod;
+        public int OrderId { set; get; }
+        public int EmployeeId { set; get; }
+        public int CustomerId { set; get; }
+        public DateTime DatePurches { set; get; }
+        public decimal TotalPrice { set; get; }
+        public decimal Discount { set; get; }
+        public decimal Tax { set; get; }
+        public decimal TotalAndTax { set; get; }
+        public string PaidMethod { set; get; }
+        public List<OrderItem> items { set; get; }
     }
 }
