@@ -20,6 +20,7 @@ namespace SmallStore
     /// </summary>
     public partial class Login : Window
     {
+
         public Login()
         {
             InitializeComponent();
@@ -28,9 +29,9 @@ namespace SmallStore
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if ( tbUsername.Text.Length == 0 || pbPassword.Password.Length == 0 )
+            if ( tbUsername.Text.Length < 1 || pbPassword.Password.Length <1 )
             {
-                lblErrorMessage.Content = "Please enter username or password.";
+                MessageBox.Show("Please enter username or password", "User Error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
 
@@ -54,19 +55,8 @@ namespace SmallStore
             }
         }
 
-        private string isAuthenticated()
-        {
-            // TODO: this method checks the role of user and authenticate him
+       
 
-            //            throw new NotImplementedException();
-            //            return "CASHIER";
-            return "ADMINISTRATOR";
-            //return "";
-        }
-
-        private void tbUsername_KeyDown(object sender, KeyEventArgs e)
-        {
-            lblErrorMessage.Content = "";
-        }
+        
     }
 }

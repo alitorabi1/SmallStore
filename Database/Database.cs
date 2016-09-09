@@ -43,28 +43,7 @@ namespace SmallStore
         }
         public bool LoginCashierToStore(Employee e)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Employee WHERE UserName=@Username and Password=@Password and IsManager=0", conn);
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.Parameters.AddWithValue("@Username", e.UserName);
-            cmd.Parameters.AddWithValue("@Password", e.Password);
-
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                int rowCount = 0;
-
-                if (reader.HasRows)
-                {
-                    rowCount = 0;
-                    while (reader.Read())
-                    {
-                        rowCount++;
-                    }
-
-                }
-                if (rowCount == 1) return true;
-                return false;
-            }
+           
         }
 
         public void addEmployee(Employee e)
@@ -115,14 +94,35 @@ namespace SmallStore
             }
 
         }
-        /* Linq 
-         * IQueryable<Whatever> query = ctx.TheTable;
-               if(fooHasValue)
-     query = query.Where(x => x.Foo == foo);
-          if(barHasValue)
-    query = query.Where(x => x.Bar == bar);
-foreach(var row in query) {...}
-         */
+        public bool loginUser(Employee e, out bool  isManager) {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Employee WHERE UserName=@Username and Password=@Password ", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@Username", e.UserName);
+            cmd.Parameters.AddWithValue("@Password", e.Password);
+
+            isManager = false;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                int rowCount = 0;
+
+                if (reader.HasRows)
+                {
+                    rowCount = 0;
+                    while (reader.Read())
+                    {
+                        rowCount++;
+                    }
+
+                }
+                if (rowCount == 1) {
+                    isManager= reader.GetBoolean(reader.GetOrdinal("IsManager"));
+                    return true;
+                }
+                return false;
+            }
+
+
+        }
 
 
     }
