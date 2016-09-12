@@ -58,3 +58,9 @@
 12 Sep --------------------------- Ali ----------------------
 * complete methods in DB wich is needed for product
 * complete methods in DB wich is needed for Employee
+
+
+12 Sep ------------------------ Behnaz ----------------------
+* whole week-end I learned about barcode reader from image and stuck I must ask teacher I can t finad for wpf a lot of topic there are about c#/windows
+*I will complete cashier window
+*I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
