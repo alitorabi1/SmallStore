@@ -25,5 +25,9 @@ namespace SmallStore
             InitializeComponent();
         }
 
+        private void btAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

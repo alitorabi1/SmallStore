@@ -131,8 +131,9 @@ namespace SmallStore
                         decimal purchasePrice = reader.GetDecimal(reader.GetOrdinal("PurchasePrice"));
                         decimal salePrice = reader.GetDecimal(reader.GetOrdinal("SalePrice"));
                         string unit = reader.GetString(reader.GetOrdinal("Unit"));
+                        decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
 
-                        Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit };
+                        Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit,SpecialDiscount=specialDiscount };
                         productList.Add(p);
 
                     }
