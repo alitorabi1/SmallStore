@@ -35,12 +35,12 @@
                                 <DataGridTextColumn Header="Group" Binding="{Binding ProductName}" Width="5*" />
                                 <DataGridTextColumn Header="Product" Binding="{Binding NumberInStock}" Width="5*" />
                                 <DataGridTextColumn Header="Stock" Binding="{Binding SalePrice}" Width="5*" />
-                                <DataGridTextColumn Header="Stock" Binding="{Binding SalePrice}*{Binding SpecialDiscount}" Width="5*" />
+                                <DataGridTextColumn Header="Stock"  Width="5*" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalAlignment="Top" Width="154"/>
                         <TextBox x:Name="tbProdNameOrBarcode"  HorizontalAlignment="Left" Height="30" Margin="20,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" TextChanged="tbProdNameOrBarcode_TextChanged"/>
-                        <DataGrid x:Name="dgOrders" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Margin="674,81,43,0" Height="443" VerticalAlignment="Top" >
+                        <DataGrid x:Name="dgOrders" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Margin="674,81,43,0" Height="422" VerticalAlignment="Top" >
                             <DataGrid.Columns>
                                 
                             </DataGrid.Columns>
