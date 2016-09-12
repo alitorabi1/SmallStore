@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallStore"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Cashier Page" Height="960.687" Width="1257.554">
+        Title="Cashier Page" Height="809.187" Width="1257.554">
 
     <Grid Margin="0,0,0,30">
         <Grid.ColumnDefinitions>
@@ -23,16 +23,16 @@
         </Menu>
         <Grid Grid.ColumnSpan="2" Margin="0,0,0,26" HorizontalAlignment="Left" Width="1155">
             <TabControl HorizontalAlignment="Left"
-		    Height="897"
-		    Margin="0,25,-91,-45"
+		    Height="757"
+		    Margin="0,25,-91,-57"
 		    VerticalAlignment="Top"
 		    Width="1246"
 		    RenderTransformOrigin="0.518,-0.166">
                 <TabItem Header="Orders" Width="240">
-                    <Grid Background="#FFE5E5E5" Margin="0,-151,-6,141">
-                        <DataGrid x:Name="dgProducts"  AutoGenerateColumns="False" Margin="18,212,699,0" Height="630" VerticalAlignment="Top" SelectionChanged="dgProducts_SelectionChanged"  >
+                    <Grid Background="#FFE5E5E5" Margin="10,-64,-16,-13">
+                        <DataGrid x:Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,144,707,0" Height="528" VerticalAlignment="Top" MouseDoubleClick="Row_DoubleClick" SelectionChanged="dgProducts_SelectionChanged"  >
                             <DataGrid.Resources>
-                            <local:DiscountProductConverter x:Key="dConverter" />
+                                <local:DiscountProductConverter x:Key="dConverter" />
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ProductName" Binding="{Binding ProductName}" Width="5*" />
@@ -44,16 +44,19 @@
                 Binding="{Binding Converter={StaticResource dConverter}}"
                 />
                             </DataGrid.Columns>
-                            
-                        </DataGrid>
-                        <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="70,162,0,0" VerticalAlignment="Top" Width="154"/>
-                        <TextBox x:Name="tbProdNameOrBarcode"  HorizontalAlignment="Left" Height="30" Margin="229,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" TextChanged="tbProdNameOrBarcode_TextChanged"/>
-                        <DataGrid x:Name="dgOrders" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Margin="674,171,43,0" Height="422" VerticalAlignment="Top" >
-                            <DataGrid.Columns>
 
-                            </DataGrid.Columns>
                         </DataGrid>
-                        <Button x:Name="button"   HorizontalAlignment="Left" Height="82" Margin="570,162,0,0" VerticalAlignment="Top" Width="81" ToolTip="Add Item to purches List">
+                        <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="70,88,0,0" VerticalAlignment="Top" Width="154"/>
+                        <TextBox x:Name="tbProdNameOrBarcode"  HorizontalAlignment="Left" Height="30" Margin="229,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" TextChanged="tbProdNameOrBarcode_TextChanged"/>
+                        <DataGrid x:Name="dgOrders" IsReadOnly="True" AutoGenerateColumns="False" Margin="752,144,73,0" Height="528" VerticalAlignment="Top" MouseDoubleClick="Row_DoubleClick" SelectionChanged="dgProducts_SelectionChanged"  >
+                            
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ProductName" Binding="{Binding ProductName}" Width="5*" />
+
+                                </DataGrid.Columns>
+
+                        </DataGrid>
+                        <Button x:Name="btnAdd"   HorizontalAlignment="Left" Height="82" Margin="570,162,0,0" VerticalAlignment="Top" Width="81" ToolTip="Add Item to purches List" Click="btnAdd_Click">
 
                             <StackPanel Orientation="Horizontal" Margin="10">
                                 <Image Source="pack://application:,,,/Images/add_to_basket.png" Width="46" Height="52" Margin="0,0,10,0"/>
@@ -70,7 +73,7 @@
 
 
                         </Button>
-                        <Button x:Name="button1" Content="BarcodeReader" HorizontalAlignment="Left" Height="36" Margin="568,84,0,0" VerticalAlignment="Top" Width="83"/>
+                        <Button x:Name="btn_refresh" Content="Button" HorizontalAlignment="Left" Height="55" Margin="578,337,0,0" VerticalAlignment="Top" Width="55" Click="btn_refresh_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Customers" Width="240">

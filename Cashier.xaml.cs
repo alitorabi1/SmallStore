@@ -20,12 +20,12 @@ namespace SmallStore
     /// </summary>
     public partial class Cashier : Window
     {
-         string userName;
-         DateTime loginDate;
+        string userName;
+        DateTime loginDate;
         Database db;
         List<Product> productL;
-
-        public Cashier(string user,DateTime d)
+        List<OrderItem> orderItemL = new List<OrderItem>();
+        public Cashier(string user, DateTime d)
         {
             try
             {
@@ -40,21 +40,49 @@ namespace SmallStore
             InitializeComponent();
             userName = user;
             loginDate = d;
-            this.Title = userName+" entered in "+loginDate.ToString("yyyy-MM-dd HH:mm");
+            this.Title = userName + " entered in " + loginDate.ToString("yyyy-MM-dd HH:mm");
+            //    orderItemL = new List<OrderItem>();
+
         }
 
         private void tbProdNameOrBarcode_TextChanged(object sender, TextChangedEventArgs e)
         {
             productL = db.GetAllProductByNameOrBarcode(tbProdNameOrBarcode.Text);
             dgProducts.ItemsSource = productL;
+
+
         }
 
         private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+
+        }
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            // tbProdNameOrBarcode.Text = dgOrders.Items.Count+"";
+            btnAdd.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
+
+
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgProducts.SelectedItem == null) return;
             Product p = (Product)dgProducts.SelectedItem;
-            string productName = p.ProductName;
-            dgOrders.Items.Add(productName);
-            dgOrders.Items.Refresh();
+            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
+
+            orderItemL.Add(or);
+            //orderItemL.Sort();
+            dgOrders.ItemsSource = orderItemL;
+            dgOrders.UpdateLayout();
+
+        }
+
+        private void btn_refresh_Click(object sender, RoutedEventArgs e)
+        {
+            dgOrders.ItemsSource = orderItemL;
         }
     }
 }

@@ -62,9 +62,12 @@ namespace SmallStore
                 }
                 else if (db.LoginUser(tbUsername.Text, pbPassword.Password, out isManager) && isManager == false)
                 {
+                   
                     Cashier dialog = new Cashier(tbUsername.Text, DateTime.Now);
                     this.Close();
                     dialog.ShowDialog();
+                    
+                   
                 }
                 else
                 {
@@ -86,6 +89,10 @@ namespace SmallStore
                 btnSubmit.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
             
+        }
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }
