@@ -112,10 +112,10 @@ namespace SmallStore
         public List<Product> GetAllProductByNameOrBarcode(string str)
         {
             List<Product> productList = new List<Product>();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductName LIKE '%@ProductName%' OR Barcode  LIKE '%@Barcode%'", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductName LIKE @ProductName OR Barcode  LIKE @Barcode", conn);
 
-            cmd.Parameters.AddWithValue("@ProductName", str);
-            cmd.Parameters.AddWithValue("@Barcode", str);
+            cmd.Parameters.AddWithValue("@ProductName","%"+str+"%");
+            cmd.Parameters.AddWithValue("@Barcode", "%" + str + "%");
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
 
@@ -123,7 +123,7 @@ namespace SmallStore
                 {
                     while (reader.Read())
                     {
-                        int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        int id = reader.GetInt32(reader.GetOrdinal("ProductId"));
                         string productName = reader.GetString(reader.GetOrdinal("ProductName"));
                         int categoryId = reader.GetInt32(reader.GetOrdinal("CategoryId"));
                         string barcode = reader.GetString(reader.GetOrdinal("Barcode"));

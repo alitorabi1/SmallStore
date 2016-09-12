@@ -19,7 +19,7 @@
 
         <DataGrid Name="dgProducts" AutoGenerateColumns="False" Margin="16,109,410,0" Height="362" VerticalAlignment="Top" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
+                <DataGridTextColumn Header="Group" Binding="{Binding ProductName}" Width="5*" />
                 <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
                 <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
             </DataGrid.Columns>

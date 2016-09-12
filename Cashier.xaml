@@ -30,24 +30,35 @@
 		    RenderTransformOrigin="0.518,-0.166">
                 <TabItem Header="Orders" Width="240">
                     <Grid Background="#FFE5E5E5" Margin="0,-3,-6,-6">
-                        <DataGrid x:Name="dgProducts" AutoGenerateColumns="False" Margin="20,81,697,0" Height="783" VerticalAlignment="Top" >
+                        <DataGrid x:Name="dgProducts"  AutoGenerateColumns="False" Margin="20,81,697,0" Height="783" VerticalAlignment="Top" SelectionChanged="dgProducts_SelectionChanged"  >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
-                                <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
-                                <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
+                                <DataGridTextColumn Header="Group" Binding="{Binding ProductName}" Width="5*" />
+                                <DataGridTextColumn Header="Product" Binding="{Binding NumberInStock}" Width="5*" />
+                                <DataGridTextColumn Header="Stock" Binding="{Binding SalePrice}" Width="5*" />
+                                <DataGridTextColumn Header="Stock" Binding="{Binding SalePrice}*{Binding SpecialDiscount}" Width="5*" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Product name or barcode" HorizontalAlignment="Left" Margin="22,5,0,0" VerticalAlignment="Top" Width="154"/>
                         <TextBox x:Name="tbProdNameOrBarcode"  HorizontalAlignment="Left" Height="30" Margin="20,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" TextChanged="tbProdNameOrBarcode_TextChanged"/>
-                        <DataGrid x:Name="dgProducts_Copy" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Margin="674,81,43,0" Height="540" VerticalAlignment="Top" >
+                        <DataGrid x:Name="dgOrders" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Margin="674,81,43,0" Height="443" VerticalAlignment="Top" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Group" Binding="{Binding GName}" Width="5*" />
-                                <DataGridTextColumn Header="Product" Binding="{Binding PName}" Width="5*" />
-                                <DataGridTextColumn Header="Stock" Binding="{Binding PStock}" Width="5*" />
+                                
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button x:Name="button"   HorizontalAlignment="Left" Height="51" Margin="570,360,0,0" VerticalAlignment="Top" Width="81" ToolTip="Add Item to purches List">
-                            <Image Source="pack://application:,,,/Images/add_to_basket.png"></Image>
+                        <Button x:Name="button"   HorizontalAlignment="Left" Height="82" Margin="570,360,0,0" VerticalAlignment="Top" Width="81" ToolTip="Add Item to purches List">
+
+                            <StackPanel Orientation="Horizontal" Margin="10">
+                                <Image Source="pack://application:,,,/Images/add_to_basket.png" Width="46" Height="52" Margin="0,0,10,0"/>
+                                <TextBlock RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-11.87"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform></TextBlock>
+                            </StackPanel>
 
 
                         </Button>

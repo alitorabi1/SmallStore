@@ -48,5 +48,13 @@ namespace SmallStore
             productL = db.GetAllProductByNameOrBarcode(tbProdNameOrBarcode.Text);
             dgProducts.ItemsSource = productL;
         }
+
+        private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Product p = (Product)dgProducts.SelectedItem;
+            string productName = p.ProductName;
+            dgOrders.Items.Add(productName);
+            dgOrders.Items.Refresh();
+        }
     }
 }
