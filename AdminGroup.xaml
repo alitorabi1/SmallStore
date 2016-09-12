@@ -7,18 +7,9 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="Defining Group" Height="364" Width="700">
     <Grid>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
-            <MenuItem Header="File">
-                <MenuItem Header="E_xit" />
-            </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="_Info" />
-                <MenuItem Header="A_bout" />
-            </MenuItem>
-        </Menu>
-        <DataGrid Name="dgAnimals" AutoGenerateColumns="False" Margin="16,43,464,0" Height="270" VerticalAlignment="Top" >
+        <DataGrid Name="dgCategory" AutoGenerateColumns="False" Margin="16,20,464,0" Height="293" VerticalAlignment="Top" SelectedCellsChanged="dgCategory_SelectedCellsChanged" IsReadOnly="True" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Group Name" Binding="{Binding GName}" Width="5*" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="5*" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu x:Name="DeleteContextMenu">
@@ -26,14 +17,16 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Label x:Name="label" Content="Group Name:" HorizontalAlignment="Left" Height="30" Margin="303,52,0,0" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="label1" Content="Description" HorizontalAlignment="Left" Height="33" Margin="303,87,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbGDesc" HorizontalAlignment="Left" Height="128" Margin="303,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375"/>
-        <TextBox x:Name="tbGName" HorizontalAlignment="Left" Height="30" Margin="469,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="303,293,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="403,293,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="503,293,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="603,293,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="Category Name:" HorizontalAlignment="Left" Height="30" Margin="303,73,0,0" VerticalAlignment="Top" Width="143"/>
+        <TextBox x:Name="tbCName" HorizontalAlignment="Left" Height="30" Margin="465,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
+        <Label x:Name="label1" Content="Description" HorizontalAlignment="Left" Height="33" Margin="303,111,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbCDesc" HorizontalAlignment="Left" Height="131" Margin="303,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="367"/>
+        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="303,293,0,0" VerticalAlignment="Top" Width="75" Click="btAdd_Click"/>
+        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="395,293,0,0" VerticalAlignment="Top" Width="75" Click="btDelete_Click"/>
+        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="495,293,0,0" VerticalAlignment="Top" Width="75" Click="btEdit_Click"/>
+        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="595,293,0,0" VerticalAlignment="Top" Width="75" Click="btExit_Click" />
+        <Label x:Name="label2" Content="Id:" HorizontalAlignment="Left" Margin="303,35,0,0" VerticalAlignment="Top" Width="123"/>
+        <Label x:Name="lblCategoryId" Content="" HorizontalAlignment="Left" Margin="465,35,0,0" VerticalAlignment="Top" Width="205"/>
 
     </Grid>
 </Window>

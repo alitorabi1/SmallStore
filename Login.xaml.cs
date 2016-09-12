@@ -31,9 +31,9 @@ namespace SmallStore
             }
             catch (Exception e)
             {
-                MessageBox.Show("Fatal error:unable to connect to database", "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Fatal error:unable to connect to database. " + e.Message, "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 // Environment.Exit(1);
-                throw e;
+                //throw e;
             }
 
             InitializeComponent();
@@ -57,15 +57,14 @@ namespace SmallStore
                 {
                     Admin dialog = new Admin();
                     dialog.lblWelcome.Content = "Welcome: " + tbUsername.Text;
-                    dialog.ShowDialog();
                     this.Close();
+                    dialog.ShowDialog();
                 }
                 else if (db.LoginUser(tbUsername.Text, pbPassword.Password, out isManager) && isManager == false)
                 {
-                    Cashier dialog = new Cashier(tbUsername.Text, DateTime.Now);                  
-                   
-                    dialog.ShowDialog();
+                    Cashier dialog = new Cashier(tbUsername.Text, DateTime.Now);
                     this.Close();
+                    dialog.ShowDialog();
                 }
                 else
                 {

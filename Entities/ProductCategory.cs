@@ -8,7 +8,8 @@ namespace SmallStore
 {
     class ProductCategory
     {
-        public int Id { set; get; }
+        public int CategoryId { set; get; }
         public string Category { set; get; }
+        public string Description { set; get; }
     }
 }

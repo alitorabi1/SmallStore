@@ -31,25 +31,25 @@
             <!-- Ribbon Tab #2: -->
             <RibbonTab Header="Dashboard" KeyTip="D" >
                 <RibbonGroup x:Name="Category" Header="Category">
-                    <RibbonMenuItem Header="Category" KeyTip="G" />
+                    <RibbonMenuItem Header="Category" KeyTip="G" Click="RibbonCategory_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Product" Header="Product">
-                    <RibbonMenuItem Header="Product" KeyTip="T" />
+                    <RibbonMenuItem Header="Product" KeyTip="T" Click="RibbonProduct_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Employees" Header="Employees">
-                    <RibbonMenuItem Header="Employees" KeyTip="Y" />
+                    <RibbonMenuItem Header="Employees" KeyTip="Y" Click="RibbonEmployee_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Reports" Header="Reports">
-                    <RibbonMenuItem Header="Reports" KeyTip="T" />
+                    <RibbonMenuItem Header="Reports" KeyTip="T" Click="RibbonReport_Click" />
                 </RibbonGroup>
             </RibbonTab>
             <!-- Ribbon Tab #3: -->
             <RibbonTab Header="Help" KeyTip="H" >
                 <RibbonGroup x:Name="Tutorial" Header="Tutorial">
-                    <RibbonMenuItem Header="Tutorial" KeyTip="L" />
+                    <RibbonMenuItem Header="Tutorial" KeyTip="L" Click="RibbonTutorial_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="About" Header="About">
-                    <RibbonMenuItem Header="About" KeyTip="U" />
+                    <RibbonMenuItem Header="About" KeyTip="U" Click="RibbonAbout_Click" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
