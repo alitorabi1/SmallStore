@@ -53,3 +53,8 @@
 *I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
 * I will complete methods in DB wich is nedd for product and category and OrderSummery
 * I will learn about Barcode
+
+
+12 Sep --------------------------- Ali ----------------------
+* complete methods in DB wich is needed for product
+* complete methods in DB wich is needed for Employee
