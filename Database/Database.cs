@@ -114,7 +114,7 @@ namespace SmallStore
             List<Product> productList = new List<Product>();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductName LIKE @ProductName OR Barcode  LIKE @Barcode", conn);
 
-            cmd.Parameters.AddWithValue("@ProductName","%"+str+"%");
+            cmd.Parameters.AddWithValue("@ProductName", "%" + str + "%");
             cmd.Parameters.AddWithValue("@Barcode", "%" + str + "%");
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -133,7 +133,7 @@ namespace SmallStore
                         string unit = reader.GetString(reader.GetOrdinal("Unit"));
                         decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
 
-                        Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit,SpecialDiscount=specialDiscount };
+                        Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
                         productList.Add(p);
 
                     }
@@ -143,8 +143,85 @@ namespace SmallStore
             return productList;
         }
 
+        public void AddProductItem(Product p)
+        {
+            //            SqlCommand cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, ProductImage, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @ProductImage, @SpecialDiscount)", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @SpecialDiscount)", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+            cmd.Parameters.AddWithValue("@Unit", p.Unit);
+            //            cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
+            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            List<Product> ProductList = new List<Product>();
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM Product", conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("ProductId"));
+                            string productName = reader.GetString(reader.GetOrdinal("ProductName"));
+                            int categoryId = reader.GetInt32(reader.GetOrdinal("CategoryId"));
+                            string barcode = reader.GetString(reader.GetOrdinal("Barcode"));
+                            int numberInStock = reader.GetInt32(reader.GetOrdinal("NumberInStock"));
+                            decimal purchasePrice = reader.GetDecimal(reader.GetOrdinal("PurchasePrice"));
+                            decimal salePrice = reader.GetDecimal(reader.GetOrdinal("SalePrice"));
+                            string unit = reader.GetString(reader.GetOrdinal("Unit"));
+                            //                            string productImage = reader.GetString(reader.GetOrdinal("ProductImage"));
+                            decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
+
+
+                            //                            Product p = new Product() { ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
+                            Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
+                            ProductList.Add(p);
+
+                        }
+                    }
+                }
+            }
+            return ProductList;
+        }
+
+        public void DeleteProductItemById(int Id)
+        {
+            SqlCommand cmd = new SqlCommand("DELETE FROM Product WHERE ProductId = " + Id, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void UpdateProductItem(Product p)
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
+            //             + "Unit = @Unit, ProductImage = @ProductImage, SalePrice = @SalePrice, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+            cmd.Parameters.AddWithValue("@Unit", p.Unit);
+            //            cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
+            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+
+            cmd.ExecuteNonQuery();
+        }
+
+
         // <--  ********************** CRUD methods for Product ************************
-        
+
         //  ************************** CRUD methods for ProductCategory ************************ -->
 
         public void AddCategoryItem(ProductCategory pc)
@@ -159,7 +236,8 @@ namespace SmallStore
         public List<ProductCategory> GetAllCategories()
         {
             List<ProductCategory> CategoryList = new List<ProductCategory>();
-            using (SqlCommand cmd = new SqlCommand("SELECT * FROM ProductCategory", conn)) {
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM ProductCategory", conn))
+            {
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

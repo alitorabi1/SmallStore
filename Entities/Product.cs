@@ -17,6 +17,6 @@ namespace SmallStore
         public decimal SalePrice { set; get; }
         public string Unit { set; get; }
         public decimal SpecialDiscount { set; get; }
-        public byte[] ProductImage { set; get; }
+        public string ProductImage { set; get; }
     }
 }
