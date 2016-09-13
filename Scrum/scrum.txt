@@ -75,7 +75,8 @@ NOT QUITE DONE:
 * Inserting and fetching images to and from db
 
 TODO TODAY:
-* Inserting and fetching images to and from db
+* Inserting and fetching images to and from db for Products
+* Implementing CRUD methods for Employee
 
 NEED HELP:
 
