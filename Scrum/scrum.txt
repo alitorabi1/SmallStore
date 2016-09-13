@@ -64,3 +64,17 @@
 * whole week-end I learned about barcode reader from image and stuck I must ask teacher I can t finad for wpf a lot of topic there are about c#/windows
 *I will complete cashier window
 *I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
+
+13 Sep ------------------------ Behnaz ----------------------
+Done:
+-create calculatedValue field in datagrid column
+
+NOT QUITE DONE:
+transfer info of selected product from datagrid(product) to datagrid(Orders) list of orders 
+
+TODO TODAY:
+I want to continue implement cashier window-ordres
+
+NEED HELP:
+
+--------------------------------------------
