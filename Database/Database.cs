@@ -180,12 +180,16 @@ namespace SmallStore
                             decimal purchasePrice = reader.GetDecimal(reader.GetOrdinal("PurchasePrice"));
                             decimal salePrice = reader.GetDecimal(reader.GetOrdinal("SalePrice"));
                             string unit = reader.GetString(reader.GetOrdinal("Unit"));
+
+                            object binaryData = ("select ProductImage from Product where id=" + id);// use your code to retrive image from database and store it into 'object' data type
+                            byte[] bytes = (byte[])binaryData;
+                            string productImage = Convert.ToBase64String(bytes, 0, bytes.Length);
                             //                            string productImage = reader.GetString(reader.GetOrdinal("ProductImage"));
                             decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
 
 
-                            //                            Product p = new Product() { ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
-                            Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
+                            Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
+                            //Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
                             ProductList.Add(p);
 
                         }

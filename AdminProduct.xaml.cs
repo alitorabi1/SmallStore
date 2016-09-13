@@ -71,6 +71,7 @@ namespace SmallStore
             tbPurchasePrice.Text = p.PurchasePrice.ToString();
             tbSalesPrice.Text = p.SalePrice.ToString();
             tbUnit.Text = p.Unit;
+            imgProduct.Source = new BitmapImage(new Uri(p.ProductImage));
             tbSpecialDiscount.Text = p.SpecialDiscount.ToString();
         }
 
