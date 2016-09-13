@@ -65,6 +65,21 @@
 *I will complete cashier window
 *I will use transaction for Order and change view of datagrid for Commit the numbe of StuckNumber 
 
+13 Sep ------------------------ Ali ----------------------
+Done:
+* Finishing CRUD methods for Category
+* Writing CRUD methods for Properties
+* Finishing Ribbon functionality
+
+NOT QUITE DONE:
+* Inserting and fetching images to and from db
+
+TODO TODAY:
+* Inserting and fetching images to and from db
+
+NEED HELP:
+
+
 13 Sep ------------------------ Behnaz ----------------------
 Done:
 -create calculatedValue field in datagrid column

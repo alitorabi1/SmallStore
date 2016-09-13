@@ -51,7 +51,10 @@
                         <DataGrid x:Name="dgOrders" IsReadOnly="True" AutoGenerateColumns="False" Margin="752,144,73,0" Height="528" VerticalAlignment="Top" MouseDoubleClick="Row_DoubleClick" SelectionChanged="dgProducts_SelectionChanged"  >
                             
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ProductName" Binding="{Binding ProductName}" Width="5*" />
+                                <DataGridTextColumn Header="ProductId" IsReadOnly="True" Binding="{Binding ProductName}" Width="5*" />
+                                <DataGridTextColumn Header="ProductName"  IsReadOnly="True" Binding="{Binding ProductName}" Width="5*" />
+                                <DataGridTextColumn Header="NumberOfUnit" Binding="{Binding NumberOfUnit}" Width="5*" />
+                                <DataGridTextColumn Header="SalePricePerUnit" IsReadOnly="True" Binding="{Binding SalePricePerUnit}" Width="5*" />
 
                                 </DataGrid.Columns>
 

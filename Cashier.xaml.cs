@@ -71,12 +71,15 @@ namespace SmallStore
         {
             if (dgProducts.SelectedItem == null) return;
             Product p = (Product)dgProducts.SelectedItem;
-            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
+            p.NumberInStock -=1;
+            //  productL. = p.NumberInStock;
+            productL.Find(item => item == p).NumberInStock = p.NumberInStock;
+            dgProducts.ItemsSource = productL;
+            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName,NumberOfUnit=1, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
 
-            orderItemL.Add(or);
-            //orderItemL.Sort();
-            dgOrders.ItemsSource = orderItemL;
-            dgOrders.UpdateLayout();
+            orderItemL.Add(or);            
+            dgOrders.Items.Add(or);
+       
 
         }
 
