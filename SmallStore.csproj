@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SubmitOrder.xaml.cs">
+      <DependentUpon>SubmitOrder.xaml</DependentUpon>
+    </Compile>
     <Page Include="Admin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,7 +111,13 @@
     <Compile Include="CashierCustomer.xaml.cs" />
     <Compile Include="CashierOrder.xaml.cs" />
     <Compile Include="CashierPassword.xaml.cs" />
+    <Page Include="SubmitOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="Classes\DgProductCellColorConverter.cs" />
     <Compile Include="Classes\DiscountProductConverter.cs" />
+    <Compile Include="Classes\TotalPricePerItem.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Employee.cs" />
@@ -200,6 +209,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\add_to_basket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\delete.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

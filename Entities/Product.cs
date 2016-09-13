@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmallStore
 {
-    class Product
+    public class Product
     {
         public int Id { set; get; }
         public string ProductName { set; get; }

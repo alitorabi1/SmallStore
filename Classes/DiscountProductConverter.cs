@@ -7,8 +7,8 @@ using System.Windows.Data;
 
 namespace SmallStore
 {
-   
-    
+
+
     public class DiscountProductConverter : IValueConverter
     {
 

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SmallStore
 {
-    class OrderItem
+    public class OrderItem
     {
         public int OrderId {set; get; }
         public int ProductId {set; get; }
         public decimal SalePricePerUnit {set; get; }
-        public decimal NumberOfUnit {set; get; }
+        public int NumberOfUnit {set; get; }
         public string ProductName {set; get; }
     }
 }

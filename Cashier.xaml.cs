@@ -25,6 +25,7 @@ namespace SmallStore
         Database db;
         List<Product> productL;
         List<OrderItem> orderItemL = new List<OrderItem>();
+        decimal totalDiscount;
         public Cashier(string user, DateTime d)
         {
             try
@@ -38,6 +39,7 @@ namespace SmallStore
                 throw e;
             }
             InitializeComponent();
+            totalDiscount = 0;
             userName = user;
             loginDate = d;
             this.Title = userName + " entered in " + loginDate.ToString("yyyy-MM-dd HH:mm");
@@ -53,11 +55,7 @@ namespace SmallStore
 
         }
 
-        private void dgProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-
-        }
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -71,21 +69,82 @@ namespace SmallStore
         {
             if (dgProducts.SelectedItem == null) return;
             Product p = (Product)dgProducts.SelectedItem;
-            p.NumberInStock -=1;
+            if(txtNumberOfItems.Text=="" || txtNumberOfItems.Text==null )txtNumberOfItems.Text = 1+"";
+            int numberOfUnit = Convert.ToInt32(txtNumberOfItems.Text);
+            p.NumberInStock -= numberOfUnit;
             //  productL. = p.NumberInStock;
             productL.Find(item => item == p).NumberInStock = p.NumberInStock;
-            dgProducts.ItemsSource = productL;
-            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName,NumberOfUnit=1, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
 
-            orderItemL.Add(or);            
+            dgProducts.ItemsSource = productL;
+            dgProducts.UpdateLayout();
+            dgProducts.Items.Refresh();
+           
+            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, NumberOfUnit = numberOfUnit, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
+            totalDiscount += (p.SalePrice) * p.SpecialDiscount*or.NumberOfUnit;
+            orderItemL.Add(or);
             dgOrders.Items.Add(or);
-       
+            txtNumberOfItems.Text = 1 + "";
+
 
         }
 
-        private void btn_refresh_Click(object sender, RoutedEventArgs e)
+        
+        private void txtNumberOfItems_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dgOrders.ItemsSource = orderItemL;
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtNumberOfItems.Text, "^[0-9]*$"))
+            {
+                txtNumberOfItems.Text = string.Empty;
+            }
+
+        }
+
+      
+
+        private void DgOrders_removeItem_doubleClick(object sender, RoutedEventArgs e)
+        {
+
+            btnDelete.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgOrders.SelectedItem == null) return;
+
+            OrderItem or = (OrderItem)dgOrders.SelectedItem;
+            Product p = productL.Find(item => item.ProductName == or.ProductName && item.Id == or.ProductId);
+
+            productL.Find(item => item.ProductName == or.ProductName && item.Id == or.ProductId).NumberInStock += or.NumberOfUnit;
+            totalDiscount -= (p.SalePrice) * p.SpecialDiscount* or.NumberOfUnit;
+
+            dgProducts.ItemsSource = productL;
+            dgProducts.UpdateLayout();
+            dgProducts.Items.Refresh();
+            // OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, NumberOfUnit = 1, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
+
+            orderItemL.Remove(or);
+            dgOrders.Items.Remove(or);
+        }
+        private void dgProductsMouseUp(object o, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is ScrollViewer)
+            {
+                ((DataGrid)o).UnselectAll();
+            }
+        }
+        private void dgOrdersMouseUp(object o, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is ScrollViewer)
+            {
+                ((DataGrid)o).UnselectAll();
+            }
+        }
+
+        private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
+        {
+            SubmitOrder dialog = new SubmitOrder(orderItemL,0,0, totalDiscount);            
+           // this.Close();
+            dialog.Show();
         }
     }
 }
