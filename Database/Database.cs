@@ -23,16 +23,29 @@ namespace SmallStore
         //*******************Transaction
         public bool Transaction_OrderSubmit(OrderSummary orderSum, int CashierId, int customerId)
         {
-
-            AddOrderSummary(orderSum);
-            int orderId = GetOrderSummaryId(orderSum);
-
-
-
-            foreach (OrderItem item in orderSum.Items)
+            SqlTransaction transaction = conn.BeginTransaction(); 
+                
+            try
             {
 
+                AddOrderSummary(orderSum);
+                int orderId = GetOrderSummaryId(orderSum);
+                AddAllOrderItem(orderSum.Items);
+                foreach (OrderItem item in orderSum.Items)
+                {
+                    ReduceProductNumberInStuck(item.ProductId, item.NumberOfUnit);
+                }
+                transaction.Commit();
+                return true;
             }
+            catch (Exception ex) {
+                transaction.Rollback();
+                return false;
+            }
+
+
+
+
 
 
             return false;
@@ -159,6 +172,35 @@ namespace SmallStore
         // <--  ********************** CRUD methods for Customer ************************
 
         //  ******************* CRUD methods for Product ************************ -->
+        public void ReduceProductNumberInStuck(int productId, int numberOfItem)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductId=@ProductId", conn);
+            cmd.Parameters.AddWithValue("@ProductId", productId);
+            int numberInStock = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        numberInStock = reader.GetInt32(reader.GetOrdinal("NumberInStock"));
+                        break;
+                    }
+                }
+            }
+
+
+            using (SqlCommand cmd1 = new SqlCommand("UPDATE Product SET NumberInStock=@NumberInStock WHERE ProductId=@ProductId", conn))
+            {
+
+                cmd1.CommandType = System.Data.CommandType.Text;
+                cmd1.Connection = conn;
+                cmd1.Parameters.AddWithValue("@ProductId", productId);
+                cmd1.Parameters.AddWithValue("@NumberInStock", numberInStock - numberOfItem);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public List<Product> GetAllProductByNameOrBarcode(string str)
         {
