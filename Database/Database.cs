@@ -423,9 +423,9 @@ namespace SmallStore
                 cmd.Parameters.AddWithValue("@TotalAndTax", orSummary.TotalAndTax);
                 cmd.Parameters.AddWithValue("@PaidMethod", orSummary.PaidMethod);
                 cmd.Parameters.AddWithValue("@CheckNumber", orSummary.CheckNumber);
-                cmd.Parameters.AddWithValue("@DiscountPercentage", orSummary.CardExprDate);
-                cmd.Parameters.AddWithValue("@RegisterDate", orSummary.CreditCardNumber);
-                cmd.Parameters.AddWithValue("@ModifyDate", orSummary.CardExprDate);
+                cmd.Parameters.AddWithValue("@CardExprDate", orSummary.CardExprDate);
+                cmd.Parameters.AddWithValue("@CreditCardNumber", orSummary.CreditCardNumber);
+                cmd.Parameters.AddWithValue("@CardExprDate", orSummary.CardExprDate);
 
 
                 cmd.ExecuteNonQuery();
