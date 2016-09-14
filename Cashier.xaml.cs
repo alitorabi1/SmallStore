@@ -142,8 +142,8 @@ namespace SmallStore
 
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
-            SubmitOrder dialog = new SubmitOrder(orderItemL,0,0, totalDiscount);            
-           // this.Close();
+            Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount);
+            // this.Close();
             dialog.Show();
         }
     }

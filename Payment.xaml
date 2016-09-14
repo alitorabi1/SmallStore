@@ -31,9 +31,8 @@
 
         <ComboBox x:Name="cmbPaymenthMethod" Text="Is not open" Height="35" Margin="434,269,30,217"/>
         <Label x:Name="label" Content="Payment Method:" HorizontalAlignment="Left" Margin="318,273,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label x:Name="label1" Content="Name on card:" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
+        <Label x:Name="label1" Content="Card Type" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
         <Label x:Name="label2" Content="Card number:" HorizontalAlignment="Left" Margin="359,334,0,0" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="146,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" IsEnabled="False"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="457,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" IsEnabled="False"/>
         <Label x:Name="label11" Content="Expiration date:" HorizontalAlignment="Left" Margin="16,371,0,0" VerticalAlignment="Top" Width="94" IsEnabled="False"/>
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="146,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" IsEnabled="False"/>
@@ -52,6 +51,7 @@
         <Label x:Name="label1_Copy" Content="TotalPrice" HorizontalAlignment="Left" Height="28" Margin="442,41,0,0" VerticalAlignment="Top" Width="58" FontSize="11"/>
         <Label x:Name="label2_Copy" Content="TotalDiscount" HorizontalAlignment="Left" Height="28" Margin="442,102,0,0" VerticalAlignment="Top" Width="80" FontSize="11"/>
         <Label x:Name="label3_Copy" Content="TotalTax" HorizontalAlignment="Left" Height="28" Margin="442,69,0,0" VerticalAlignment="Top" Width="57" FontSize="11"/>
+        <ComboBox x:Name="cmbCardType" Text="Is not open" Height="35" Margin="115,325,370,162" IsEnabled="False"/>
 
     </Grid>
 </Window>

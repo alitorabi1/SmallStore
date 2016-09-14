@@ -18,11 +18,43 @@ namespace SmallStore
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    ///
+    enum PaymentMethod
+    {
+        Select_Method,
+        Cash,
+        CreditCard,
+        DebitCard,
+        Cheque
+    }
     public partial class Payment : Window
     {
-        public Payment()
+        const decimal TAX_RATE = 0.5M;
+        List<OrderItem> orderItems;
+        public Payment(List<OrderItem> items, int customerId, int employeeId, decimal totalDiscount)
         {
             InitializeComponent();
+
+            foreach (PaymentMethod p in Enum.GetValues(typeof(PaymentMethod)))
+            {
+                cmbPaymenthMethod.Items.Add(p);
+            }
+            cmbPaymenthMethod.SelectedIndex = 0;
+
+            orderItems = items;
+            lblTotal_Price.Content = TotalPrice() + totalDiscount + "";
+            lblTotalTax.Content = TotalPrice() * TAX_RATE;
+            lblTotalAndTax.Content = TotalPrice() + TotalPrice() * TAX_RATE;
+            lblTotalDiscount.Content = totalDiscount;
+        }
+        private decimal TotalPrice()
+        {
+            decimal totalPrice = 0;
+            foreach (OrderItem or in orderItems)
+            {
+                totalPrice += or.SalePricePerUnit * or.NumberOfUnit;
+            }
+            return totalPrice;
         }
 
     }
