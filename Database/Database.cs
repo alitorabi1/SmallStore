@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,18 +147,34 @@ namespace SmallStore
 
         public void AddProductItem(Product p)
         {
-            //            SqlCommand cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, ProductImage, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @ProductImage, @SpecialDiscount)", conn);
-            SqlCommand cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @SpecialDiscount)", conn);
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-            cmd.Parameters.AddWithValue("@Unit", p.Unit);
-            //            cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
-            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            SqlCommand cmd;
+            if (p.ProductImage != null && p.ProductImage.Length > 0)
+            {
+                cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, ProductImage, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @ProductImage, @SpecialDiscount)", conn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+                cmd.Parameters.AddWithValue("@Unit", p.Unit);
+                cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
+                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            }
+            else
+            {
+                cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @SpecialDiscount)", conn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+                cmd.Parameters.AddWithValue("@Unit", p.Unit);
+                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            }
 
             cmd.ExecuteNonQuery();
         }
@@ -180,18 +198,11 @@ namespace SmallStore
                             decimal purchasePrice = reader.GetDecimal(reader.GetOrdinal("PurchasePrice"));
                             decimal salePrice = reader.GetDecimal(reader.GetOrdinal("SalePrice"));
                             string unit = reader.GetString(reader.GetOrdinal("Unit"));
-
-                            object binaryData = ("select ProductImage from Product where id=" + id);// use your code to retrive image from database and store it into 'object' data type
-                            byte[] bytes = (byte[])binaryData;
-                            string productImage = Convert.ToBase64String(bytes, 0, bytes.Length);
-                            //                            string productImage = reader.GetString(reader.GetOrdinal("ProductImage"));
+                            byte[] productImage = reader.GetValue(reader.GetOrdinal("ProductImage")) as byte[];
                             decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
-
-
                             Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
-                            //Product p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
-                            ProductList.Add(p);
 
+                            ProductList.Add(p);
                         }
                     }
                 }
@@ -207,18 +218,34 @@ namespace SmallStore
 
         public void UpdateProductItem(Product p)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
-            //             + "Unit = @Unit, ProductImage = @ProductImage, SalePrice = @SalePrice, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-            cmd.Parameters.AddWithValue("@Unit", p.Unit);
-            //            cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
-            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            SqlCommand cmd;
+            if (p.ProductImage != null && p.ProductImage.Length > 0)
+            {
+                cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, ProductImage = @ProductImage, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+                cmd.Parameters.AddWithValue("@Unit", p.Unit);
+                cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
+                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            }
+            else
+            {
+                cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+                cmd.Parameters.AddWithValue("@Unit", p.Unit);
+                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
+            }
 
             cmd.ExecuteNonQuery();
         }
@@ -227,6 +254,24 @@ namespace SmallStore
         // <--  ********************** CRUD methods for Product ************************
 
         //  ************************** CRUD methods for ProductCategory ************************ -->
+        internal string getCategoryNameById(int id)
+        {
+            string category = "";
+            using (SqlCommand cmd = new SqlCommand("SELECT Category FROM ProductCategory WHERE CategoryId=" + id, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            category = reader.GetString(reader.GetOrdinal("Category"));
+                        }
+                    }
+                }
+            }
+            return category;
+        }
 
         public void AddCategoryItem(ProductCategory pc)
         {

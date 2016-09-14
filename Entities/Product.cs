@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmallStore
 {
-    public class Product
+    class Product
     {
         public int Id { set; get; }
         public string ProductName { set; get; }
@@ -17,6 +13,6 @@ namespace SmallStore
         public decimal SalePrice { set; get; }
         public string Unit { set; get; }
         public decimal SpecialDiscount { set; get; }
-        public string ProductImage { set; get; }
+        public byte[] ProductImage { set; get; }
     }
 }

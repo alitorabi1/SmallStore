@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ColumnBinder.cs" />
     <Compile Include="SubmitOrder.xaml.cs">
       <DependentUpon>SubmitOrder.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace SmallStore
     {
         Database db;
         List<Product> pList = new List<Product>();
+        Product p = new Product();
 
         public AdminProduct()
         {
@@ -39,16 +41,39 @@ namespace SmallStore
                 //throw e;
             }
             InitializeComponent();
+            // create a model object
+            //ColumnBinder columnBinder = new ColumnBinder() { CategoryName = db.getCategoryNameById(p.CategoryId) };
+
+            //gcCategory.Binding = new Binding("CategoryName")
+            //{
+            //    Source = columnBinder,
+            //    Mode = BindingMode.TwoWay
+            //};
+
             try
             {
                 pList = db.GetAllProducts();
                 dgProduct.ItemsSource = pList;
+                List<ProductCategory> pcList = new List<ProductCategory>();
+                pcList = db.GetAllCategories();
+                foreach (ProductCategory id in pcList)
+                {
+                    if (id.CategoryId == p.CategoryId)
+                    {
+                        gcCategory.Binding = new Binding("CategoryName")
+                        {
+                            Source = id.Category,
+                            Mode = BindingMode.TwoWay
+                        };
+                    }
+                }
             }
             catch (Exception e)
             {
                 // TODO: show a message box
-                MessageBox.Show("Unable to fetch records from database",
-                    "Database error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //MessageBox.Show("Unable to fetch records from database",
+                //    "Database error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(e.StackTrace, "Database error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -56,7 +81,7 @@ namespace SmallStore
 
         private void dgProduct_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            Product p = (Product)dgProduct.SelectedItem;
+            p = (Product)dgProduct.SelectedItem;
             if (p == null)
             {
                 currentProductId = 0;
@@ -71,13 +96,20 @@ namespace SmallStore
             tbPurchasePrice.Text = p.PurchasePrice.ToString();
             tbSalesPrice.Text = p.SalePrice.ToString();
             tbUnit.Text = p.Unit;
-            imgProduct.Source = new BitmapImage(new Uri(p.ProductImage));
             tbSpecialDiscount.Text = p.SpecialDiscount.ToString();
-        }
 
-        private void btExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            imgProduct.Source = null;
+            if (p.ProductImage != null)
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream(p.ProductImage);
+                ms.Seek(0, System.IO.SeekOrigin.Begin);
+
+                BitmapImage newBitmapImage = new BitmapImage();
+                newBitmapImage.BeginInit();
+                newBitmapImage.StreamSource = ms;
+                newBitmapImage.EndInit();
+                imgProduct.Source = newBitmapImage;
+            }
         }
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
@@ -90,7 +122,7 @@ namespace SmallStore
             decimal salePrice = decimal.Parse(tbSalesPrice.Text);
             string unit = tbUnit.Text;
             decimal specialDiscount = decimal.Parse(tbSpecialDiscount.Text);
-            Product p = new Product() { ProductName = product, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
+            p = new Product() { ProductName = product, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = imageData, SpecialDiscount = specialDiscount };
             db.AddProductItem(p);
             tbCategoryId.Text = "";
             tbProductName.Text = "";
@@ -98,14 +130,16 @@ namespace SmallStore
             tbSalesPrice.Text = "";
             tbBarcode.Text = "";
             tbNumber.Text = "";
+            tbUnit.Text = "";
             tbSpecialDiscount.Text = "";
+            imgProduct.Source = null;
             pList = db.GetAllProducts();
             dgProduct.ItemsSource = pList;
         }
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            Product p = (Product)dgProduct.SelectedItem;
+            p = (Product)dgProduct.SelectedItem;
             if (p == null)
             {
                 MessageBox.Show("Please select an item to delete",
@@ -134,10 +168,36 @@ namespace SmallStore
             decimal salePrice = decimal.Parse(tbSalesPrice.Text);
             string unit = tbUnit.Text;
             decimal specialDiscount = decimal.Parse(tbSpecialDiscount.Text);
-            Product p = new Product() { Id = id, ProductName = product, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, SpecialDiscount = specialDiscount };
+            p = new Product() { Id = id, ProductName = product, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = imageData, SpecialDiscount = specialDiscount };
             db.UpdateProductItem(p);
+            tbCategoryId.Text = "";
+            tbProductName.Text = "";
+            tbPurchasePrice.Text = "";
+            tbSalesPrice.Text = "";
+            tbBarcode.Text = "";
+            tbNumber.Text = "";
+            tbUnit.Text = "";
+            tbSpecialDiscount.Text = "";
+            imgProduct.Source = null;
             pList = db.GetAllProducts();
             dgProduct.ItemsSource = pList;
+        }
+        byte[] imageData = { };
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.ShowDialog();
+
+            FileStream fs = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read);
+            imageData = new byte[fs.Length];
+            fs.Read(imageData, 0, System.Convert.ToInt32(fs.Length));
+            fs.Close();
+            ImageSourceConverter imgs = new ImageSourceConverter();
+            imgProduct.SetValue(Image.SourceProperty, imgs.ConvertFromString(dlg.FileName.ToString()));
+        }
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
