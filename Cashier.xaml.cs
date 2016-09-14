@@ -149,7 +149,7 @@ namespace SmallStore
 
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
-            Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount, user, customerId);
+            Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount, employee.Id, customerId);
             // this.Close();
             dialog.Show();
         }

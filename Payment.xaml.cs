@@ -31,9 +31,13 @@ namespace SmallStore
     {
         const decimal TAX_RATE = 0.5M;
         List<OrderItem> orderItems;
-        public Payment(List<OrderItem> items, int customerId, int employeeId, decimal totalDiscount,int cashier,int customer)
+        int cashierID;
+            int customerId;
+        public Payment(List<OrderItem> items, int customerId, int employeeId, decimal totalDiscount,int cashID,int custId)
         {
             InitializeComponent();
+            cashierID = cashID;
+            customerId = custId;
 
             foreach (PaymentMethod p in Enum.GetValues(typeof(PaymentMethod)))
             {
@@ -138,6 +142,7 @@ namespace SmallStore
 
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
+
 
         }
     }

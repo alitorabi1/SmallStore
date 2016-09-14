@@ -19,7 +19,22 @@ namespace SmallStore
             conn = new SqlConnection(CONN_STRING);
             conn.Open();//it may throw exception
         }
+        
+        //*******************Transaction
+        public bool Transaction_OrderSubmit(OrderSummary orderSum,int CashierId,int customerId)
+        {
+            
+            addOrderSummary(orderSum);
 
+
+
+            foreach (OrderItem item in orderSum.Items) {
+                
+            }
+
+
+            return false;
+        }
         //  ******************* CRUD methods for Employee ************************ -->
 
         public bool LoginUser(string user, string pass, out bool isManager)
@@ -210,7 +225,37 @@ namespace SmallStore
 
             cmd.ExecuteNonQuery();
         }
+        public Product GetProductById(int productId)
+        {
+           Product p = new Product();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE ProductId=@ProductId", conn));
+            cmd.Parameters.AddWithValue("@ProductId", productId);
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("ProductId"));
+                            string productName = reader.GetString(reader.GetOrdinal("ProductName"));
+                            int categoryId = reader.GetInt32(reader.GetOrdinal("CategoryId"));
+                            string barcode = reader.GetString(reader.GetOrdinal("Barcode"));
+                            int numberInStock = reader.GetInt32(reader.GetOrdinal("NumberInStock"));
+                            decimal purchasePrice = reader.GetDecimal(reader.GetOrdinal("PurchasePrice"));
+                            decimal salePrice = reader.GetDecimal(reader.GetOrdinal("SalePrice"));
+                            string unit = reader.GetString(reader.GetOrdinal("Unit"));
+                            //byte[] productImage = reader.GetValue(reader.GetOrdinal("ProductImage")) as byte[];
+                            decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
+                             p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
 
+                            return p;
+                        }
+                    }
+                }
+            }
+            return p;
+        }
         public List<Product> GetAllProducts()
         {
             List<Product> ProductList = new List<Product>();
@@ -355,8 +400,38 @@ namespace SmallStore
             cmd.ExecuteNonQuery();
         }
 
-        // <-- ******************* CRUD methods for ProductCategory ************************
 
+        // <-- ******************* CRUD methods for ProductCategory ************************
+        // <-- ******************* CRUD methods for OrderSummary ************************
+
+        public void addOrderSummary(OrderSummary orSummary)
+        {
+           
+        
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO OrderSummary (EmployeeId, CustomerId,DatePurches,TotalPrice,Discount,Tax,Discount,TotalAndTax,PaidMethod,CheckNumber,CreditCardNumber,CardExprDate) VALUES (@EmployeeId, @CustomerId,@DatePurches,@TotalPrice,@Discount,@Tax,@Discount,@TotalAndTax,@PaidMethod,@CheckNumber,@CreditCardNumber,@CardExprDate)"))
+            {
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Connection = conn;
+               
+                cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
+                cmd.Parameters.AddWithValue("@CustomerId", orSummary.CustomerId);
+                cmd.Parameters.AddWithValue("@DatePurches", orSummary.DatePurches);
+                cmd.Parameters.AddWithValue("@TotalPrice", orSummary.TotalPrice);
+                cmd.Parameters.AddWithValue("@Discount", orSummary.Discount);
+                cmd.Parameters.AddWithValue("@Tax", orSummary.Tax);
+                cmd.Parameters.AddWithValue("@TotalAndTax", orSummary.TotalAndTax);
+                cmd.Parameters.AddWithValue("@PaidMethod", orSummary.PaidMethod);
+                cmd.Parameters.AddWithValue("@CheckNumber", orSummary.CheckNumber);
+                cmd.Parameters.AddWithValue("@DiscountPercentage", orSummary.CardExprDate);
+                cmd.Parameters.AddWithValue("@RegisterDate", orSummary.CreditCardNumber);
+                cmd.Parameters.AddWithValue("@ModifyDate", orSummary.CardExprDate);
+
+
+                cmd.ExecuteNonQuery();
+            }
+
+        }
     }
 }
 
