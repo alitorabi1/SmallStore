@@ -95,13 +95,14 @@ NEED HELP:
 
 14 Sep ------------------------ Ali ----------------------
 Done:
-
+* Inserting and fetching images to and from db for Products 
 
 NOT QUITE DONE:
-
+* Implementing CRUD methods for Employee
 
 TODO TODAY:
-
+* Implementing CRUD methods for Employee
+* Writing queries for reports and creating report pages
 
 NEED HELP:
 
