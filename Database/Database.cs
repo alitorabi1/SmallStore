@@ -19,17 +19,19 @@ namespace SmallStore
             conn = new SqlConnection(CONN_STRING);
             conn.Open();//it may throw exception
         }
-        
+
         //*******************Transaction
-        public bool Transaction_OrderSubmit(OrderSummary orderSum,int CashierId,int customerId)
+        public bool Transaction_OrderSubmit(OrderSummary orderSum, int CashierId, int customerId)
         {
-            
-            addOrderSummary(orderSum);
+
+            AddOrderSummary(orderSum);
+            int orderId = GetOrderSummaryId(orderSum);
 
 
 
-            foreach (OrderItem item in orderSum.Items) {
-                
+            foreach (OrderItem item in orderSum.Items)
+            {
+
             }
 
 
@@ -110,9 +112,9 @@ namespace SmallStore
 
                     while (reader.Read())
                     {
-                        
+
                         int id = reader.GetInt32(reader.GetOrdinal("Id"));
-                        string fname= reader.GetString(reader.GetOrdinal("FirstName"));
+                        string fname = reader.GetString(reader.GetOrdinal("FirstName"));
                         string lname = reader.GetString(reader.GetOrdinal("LastName"));
 
                         e.FirstName = fname;
@@ -227,7 +229,7 @@ namespace SmallStore
         }
         public Product GetProductById(int productId)
         {
-           Product p = new Product();
+            Product p = new Product();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE ProductId=@ProductId", conn));
             cmd.Parameters.AddWithValue("@ProductId", productId);
             {
@@ -247,7 +249,7 @@ namespace SmallStore
                             string unit = reader.GetString(reader.GetOrdinal("Unit"));
                             //byte[] productImage = reader.GetValue(reader.GetOrdinal("ProductImage")) as byte[];
                             decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
-                             p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
+                            p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
 
                             return p;
                         }
@@ -402,18 +404,18 @@ namespace SmallStore
 
 
         // <-- ******************* CRUD methods for ProductCategory ************************
-        // <-- ******************* CRUD methods for OrderSummary ************************
+        // <-- ******************* CRUD methods for OrderSummary   ************************
 
-        public void addOrderSummary(OrderSummary orSummary)
+        public void AddOrderSummary(OrderSummary orSummary)
         {
-           
-        
+
+
             using (SqlCommand cmd = new SqlCommand("INSERT INTO OrderSummary (EmployeeId, CustomerId,DatePurches,TotalPrice,Discount,Tax,Discount,TotalAndTax,PaidMethod,CheckNumber,CreditCardNumber,CardExprDate) VALUES (@EmployeeId, @CustomerId,@DatePurches,@TotalPrice,@Discount,@Tax,@Discount,@TotalAndTax,@PaidMethod,@CheckNumber,@CreditCardNumber,@CardExprDate)"))
             {
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Connection = conn;
-               
+
                 cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
                 cmd.Parameters.AddWithValue("@CustomerId", orSummary.CustomerId);
                 cmd.Parameters.AddWithValue("@DatePurches", orSummary.DatePurches);
@@ -432,6 +434,89 @@ namespace SmallStore
             }
 
         }
+        public int GetOrderSummaryId(OrderSummary orSummary)
+        {
+
+
+
+            using (SqlCommand cmd = new SqlCommand("SELECT OrderId FROM OrderSummary WHERE EmployeeId=@EmployeeId  AND DatePurches=@DatePurches AND TotalPrice=@TotalPrice AND CustomerId=@CustomerId  AND PaidMethod=@PaidMethod", conn))
+            {
+                cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
+                cmd.Parameters.AddWithValue("@CustomerId", orSummary.CustomerId);
+                cmd.Parameters.AddWithValue("@DatePurches", orSummary.DatePurches);
+                cmd.Parameters.AddWithValue("@TotalPrice", orSummary.TotalPrice);
+
+
+                cmd.Parameters.AddWithValue("@PaidMethod", orSummary.PaidMethod);
+
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("OrderId"));
+                            return id;
+                        }
+                    }
+                }
+
+            }
+            return 0;
+        }
+        // <-- ******************* CRUD methods for OrderItems   ************************
+        public List<OrderItem> GetAllOrderItemByOrderID(int orderId)
+        {
+            List<OrderItem> orderIList = new List<OrderItem>();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM OrderItem where OrderId=@OrderId ", conn);
+
+            cmd.Parameters.AddWithValue("@OrderId", orderId);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // int orderId = reader.GetInt32(reader.GetOrdinal("OrderId"));
+                        string productName = reader.GetString(reader.GetOrdinal("ProductName"));
+                        int productId = reader.GetInt32(reader.GetOrdinal("ProductId"));
+                        decimal salePricePerUnit = reader.GetDecimal(reader.GetOrdinal("SalePricePerUnit"));
+                        int numberOfUnit = reader.GetInt32(reader.GetOrdinal("NumberOfUnit"));
+
+
+
+
+                        OrderItem or = new OrderItem() { OrderId = orderId, ProductName = productName, ProductId = productId, SalePricePerUnit = salePricePerUnit, NumberOfUnit = numberOfUnit };
+                        orderIList.Add(or);
+
+                    }
+
+                }
+            }
+            return orderIList;
+        }
+        public void AddAllOrderItem(List<OrderItem> Oitems)
+        {
+            foreach (OrderItem item in Oitems)
+            {
+
+                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO OrderItem (OrderId, ProductName, ProductId,SalePricePerUnit) ) values (@OrderId, @ProductName, @ProductId,@SalePricePerUnit,@NumberOfUnit)", conn))
+                {
+                    //cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@OrderId", item.OrderId);
+                    cmd.Parameters.AddWithValue("@ProductId", item.ProductId);
+                    cmd.Parameters.AddWithValue("@ProductName", item.ProductName);
+                    cmd.Parameters.AddWithValue("@SalePricePerUnit", item.SalePricePerUnit);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
+
 
