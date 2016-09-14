@@ -93,4 +93,28 @@ I want to continue implement cashier window-ordres
 
 NEED HELP:
 
---------------------------------------------
+14 Sep ------------------------ Ali ----------------------
+Done:
+
+
+NOT QUITE DONE:
+
+
+TODO TODAY:
+
+
+NEED HELP:
+
+14 Sep ------------------------ Behnaz ----------------------
+Done:
+-I transfered info of selected product from datagrid(product) to datagrid(Orders) list of orders 
+
+NOT QUITE DONE:
+Payment window
+
+TODO TODAY:
+I want to continue implement cashier window-ordres
+I want to use transaction for insert to two table and update the other table
+
+NEED HELP:
+pdf Printing(for print the receipt for customer) -I stuck I can't find good library for adind pdf in toolbax also
