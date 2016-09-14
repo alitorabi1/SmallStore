@@ -80,6 +80,38 @@ namespace SmallStore
             }
 
         }
+        public Employee getEmployeeByUserName(string user)
+        {
+            Employee e = new Employee();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Employee WHERE UserName=@Username  ", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@Username", user);
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        
+                        int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        string fname= reader.GetString(reader.GetOrdinal("FirstName"));
+                        string lname = reader.GetString(reader.GetOrdinal("LastName"));
+
+                        e.FirstName = fname;
+                        e.LastName = lname;
+                        e.Id = id;
+                        e.UserName = user;
+
+                    }
+
+
+                }
+            }
+            return e;
+        }
 
         // <-- ******************* CRUD methods for Employee ************************
 

@@ -20,13 +20,14 @@ namespace SmallStore
     /// </summary>
     public partial class Cashier : Window
     {
-        string userName;
+        Employee employee;
         DateTime loginDate;
         Database db;
         List<Product> productL;
         List<OrderItem> orderItemL = new List<OrderItem>();
         decimal totalDiscount;
-        public Cashier(string user, DateTime d)
+        int customerId = 1;
+        public Cashier(Employee e, DateTime d)
         {
             try
             {
@@ -39,10 +40,11 @@ namespace SmallStore
                 throw e;
             }
             InitializeComponent();
+            employee = e;
             totalDiscount = 0;
-            userName = user;
+
             loginDate = d;
-            this.Title = userName + " entered in " + loginDate.ToString("yyyy-MM-dd HH:mm");
+            this.Title = e.FirstName + " " + e.LastName + " entered in " + loginDate.ToString("yyyy-MM-dd HH:mm");
             //    orderItemL = new List<OrderItem>();
 
         }
@@ -69,7 +71,7 @@ namespace SmallStore
         {
             if (dgProducts.SelectedItem == null) return;
             Product p = (Product)dgProducts.SelectedItem;
-            if(txtNumberOfItems.Text=="" || txtNumberOfItems.Text==null )txtNumberOfItems.Text = 1+"";
+            if (txtNumberOfItems.Text == "" || txtNumberOfItems.Text == null) txtNumberOfItems.Text = 1 + "";
             int numberOfUnit = Convert.ToInt32(txtNumberOfItems.Text);
             p.NumberInStock -= numberOfUnit;
             //  productL. = p.NumberInStock;
@@ -78,17 +80,21 @@ namespace SmallStore
             dgProducts.ItemsSource = productL;
             dgProducts.UpdateLayout();
             dgProducts.Items.Refresh();
-           
+
             OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, NumberOfUnit = numberOfUnit, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
-            totalDiscount += (p.SalePrice) * p.SpecialDiscount*or.NumberOfUnit;
+            totalDiscount += (p.SalePrice) * p.SpecialDiscount * or.NumberOfUnit;
             orderItemL.Add(or);
             dgOrders.Items.Add(or);
             txtNumberOfItems.Text = 1 + "";
 
 
+
+            if (dgOrders.Items.Count > 0) btnSubmitOrder.IsEnabled = true;
+
+
         }
 
-        
+
         private void txtNumberOfItems_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(txtNumberOfItems.Text, "^[0-9]*$"))
@@ -98,7 +104,7 @@ namespace SmallStore
 
         }
 
-      
+
 
         private void DgOrders_removeItem_doubleClick(object sender, RoutedEventArgs e)
         {
@@ -115,7 +121,7 @@ namespace SmallStore
             Product p = productL.Find(item => item.ProductName == or.ProductName && item.Id == or.ProductId);
 
             productL.Find(item => item.ProductName == or.ProductName && item.Id == or.ProductId).NumberInStock += or.NumberOfUnit;
-            totalDiscount -= (p.SalePrice) * p.SpecialDiscount* or.NumberOfUnit;
+            totalDiscount -= (p.SalePrice) * p.SpecialDiscount * or.NumberOfUnit;
 
             dgProducts.ItemsSource = productL;
             dgProducts.UpdateLayout();
@@ -124,6 +130,7 @@ namespace SmallStore
 
             orderItemL.Remove(or);
             dgOrders.Items.Remove(or);
+            if (dgOrders.Items.Count <= 0) btnSubmitOrder.IsEnabled = false;
         }
         private void dgProductsMouseUp(object o, MouseButtonEventArgs e)
         {
@@ -142,9 +149,11 @@ namespace SmallStore
 
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
-            Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount);
+            Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount, user, customerId);
             // this.Close();
             dialog.Show();
         }
+
+
     }
 }

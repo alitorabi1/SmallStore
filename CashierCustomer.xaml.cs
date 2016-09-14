@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,9 @@ namespace SmallStore
         public CashierCustomer()
         {
             InitializeComponent();
+         //   Document d = new Document();
+         //   iTextSharp.text.pdf.PdfPTable mainTable = new iTextSharp.text.pdf.PdfPTable(noOfColumns);
+
         }
 
         private void MenuExit_Click(object sender, RoutedEventArgs e)
