@@ -16,7 +16,7 @@
                 <MenuItem Header="A_bout" />
             </MenuItem>
         </Menu>
-        <DataGrid Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="16,43,16,0" Height="210" VerticalAlignment="Top" >
+        <DataGrid Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="16,40,240,0" Height="210" VerticalAlignment="Top" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding PName}" Width="5*" />
                 <DataGridTextColumn Header="Number" Binding="{Binding PNumber}" Width="1.3*" />
@@ -29,29 +29,29 @@
             </DataGrid.ContextMenu>
         </DataGrid>
 
-        <ComboBox Text="Is not open" Height="35" Width="200" Margin="434,269,16,217">
-            <ComboBoxItem Name="cbi1">-- Select a payment method --</ComboBoxItem>
-            <ComboBoxItem Name="cbi2">Visa</ComboBoxItem>
-            <ComboBoxItem Name="cbi4">Master</ComboBoxItem>
-            <ComboBoxItem Name="cbi5">Paypal</ComboBoxItem>
-            <ComboBoxItem Name="cbi3">Check</ComboBoxItem>
-        </ComboBox>
+        <ComboBox x:Name="cmbPaymenthMethod" Text="Is not open" Height="35" Margin="434,269,30,217"/>
         <Label x:Name="label" Content="Payment Method:" HorizontalAlignment="Left" Margin="318,273,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label x:Name="label1" Content="Name on card:" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95"/>
-        <Label x:Name="label2" Content="Card number:" HorizontalAlignment="Left" Margin="359,334,0,0" VerticalAlignment="Top" Width="89"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="146,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="457,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-        <Label x:Name="label11" Content="Expiration date:" HorizontalAlignment="Left" Margin="16,371,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="146,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
-        <Label x:Name="label3" Content="YYYY-MM" HorizontalAlignment="Left" Margin="267,371,0,0" VerticalAlignment="Top" Width="65"/>
-        <Label x:Name="label4" Content="Security code:" HorizontalAlignment="Left" Margin="359,370,0,0" VerticalAlignment="Top" Width="89"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="30" Margin="457,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+        <Label x:Name="label1" Content="Name on card:" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
+        <Label x:Name="label2" Content="Card number:" HorizontalAlignment="Left" Margin="359,334,0,0" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="146,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" IsEnabled="False"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="457,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" IsEnabled="False"/>
+        <Label x:Name="label11" Content="Expiration date:" HorizontalAlignment="Left" Margin="16,371,0,0" VerticalAlignment="Top" Width="94" IsEnabled="False"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="146,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" IsEnabled="False"/>
+        <Label x:Name="label3" Content="YYYY-MM" HorizontalAlignment="Left" Margin="267,371,0,0" VerticalAlignment="Top" Width="65" IsEnabled="False"/>
+        <Label x:Name="label4" Content="Security code:" HorizontalAlignment="Left" Margin="359,370,0,0" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="30" Margin="457,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" IsEnabled="False"/>
         <Label x:Name="label5" Content="Total Amount + TAX:" HorizontalAlignment="Left" Margin="16,273,0,0" VerticalAlignment="Top" Width="119"/>
-        <Label x:Name="label6" Content="678.87    CAD" HorizontalAlignment="Left" Margin="146,274,0,0" VerticalAlignment="Top" Width="138"/>
-        <Label x:Name="label7" Content="Check number:" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Width="119"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="30" Margin="146,422,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="186"/>
+        <Label x:Name="label7" Content="Check number:" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Width="119" IsEnabled="False"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="30" Margin="146,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" IsEnabled="False"/>
         <Button x:Name="button" Content="Submit" FontWeight="Bold" HorizontalAlignment="Left" Margin="534,422,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
-        <Label x:Name="label8" Content="Purchase record submitted successfuly in database" FontSize="21" FontWeight="Bold" Foreground="Green" HorizontalAlignment="Left" Margin="75,466,0,0" VerticalAlignment="Top" Width="516"/>
+        <Label x:Name="label8" Content="Purchase record submitted successfuly in database" FontSize="21" FontWeight="Bold" Foreground="Green" HorizontalAlignment="Left" Margin="75,466,0,0" VerticalAlignment="Top" Width="516" IsEnabled="False"/>
+        <Label x:Name="lblTotal_Price" Content="" HorizontalAlignment="Left" Height="28" Margin="515,41,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label x:Name="lblTotalDiscount" Content="" HorizontalAlignment="Left" Height="28" Margin="534,102,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label x:Name="lblTotalTax" Content="" HorizontalAlignment="Left" Height="28" Margin="525,69,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label x:Name="lblTotalAndTax" Content="" HorizontalAlignment="Left" Height="28" Margin="146,269,0,0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="1.693,0.058"/>
+        <Label x:Name="label1_Copy" Content="TotalPrice" HorizontalAlignment="Left" Height="28" Margin="442,41,0,0" VerticalAlignment="Top" Width="58" FontSize="11"/>
+        <Label x:Name="label2_Copy" Content="TotalDiscount" HorizontalAlignment="Left" Height="28" Margin="442,102,0,0" VerticalAlignment="Top" Width="80" FontSize="11"/>
+        <Label x:Name="label3_Copy" Content="TotalTax" HorizontalAlignment="Left" Height="28" Margin="442,69,0,0" VerticalAlignment="Top" Width="57" FontSize="11"/>
 
     </Grid>
 </Window>
