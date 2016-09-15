@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace SmallStore
 {
-    class Receipt
+    public class Receipt
     {
         private Document document;
         public Receipt(List<OrderItem> orderItems, decimal TotalPrice, decimal TotalAndTax, decimal Discount, decimal Tax)
