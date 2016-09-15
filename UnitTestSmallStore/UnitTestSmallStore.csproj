@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Database\DatabaseTests.cs" />
     <Compile Include="Database\UnitTest1.cs" />
+    <Compile Include="LoginLoginXaml.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

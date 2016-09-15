@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace SmallStore.Tests
 {
@@ -17,13 +18,13 @@ namespace SmallStore.Tests
             string user = "11";
             string pass = "22";
             bool isManager;
-           Database db = new Database();
+            Database db = new Database();
             var isLogined = db.LoginUser(user, pass, out isManager);
 
-            
+
             Assert.AreEqual(isLogined, true);
-          //  Assert.Fail();
-            
+            //  Assert.Fail();
+
         }
         [TestMethod()]
         public void LoginUserTestIsManager()
@@ -38,6 +39,7 @@ namespace SmallStore.Tests
             Assert.AreEqual(isManager, false);
             //  Assert.Fail();
 
+
         }
         [TestMethod()]
         public void LoginUserTestFailed()
@@ -49,9 +51,18 @@ namespace SmallStore.Tests
             var isLogined = db.LoginUser(user, pass, out isManager);
 
 
-           Assert.AreEqual(isLogined, false);
+            Assert.AreEqual(isLogined, false);
             //  Assert.Fail();
 
+        }
+
+        [TestMethod()]
+        public void ReduceProductNumberInStuckTest()
+        {
+            Database db = new Database();
+
+            db.ReduceProductNumberInStuck(800, 900, null);
+            Assert.Fail();
         }
     }
 }

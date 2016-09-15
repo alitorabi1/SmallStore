@@ -1,12 +1,24 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SmallStore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTestSmallStore
+namespace SmallStore.Tests
 {
-    class LoginLoginXaml
+    [TestClass()]
+    public class LoginLoginXaml
     {
+        [TestMethod()]
+        public void LoginTest()
+        {
+
+            Login loginW = new Login();
+            
+            Assert.Fail();
+        
+        }
     }
 }
