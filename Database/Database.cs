@@ -239,36 +239,21 @@ namespace SmallStore
         public void AddProductItem(Product p)
         {
             SqlCommand cmd;
-            if (p.ProductImage != null && p.ProductImage.Length > 0)
-            {
-                cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, ProductImage, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @ProductImage, @SpecialDiscount)", conn);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-                cmd.Parameters.AddWithValue("@Unit", p.Unit);
-                cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
-                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
-            }
-            else
-            {
-                cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @SpecialDiscount)", conn);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-                cmd.Parameters.AddWithValue("@Unit", p.Unit);
-                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
-            }
+            cmd = new SqlCommand("INSERT INTO Product (ProductName, CategoryId, Barcode, NumberInStock, PurchasePrice, SalePrice, Unit, ProductImage, SpecialDiscount) VALUES (@ProductName, @CategoryId, @Barcode, @NumberInStock, @PurchasePrice, @SalePrice, @Unit, @ProductImage, @SpecialDiscount)", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+            cmd.Parameters.AddWithValue("@Unit", p.Unit);
+            cmd.Parameters.AddWithValue("@ProductImage", (p.ProductImage != null && p.ProductImage.Length > 0) ? p.ProductImage : (object)DBNull.Value).SqlDbType = SqlDbType.Image;
+            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
 
             cmd.ExecuteNonQuery();
         }
+
         public Product GetProductById(int productId)
         {
             Product p = new Product();
@@ -340,33 +325,17 @@ namespace SmallStore
         public void UpdateProductItem(Product p)
         {
             SqlCommand cmd;
-            if (p.ProductImage != null && p.ProductImage.Length > 0)
-            {
-                cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, ProductImage = @ProductImage, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-                cmd.Parameters.AddWithValue("@Unit", p.Unit);
-                cmd.Parameters.AddWithValue("@ProductImage", p.ProductImage);
-                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
-            }
-            else
-            {
-                cmd = new SqlCommand("UPDATE Product SET ProductName = productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
-                cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
-                cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
-                cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
-                cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
-                cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
-                cmd.Parameters.AddWithValue("@Unit", p.Unit);
-                cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
-            }
+            cmd = new SqlCommand("UPDATE Product SET ProductName = @productName, CategoryId = @CategoryId, Barcode = @Barcode, NumberInStock = @NumberInStock, PurchasePrice = @PurchasePrice, SalePrice = @SalePrice, Unit = @Unit, ProductImage = @ProductImage, SpecialDiscount = @SpecialDiscount WHERE (ProductId = " + p.Id + ")", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@ProductName", p.ProductName);
+            cmd.Parameters.AddWithValue("@CategoryId", p.CategoryId);
+            cmd.Parameters.AddWithValue("@Barcode", p.Barcode);
+            cmd.Parameters.AddWithValue("@NumberInStock", p.NumberInStock);
+            cmd.Parameters.AddWithValue("@PurchasePrice", p.PurchasePrice);
+            cmd.Parameters.AddWithValue("@SalePrice", p.SalePrice);
+            cmd.Parameters.AddWithValue("@Unit", p.Unit);
+            cmd.Parameters.AddWithValue("@ProductImage", (p.ProductImage != null && p.ProductImage.Length > 0) ? p.ProductImage : (object)DBNull.Value).SqlDbType = SqlDbType.Image;
+            cmd.Parameters.AddWithValue("@SpecialDiscount", p.SpecialDiscount);
 
             cmd.ExecuteNonQuery();
         }
@@ -566,6 +535,112 @@ namespace SmallStore
                 }
             }
         }
+
+        //  ******************* CRUD methods for Employee ************************ -->
+
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> EmployeeList = new List<Employee>();
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM Employee", conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("EmployeeId"));
+                            string firstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                            string lastName = reader.GetString(reader.GetOrdinal("LastName"));
+                            int phone = reader.GetInt32(reader.GetOrdinal("Phone"));
+                            int cellPhone = reader.GetInt32(reader.GetOrdinal("CellPhone"));
+                            string address = reader.GetString(reader.GetOrdinal("Address"));
+                            string postalCode = reader.GetString(reader.GetOrdinal("PostalCode"));
+                            DateTime birthDate = reader.GetDateTime(reader.GetOrdinal("BirthDate"));
+                            string jobTitle = reader.GetString(reader.GetOrdinal("JobTitle"));
+                            DateTime hireDate = reader.GetDateTime(reader.GetOrdinal("HireDate"));
+                            DateTime fireDate = reader.GetDateTime(reader.GetOrdinal("FireDate"));
+                            Decimal salary = reader.GetDecimal(reader.GetOrdinal("Salary"));
+                            bool isPermanent = reader.GetBoolean(reader.GetOrdinal("IsPermenant"));
+                            bool isManager = reader.GetBoolean(reader.GetOrdinal("IsManager"));
+                            string userName = reader.GetString(reader.GetOrdinal("UserName"));
+                            string password = reader.GetString(reader.GetOrdinal("Password"));
+                            byte[] employeeImage = reader.GetValue(reader.GetOrdinal("EmployeeImage")) as byte[];
+                            string sin = reader.GetString(reader.GetOrdinal("SIN"));
+
+                            int isPermanentInt = (isPermanent) ? 1 : 0;
+                            int isManagerInt = (isManager) ? 1 : 0;
+
+                            Employee emp = new Employee() { Id = id, FirstName = firstName, LastName = lastName, Phone = phone, CellPhone = cellPhone, Address = address, PostalCode = postalCode, BirthDate = birthDate, JobTitle = jobTitle, HireDate = hireDate, FireDate = fireDate, Salary = salary, IsPermenant = isPermanentInt, IsManager = isManagerInt, UserName = userName, Password = password, EmployeeImage = employeeImage, SIN = sin };
+
+                            EmployeeList.Add(emp);
+                        }
+                    }
+                }
+            }
+            return EmployeeList;
+        }
+
+        public void AddEmployeeItem(Employee emp)
+        {
+            SqlCommand cmd;
+            cmd = new SqlCommand("INSERT INTO Employee (FirstName, LastName, Phone, CellPhone, Address, PostalCode, BirthDate, JobTitle, HireDate, FireDate, Salary, IsPermenant, IsManager, UserName, Password, EmployeeImage, SIN) VALUES (@FirstName, @LastName, @Phone, @CellPhone, @Address, @PostalCode, @BirthDate, @JobTitle, @HireDate, @FireDate, @Salary, @IsPermenant, @IsManager, @UserName, @Password, @EmployeeImage, @SIN)", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+            cmd.Parameters.AddWithValue("@Phone", emp.Phone);
+            cmd.Parameters.AddWithValue("@CellPhone", emp.CellPhone);
+            cmd.Parameters.AddWithValue("@Address", emp.Address);
+            cmd.Parameters.AddWithValue("@PostalCode", emp.PostalCode);
+            cmd.Parameters.AddWithValue("@BirthDate", emp.BirthDate);
+            cmd.Parameters.AddWithValue("@JobTitle", emp.JobTitle);
+            cmd.Parameters.AddWithValue("@HireDate", emp.HireDate);
+            cmd.Parameters.AddWithValue("@FireDate", emp.FireDate);
+            cmd.Parameters.AddWithValue("@Salary", emp.Salary);
+            cmd.Parameters.AddWithValue("@IsPermenant", emp.IsPermenant);
+            cmd.Parameters.AddWithValue("@IsManager", emp.IsManager);
+            cmd.Parameters.AddWithValue("@UserName", emp.UserName);
+            cmd.Parameters.AddWithValue("@Password", emp.Password);
+            cmd.Parameters.AddWithValue("@EmployeeImage", (emp.EmployeeImage != null && emp.EmployeeImage.Length > 0) ? emp.EmployeeImage : (object)DBNull.Value).SqlDbType = SqlDbType.Image;
+            cmd.Parameters.AddWithValue("@SIN", emp.SIN);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteEmployeeItemById(int Id)
+        {
+            SqlCommand cmd = new SqlCommand("DELETE FROM Employee WHERE EmployeeId = " + Id, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void UpdateEmployeeItem(Employee emp)
+        {
+            SqlCommand cmd;
+            cmd = new SqlCommand("UPDATE Employee SET FirstName = @FirstName , LastName = @LastName, Phone = @Phone, CellPhone = @CellPhone, Address = @Address, PostalCode = @PostalCode, BirthDate = @BirthDate, JobTitle = @JobTitle, HireDate = @HireDate, FireDate = @FireDate, Salary = @Salary, IsPermenant = @IsPermenant, IsManager = @IsManager, UserName = @UserName, Password = @Password, EmployeeImage = @EmployeeImage, SIN = @SIN WHERE (EmployeeId = " + emp.Id + ")", conn);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+            cmd.Parameters.AddWithValue("@Phone", emp.Phone);
+            cmd.Parameters.AddWithValue("@CellPhone", emp.CellPhone);
+            cmd.Parameters.AddWithValue("@Address", emp.Address);
+            cmd.Parameters.AddWithValue("@PostalCode", emp.PostalCode);
+            cmd.Parameters.AddWithValue("@BirthDate", emp.BirthDate);
+            cmd.Parameters.AddWithValue("@JobTitle", emp.JobTitle);
+            cmd.Parameters.AddWithValue("@HireDate", emp.HireDate);
+            cmd.Parameters.AddWithValue("@FireDate", emp.FireDate);
+            cmd.Parameters.AddWithValue("@Salary", emp.Salary);
+            cmd.Parameters.AddWithValue("@IsPermenant", emp.IsPermenant);
+            cmd.Parameters.AddWithValue("@IsManager", emp.IsManager);
+            cmd.Parameters.AddWithValue("@UserName", emp.UserName);
+            cmd.Parameters.AddWithValue("@Password", emp.Password);
+            cmd.Parameters.AddWithValue("@EmployeeImage", (emp.EmployeeImage != null && emp.EmployeeImage.Length > 0) ? emp.EmployeeImage : (object)DBNull.Value).SqlDbType = SqlDbType.Image;
+            cmd.Parameters.AddWithValue("@SIN", emp.SIN);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        // <--  ********************** CRUD methods for Employee ************************
+
 
     }
 }
