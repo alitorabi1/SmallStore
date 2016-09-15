@@ -152,7 +152,11 @@ namespace SmallStore
         {
             Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount, employee.Id, customerId);
             // this.Close();
-            dialog.Show();
+            dialog.ShowDialog();
+        }
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
         }
 
 
