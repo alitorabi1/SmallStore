@@ -217,6 +217,8 @@ namespace SmallStore
            if( db.Transaction_OrderSubmit(orderSum, cashierID, customerId))
             {
                 Receipt receipt = new Receipt(orderItems, Convert.ToDecimal(lblTotal_Price.Content), Convert.ToDecimal(lblTotalAndTax.Content), Convert.ToDecimal(lblTotalDiscount.Content), Convert.ToDecimal(lblTotalTax.Content));
+                this.Close();
+
             }
 
         }

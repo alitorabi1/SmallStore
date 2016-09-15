@@ -30,7 +30,7 @@
 		    Width="1246"
 		    RenderTransformOrigin="0.518,-0.166">
                 <TabItem Header="Orders" Width="280">
-                    <Grid Background="#121" Margin="0,-56,-6,-21">
+                    <Grid Background="#55552B" Margin="0,-56,-6,-21">
                         <DataGrid x:Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,144,707,0" Height="434" VerticalAlignment="Top" MouseUp="dgProductsMouseUp" MouseDoubleClick="Row_DoubleClick"   >
                             <DataGrid.Resources>
                                 <local:DiscountProductConverter x:Key="dConverter"/>
@@ -38,7 +38,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ProductName" Binding="{Binding ProductName}" Width="4*" />
                                 <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" Width="4*" />
-                                <DataGridTextColumn Header="NumberInStock" Binding="{Binding NumberInStock}" Width="3*"  />
+                                <DataGridTextColumn Header="QtyInStock" Binding="{Binding NumberInStock}" Width="3*"  />
                                 <DataGridTextColumn Header="SalePrice" Binding="{Binding SalePrice , StringFormat=F2 }"   Width="4*" />
                                 <DataGridTextColumn Header="Discount" Binding="{Binding SpecialDiscount, StringFormat=F2}" Width="3*" />
                                 <DataGridTextColumn Header="Total"    Binding="{Binding Converter={StaticResource dConverter} , StringFormat=F2}" Width="5*" />
@@ -56,7 +56,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ProductId" IsReadOnly="True" Binding="{Binding ProductId}" Width="4*" />
                                 <DataGridTextColumn Header="ProductName"  IsReadOnly="True" Binding="{Binding ProductName}" Width="4*" />
-                                <DataGridTextColumn Header="NumberOfItem" IsReadOnly="True" Binding="{Binding NumberOfUnit}" Width="3*" />
+                                <DataGridTextColumn Header="QTY" IsReadOnly="True" Binding="{Binding NumberOfUnit}" Width="3*" />
                                 <DataGridTextColumn Header="Price Per Unit" IsReadOnly="True" Binding="{Binding SalePricePerUnit, StringFormat=F2}" Width="4*" />
                                 <DataGridTextColumn Header="TotalPrice(CAD)" IsReadOnly="True" Binding="{Binding Converter={StaticResource tConverter}, StringFormat=F2}" Width="4*"  />
                             </DataGrid.Columns>
