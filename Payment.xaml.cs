@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +27,11 @@ namespace SmallStore
         CreditCard,
         DebitCard,
         Cheque
+    }
+    enum CardType
+    {
+        Master,
+        Visa
     }
     public partial class Payment : Window
     {
@@ -154,9 +160,45 @@ namespace SmallStore
             btnSubmitOrder.IsEnabled = true;
 
         }
-
+        public static bool HasCreditCardNumber(string input)
+        {
+            MatchCollection matches = Regex.Matches(input, @"\b4[0-9]{12}(?:[0-9]{3})?\b|\b5[1-5][0-9]{14}\b|\b3[47][0-9]{13}\b|\b3(?:0[0-5]|[68][0-9])[0-9]{11}\b|\b6(?:011|5[0-9]{2})[0-9]{12}\b|\b(?:2131|1800|35\d{3})\d{11}\b");
+            if (matches.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
+            if (cmbPaymenthMethod.SelectedIndex == 0)
+            {
+                MessageBox.Show("please choose payment method");
+                return;
+            }
+            if (cmbPaymenthMethod.SelectedItem.ToString() == PaymentMethod.CreditCard.ToString())
+            {
+
+                if (!HasCreditCardNumber(txtCardNumber.Text))
+                {
+                    MessageBox.Show("Card Number is invalid");
+                    return;
+                }
+                if(txtSecurityCode.Text.Length<3)
+                {
+                    MessageBox.Show("Security Number is invalid");
+                    return;
+                }
+
+            }
+            if(cmbPaymenthMethod.SelectedItem.ToString() == PaymentMethod.Cheque.ToString())
+            {
+                if (txtSecurityCode.Text.Length < 3)
+                {
+                    MessageBox.Show("Check Number is invalid");
+                    return;
+                }
+            }
 
 
             OrderSummary orderSum = new OrderSummary();
