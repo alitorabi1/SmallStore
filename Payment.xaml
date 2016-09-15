@@ -12,7 +12,7 @@
             <DataGrid.Resources>
                 <local:TotalPricePerItem  x:Key="tConverter" />
             </DataGrid.Resources>
-            
+
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1"/>
@@ -43,7 +43,20 @@
         <Label x:Name="label5" Content="Total Amount + TAX:" HorizontalAlignment="Left" Margin="16,273,0,0" VerticalAlignment="Top" Width="119"/>
         <Label x:Name="lblCheckNumber" Content="Check number:" HorizontalAlignment="Left" Margin="16,422,0,0" VerticalAlignment="Top" Width="119" IsEnabled="False"/>
         <TextBox x:Name="txtCheckNumber" HorizontalAlignment="Left" Height="30" Margin="146,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" IsEnabled="False"/>
-        <Button x:Name="btnSubmitOrder" Content="Submit" FontWeight="Bold" HorizontalAlignment="Left" Margin="534,422,0,0" VerticalAlignment="Top" Width="100" Height="30" IsEnabled="False" Click="btnSubmitOrder_Click"/>
+        <Button x:Name="btnSubmitOrder"  FontWeight="Bold" HorizontalAlignment="Left" Margin="520,422,0,0" VerticalAlignment="Top" Width="114" Height="82" IsEnabled="False" Click="btnSubmitOrder_Click">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Image Source="pack://application:,,,/images/print.png" Width="100" Height="71" Margin="0,0,10,0"/>
+                <TextBlock RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-11.87"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform></TextBlock>
+            </StackPanel>
+        </Button>
         <Label x:Name="label8" Visibility="Hidden" Content="Purchase record submitted successfuly in database" FontSize="21" FontWeight="Bold" Foreground="Green" HorizontalAlignment="Left" Margin="75,466,0,0" VerticalAlignment="Top" Width="516" IsEnabled="False"/>
         <Label x:Name="lblTotal_Price" Content="" Foreground="Blue" HorizontalAlignment="Left" Height="28" Margin="585,77,0,0" VerticalAlignment="Top" Width="95"/>
         <Label x:Name="lblTotalDiscount" Foreground="Blue" Content="" HorizontalAlignment="Left" Height="28" Margin="585,133,0,0" VerticalAlignment="Top" Width="86"/>

@@ -241,6 +241,7 @@
     <Resource Include="images\Products.jpg" />
     <Resource Include="images\reports.png" />
     <Resource Include="images\Tutorial.png" />
+    <Resource Include="images\print.png" />
     <Content Include="Library\itextsharp.dll" />
     <Content Include="Library\itextsharp.pdfa.dll" />
     <Resource Include="Library\iTextSharp.xml" />
