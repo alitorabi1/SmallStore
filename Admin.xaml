@@ -22,34 +22,34 @@
             <!-- Ribbon Tab #1: Home -->
             <RibbonTab Header="File" KeyTip="F" >
                 <RibbonGroup x:Name="Login" Header="Go to login page">
-                    <RibbonMenuItem Header="Go to login page" KeyTip="L" Click="RibbonGoToLogin_Click"/>
+                    <RibbonMenuItem Header="Go to login page" ImageSource="Images/login.jpg" KeyTip="L" Click="RibbonGoToLogin_Click"/>
                 </RibbonGroup>
                 <RibbonGroup x:Name="Exit" Header="Exit">
-                    <RibbonMenuItem Header="Exit" KeyTip="L" Click="RibbonExit_Click"/>
+                    <RibbonMenuItem Header="Exit" ImageSource="Images/exit.jpg" KeyTip="L" Click="RibbonExit_Click"/>
                 </RibbonGroup>
             </RibbonTab>
             <!-- Ribbon Tab #2: -->
             <RibbonTab Header="Dashboard" KeyTip="D" >
                 <RibbonGroup x:Name="Category" Header="Category">
-                    <RibbonMenuItem Header="Category" KeyTip="G" Click="RibbonCategory_Click" />
+                    <RibbonMenuItem Header="Category" ImageSource="Images/Category.png" KeyTip="G" Click="RibbonCategory_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Product" Header="Product">
-                    <RibbonMenuItem Header="Product" KeyTip="T" Click="RibbonProduct_Click" />
+                    <RibbonMenuItem Header="Product" ImageSource="Images/Products.jpg" KeyTip="T" Click="RibbonProduct_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Employees" Header="Employees">
-                    <RibbonMenuItem Header="Employees" KeyTip="Y" Click="RibbonEmployee_Click" />
+                    <RibbonMenuItem Header="Employees" ImageSource="Images/Employee.png" KeyTip="Y" Click="RibbonEmployee_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="Reports" Header="Reports">
-                    <RibbonMenuItem Header="Reports" KeyTip="T" Click="RibbonReport_Click" />
+                    <RibbonMenuItem Header="Reports" ImageSource="Images/Reports.png" KeyTip="T" Click="RibbonReport_Click" />
                 </RibbonGroup>
             </RibbonTab>
             <!-- Ribbon Tab #3: -->
             <RibbonTab Header="Help" KeyTip="H" >
                 <RibbonGroup x:Name="Tutorial" Header="Tutorial">
-                    <RibbonMenuItem Header="Tutorial" KeyTip="L" Click="RibbonTutorial_Click" />
+                    <RibbonMenuItem Header="Tutorial" ImageSource="Images/Tutorial.png" KeyTip="L" Click="RibbonTutorial_Click" />
                 </RibbonGroup>
                 <RibbonGroup x:Name="About" Header="About">
-                    <RibbonMenuItem Header="About" KeyTip="U" Click="RibbonAbout_Click" />
+                    <RibbonMenuItem Header="About" ImageSource="Images/aboutus.png" KeyTip="U" Click="RibbonAbout_Click" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>

@@ -60,9 +60,9 @@ namespace SmallStore
         private void RibbonTutorial_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Office.Interop.Word.Application application = new Microsoft.Office.Interop.Word.Application();
-//            Microsoft.Office.Interop.Word.Document document = application.Documents.Open("pack://application:,,,/Documents/proposal.doc");
+            //            Microsoft.Office.Interop.Word.Document document = application.Documents.Open("pack://application:,,,/Documents/proposal.doc");
             Microsoft.Office.Interop.Word.Document document = application.Documents.Open(@"C:\Users\lenovo\Documents\Visual Studio 2015\Projects\SmallStore\Documents\proposal.doc");
-            
+
 
             //var msWord = new Microsoft.Office.Interop.Word.Application("pack://application:,,,/Documents/proposal.doc");
             //msWord.Visible = true;

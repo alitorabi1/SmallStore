@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallStore"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Define Product" Height="576.99" Width="700">
+        Title="Define Product" Height="541.99" Width="704">
     <Grid>
-        <DataGrid Name="dgProduct" AutoGenerateColumns="False" Margin="16,18,410,0" Height="513" VerticalAlignment="Top" IsReadOnly="True" SelectedCellsChanged="dgProduct_SelectedCellsChanged" >
+        <DataGrid Name="dgProduct" AutoGenerateColumns="False" Margin="16,18,410,0" Height="312" VerticalAlignment="Top" IsReadOnly="True" SelectedCellsChanged="dgProduct_SelectedCellsChanged" >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="gcCategory" Header="CategoryName" Width="2*" />
+                <DataGridTextColumn x:Name="gcCategory" Header="Category Id" Binding="{Binding CategoryId}" Width="3*" />
                 <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" Width="5*" />
                 <DataGridTextColumn Header="Number" Binding="{Binding NumberInStock}" Width="2.5*" />
             </DataGrid.Columns>
@@ -21,30 +21,30 @@
         </DataGrid>
         <Label x:Name="label1" Content="Product Id:" HorizontalAlignment="Left" Height="30" Margin="303,29,0,0" VerticalAlignment="Top" Width="143"/>
         <Label x:Name="lblProductId" Content="" HorizontalAlignment="Left" Height="30" Margin="469,29,0,0" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label" Content="Category Id:" HorizontalAlignment="Left" Height="30" Margin="303,67,0,0" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="label2" Content="Name:" HorizontalAlignment="Left" Height="30" Margin="303,103,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbCategoryId" HorizontalAlignment="Left" Height="30" Margin="469,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <TextBox x:Name="tbProductName" HorizontalAlignment="Left" Height="30" Margin="469,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label3" Content="Purchase Price:" HorizontalAlignment="Left" Margin="303,140,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbPurchasePrice" HorizontalAlignment="Left" Height="30" Margin="469,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label4" Content="Sales Price:" HorizontalAlignment="Left" Margin="303,176,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbSalesPrice" HorizontalAlignment="Left" Height="30" Margin="469,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label5" Content="Barcode:" HorizontalAlignment="Left" Margin="303,210,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbBarcode" HorizontalAlignment="Left" Height="30" Margin="469,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label6" Content="Number:" HorizontalAlignment="Left" Margin="303,249,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbNumber" HorizontalAlignment="Left" Height="30" Margin="469,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Special Discount:" HorizontalAlignment="Left" Margin="303,288,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbSpecialDiscount" HorizontalAlignment="Left" Height="30" Margin="469,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Unit:" HorizontalAlignment="Left" Margin="303,326,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbUnit" HorizontalAlignment="Left" Height="30" Margin="469,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Image x:Name="imgProduct" HorizontalAlignment="Left" Height="125" Margin="469,365,0,0" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Product image:" HorizontalAlignment="Left" Margin="303,377,0,0" VerticalAlignment="Top" Width="133"/>
-        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="303,509,0,0" VerticalAlignment="Top" Width="75" Click="btAdd_Click"/>
-        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="403,509,0,0" VerticalAlignment="Top" Width="75" Click="btDelete_Click"/>
-        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="503,509,0,0" VerticalAlignment="Top" Width="75" Click="btEdit_Click"/>
-        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="603,509,0,0" VerticalAlignment="Top" Width="75" Click="btExit_Click"/>
-        <Button x:Name="btnLoadImage" Content="Load Image" HorizontalAlignment="Left" Margin="303,423,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click"/>
-
-
+        <Label x:Name="label" Content="Category Id:" HorizontalAlignment="Left" Height="30" Margin="303,70,0,0" VerticalAlignment="Top" Width="143"/>
+        <Label x:Name="label2" Content="Name:" HorizontalAlignment="Left" Height="30" Margin="303,109,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbCategoryId" HorizontalAlignment="Left" Height="30" Margin="469,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <TextBox x:Name="tbProductName" HorizontalAlignment="Left" Height="30" Margin="469,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label3" Content="Purchase Price:" HorizontalAlignment="Left" Margin="303,149,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbPurchasePrice" HorizontalAlignment="Left" Height="30" Margin="469,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label4" Content="Sales Price:" HorizontalAlignment="Left" Margin="303,190,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbSalesPrice" HorizontalAlignment="Left" Height="30" Margin="469,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label5" Content="Barcode:" HorizontalAlignment="Left" Margin="303,229,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbBarcode" HorizontalAlignment="Left" Height="30" Margin="469,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label6" Content="Number:" HorizontalAlignment="Left" Margin="303,271,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbNumber" HorizontalAlignment="Left" Height="30" Margin="469,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label Content="Special Discount:" HorizontalAlignment="Left" Margin="303,313,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbSpecialDiscount" HorizontalAlignment="Left" Height="30" Margin="469,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label Content="Unit:" HorizontalAlignment="Left" Margin="303,356,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbUnit" HorizontalAlignment="Left" Height="30" Margin="469,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Image x:Name="imgProduct" HorizontalAlignment="Left" Height="131" Margin="131,352,0,0" VerticalAlignment="Top" Width="153"/>
+        <Label Content="Product image:" HorizontalAlignment="Left" Margin="20,364,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="367,447,0,0" VerticalAlignment="Top" Width="45" Click="btAdd_Click"/>
+        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="427,447,0,0" VerticalAlignment="Top" Width="45" Click="btDelete_Click"/>
+        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="487,447,0,0" VerticalAlignment="Top" Width="45" Click="btEdit_Click"/>
+        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="547,447,0,0" VerticalAlignment="Top" Width="45" Click="btExit_Click"/>
+        <Button x:Name="btNew" Content="New" HorizontalAlignment="Left" Margin="607,447,0,0" VerticalAlignment="Top" Width="45" Click="btNew_Click"/>
+        <Button x:Name="btnLoadImage" Content="Load Image" HorizontalAlignment="Left" Margin="20,410,0,0" VerticalAlignment="Top" Width="95" Click="btLoadImage_Click"/>
+        <Button x:Name="btClearImage" Content="Clear Image" HorizontalAlignment="Left" Margin="20,447,0,0" VerticalAlignment="Top" Width="95" Click="btClearImage_Click"/>
     </Grid>
 </Window>

@@ -231,6 +231,28 @@
     <Resource Include="images\delete.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\aboutus.png" />
+    <Resource Include="images\Category.png" />
+    <Resource Include="images\db_store.jpg" />
+    <Resource Include="images\empl1.jpg" />
+    <Resource Include="images\empl2.jpg" />
+    <Resource Include="images\empl3.jpg" />
+    <Resource Include="images\empl4.jpg" />
+    <Resource Include="images\empl5.jpg" />
+    <Resource Include="images\Employee.png" />
+    <Resource Include="images\Exit.jpg" />
+    <Resource Include="images\Exit.png" />
+    <Resource Include="images\login.png" />
+    <Resource Include="images\Pdf.jpg" />
+    <Resource Include="images\prod1.jpg" />
+    <Resource Include="images\prod2.jpg" />
+    <Resource Include="images\prod3.jpg" />
+    <Resource Include="images\prod4.jpg" />
+    <Resource Include="images\prod5.jpg" />
+    <Resource Include="images\prod6.jpg" />
+    <Resource Include="images\Products.jpg" />
+    <Resource Include="images\reports.png" />
+    <Resource Include="images\Tutorial.png" />
     <Content Include="Library\itextsharp.dll" />
     <Content Include="Library\itextsharp.pdfa.dll" />
     <Resource Include="Library\iTextSharp.xml" />

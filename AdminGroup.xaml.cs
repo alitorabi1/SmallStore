@@ -117,5 +117,12 @@ namespace SmallStore
             currentCategoryId = pc.CategoryId;
             dgCategory.ItemsSource = pcList;
         }
+
+        private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            dgCategory.UnselectAllCells();
+            tbCName.Text = "";
+            tbCDesc.Text = "";
+        }
     }
 }

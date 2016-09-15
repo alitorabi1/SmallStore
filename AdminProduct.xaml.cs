@@ -54,19 +54,19 @@ namespace SmallStore
             {
                 pList = db.GetAllProducts();
                 dgProduct.ItemsSource = pList;
-                List<ProductCategory> pcList = new List<ProductCategory>();
-                pcList = db.GetAllCategories();
-                foreach (ProductCategory id in pcList)
-                {
-                    if (id.CategoryId == p.CategoryId)
-                    {
-                        gcCategory.Binding = new Binding("CategoryName")
-                        {
-                            Source = id.Category,
-                            Mode = BindingMode.TwoWay
-                        };
-                    }
-                }
+                //List<ProductCategory> pcList = new List<ProductCategory>();
+                //pcList = db.GetAllCategories();
+                //foreach (ProductCategory id in pcList)
+                //{
+                //    if (id.CategoryId == p.CategoryId)
+                //    {
+                //        gcCategory.Binding = new Binding("CategoryName")
+                //        {
+                //            Source = id.Category,
+                //            Mode = BindingMode.TwoWay
+                //        };
+                //    }
+                //}
             }
             catch (Exception e)
             {
@@ -183,7 +183,7 @@ namespace SmallStore
             dgProduct.ItemsSource = pList;
         }
         byte[] imageData = { };
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btLoadImage_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.ShowDialog();
@@ -195,9 +195,32 @@ namespace SmallStore
             ImageSourceConverter imgs = new ImageSourceConverter();
             imgProduct.SetValue(Image.SourceProperty, imgs.ConvertFromString(dlg.FileName.ToString()));
         }
+
+        private void btClearImage_Click(object sender, RoutedEventArgs e)
+        {
+            imgProduct.Source = null;
+            p.ProductImage = null;
+            imageData = null;
+        }
+
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btNew_Click(object sender, RoutedEventArgs e)
+        {
+            dgProduct.UnselectAllCells();
+            tbCategoryId.Text = "";
+            tbProductName.Text = "";
+            tbPurchasePrice.Text = "";
+            tbSalesPrice.Text = "";
+            tbBarcode.Text = "";
+            tbNumber.Text = "";
+            tbUnit.Text = "";
+            tbSpecialDiscount.Text = "";
+            imgProduct.Source = null;
+            imageData = null;
         }
     }
 }

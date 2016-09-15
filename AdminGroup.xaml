@@ -9,6 +9,7 @@
     <Grid>
         <DataGrid Name="dgCategory" AutoGenerateColumns="False" Margin="16,20,464,0" Height="293" VerticalAlignment="Top" SelectedCellsChanged="dgCategory_SelectedCellsChanged" IsReadOnly="True" >
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding CategoryId}" Width="5*" />
                 <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="5*" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
@@ -21,10 +22,11 @@
         <TextBox x:Name="tbCName" HorizontalAlignment="Left" Height="30" Margin="465,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
         <Label x:Name="label1" Content="Description" HorizontalAlignment="Left" Height="33" Margin="303,111,0,0" VerticalAlignment="Top" Width="123"/>
         <TextBox x:Name="tbCDesc" HorizontalAlignment="Left" Height="131" Margin="303,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="367"/>
-        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="303,293,0,0" VerticalAlignment="Top" Width="75" Click="btAdd_Click"/>
-        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="395,293,0,0" VerticalAlignment="Top" Width="75" Click="btDelete_Click"/>
-        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="495,293,0,0" VerticalAlignment="Top" Width="75" Click="btEdit_Click"/>
-        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="595,293,0,0" VerticalAlignment="Top" Width="75" Click="btExit_Click" />
+        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="323,293,0,0" VerticalAlignment="Top" Width="55" Click="btAdd_Click"/>
+        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="393,293,0,0" VerticalAlignment="Top" Width="55" Click="btDelete_Click"/>
+        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="463,293,0,0" VerticalAlignment="Top" Width="55" Click="btEdit_Click"/>
+        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="533,293,0,0" VerticalAlignment="Top" Width="55" Click="btExit_Click" />
+        <Button x:Name="btNew" Content="New" HorizontalAlignment="Left" Margin="603,293,0,0" VerticalAlignment="Top" Width="55" Click="btNew_Click" />
         <Label x:Name="label2" Content="Id:" HorizontalAlignment="Left" Margin="303,35,0,0" VerticalAlignment="Top" Width="123"/>
         <Label x:Name="lblCategoryId" Content="" HorizontalAlignment="Left" Margin="465,35,0,0" VerticalAlignment="Top" Width="205"/>
 

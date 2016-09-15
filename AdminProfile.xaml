@@ -5,58 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmallStore"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Edit Administrator Profile" Height="630" Width="700">
+        Title="Edit Administrator Profile" Height="630" Width="640.928">
     <Grid>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="693">
-            <MenuItem Header="File">
-                <MenuItem Header="E_xit"/>
-            </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="_Info" />
-                <MenuItem Header="A_bout" />
-            </MenuItem>
-        </Menu>
 
-        <DataGrid Name="dgAnimals" AutoGenerateColumns="False" Margin="16,43,410,0" Height="475" VerticalAlignment="Top">
+        <DataGrid Name="dgEmployee" AutoGenerateColumns="False" Margin="16,16,351,0" Height="309" VerticalAlignment="Top" SelectedCellsChanged="dgEmployee_SelectedCellsChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding CId}" Width="5*" />
-                <DataGridTextColumn Header="Name" Binding="{Binding CName}" Width="5*" />
-                <DataGridTextColumn Header="Mobile" Binding="{Binding CMobile}" Width="5*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="2.5*" />
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="5*" />
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="5*" />
+                <DataGridTextColumn Header="Cell phone" Binding="{Binding CellPhone}" Width="5*" />
             </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu x:Name="DeleteContextMenu">
-                    <MenuItem Header="Delete Record" />
-                </ContextMenu>
-            </DataGrid.ContextMenu>
         </DataGrid>
-        <Label x:Name="label" Content="Name:" HorizontalAlignment="Left" Height="30" Margin="303,45,0,0" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="label2" Content="Family:" HorizontalAlignment="Left" Height="30" Margin="303,83,0,0" VerticalAlignment="Top" Width="123"/>
-        <Label x:Name="label1" Content="Address" HorizontalAlignment="Left" Height="30" Margin="303,282,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbGDesc" HorizontalAlignment="Left" Height="30" Margin="469,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <TextBox x:Name="tbGName" HorizontalAlignment="Left" Height="30" Margin="469,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="303,550,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="403,550,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="503,550,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="603,550,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="469,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label3" Content="Phone:" HorizontalAlignment="Left" Margin="303,124,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="30" Margin="469,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label4" Content="Mobile:" HorizontalAlignment="Left" Margin="303,164,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="30" Margin="469,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label5" Content="Postal Code:" HorizontalAlignment="Left" Margin="303,202,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="30" Margin="469,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label6" Content="SIN Number:" HorizontalAlignment="Left" Margin="303,245,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="30" Margin="469,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label11" Content="Username" HorizontalAlignment="Left" Height="30" Margin="303,322,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="30" Margin="469,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label12" Content="Password" HorizontalAlignment="Left" Height="30" Margin="303,362,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="30" Margin="469,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label13" Content="Hire Date" HorizontalAlignment="Left" Height="30" Margin="303,402,0,0" VerticalAlignment="Top" Width="123"/>
-        <DatePicker x:Name="dpHireDate"  HorizontalAlignment="Left" Height="30" Margin="469,402,0,0" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label15" Content="Fire Date" HorizontalAlignment="Left" Height="30" Margin="303,442,0,0" VerticalAlignment="Top" Width="123"/>
-        <DatePicker x:Name="dpFireDate"  HorizontalAlignment="Left" Height="30" Margin="469,442,0,0" VerticalAlignment="Top" Width="209"/>
-        <Label x:Name="label14" Content="Salary" HorizontalAlignment="Left" Height="30" Margin="303,482,0,0" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="tbSalary" HorizontalAlignment="Left" Height="30" Margin="469,482,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label" Content="Name:" HorizontalAlignment="Left" Height="30" Margin="21,343,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label2" Content="Family:" HorizontalAlignment="Left" Height="30" Margin="21,381,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label1" Content="Address" HorizontalAlignment="Left" Height="30" Margin="303,138,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbAddress" HorizontalAlignment="Left" Height="30" Margin="401,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="30" Margin="105,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+        <TextBox x:Name="tbFamily" HorizontalAlignment="Left" Height="30" Margin="105,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="label3" Content="Phone:" HorizontalAlignment="Left" Margin="21,422,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Height="30" Margin="105,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="label4" Content="Cell phone:" HorizontalAlignment="Left" Margin="303,20,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbMobile" HorizontalAlignment="Left" Height="30" Margin="401,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label5" Content="Postal Code:" HorizontalAlignment="Left" Margin="303,58,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbPostalCode" HorizontalAlignment="Left" Height="30" Margin="401,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label6" Content="SIN Number:" HorizontalAlignment="Left" Margin="303,101,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbSIN" HorizontalAlignment="Left" Height="30" Margin="401,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label11" Content="Username" HorizontalAlignment="Left" Height="30" Margin="303,178,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="30" Margin="401,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label12" Content="Password" HorizontalAlignment="Left" Height="30" Margin="303,218,0,0" VerticalAlignment="Top" Width="87"/>
+        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Height="30" Margin="401,218,0,0" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label13" Content="Hire Date" HorizontalAlignment="Left" Height="30" Margin="303,306,0,0" VerticalAlignment="Top" Width="87"/>
+        <DatePicker x:Name="dpHireDate"  HorizontalAlignment="Left" Height="30" Margin="401,303,0,0" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label18" Content="Birth Date" HorizontalAlignment="Left" Height="30" Margin="303,261,0,0" VerticalAlignment="Top" Width="87"/>
+        <DatePicker x:Name="dpBirthDate" HorizontalAlignment="Left" Height="30" Margin="401,258,0,0" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label15" Content="Fire Date" HorizontalAlignment="Left" Height="30" Margin="303,346,0,0" VerticalAlignment="Top" Width="87"/>
+        <DatePicker x:Name="dpFireDate"  HorizontalAlignment="Left" Height="30" Margin="401,343,0,0" VerticalAlignment="Top" Width="209"/>
+        <Label x:Name="label14" Content="Salary" HorizontalAlignment="Left" Height="30" Margin="303,479,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbSalary" HorizontalAlignment="Left" Height="30" Margin="401,479,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <Image x:Name="imgEmployee" HorizontalAlignment="Left" Height="125" Margin="136,459,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Content="Employee image:" HorizontalAlignment="Left" Margin="21,471,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label Content="Job Title:" HorizontalAlignment="Left" Height="30" Margin="303,385,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbJobTitle" HorizontalAlignment="Left" Height="30" Margin="401,385,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+        <CheckBox x:Name="cbIsPermanent" Content="Permanent Contract" HorizontalAlignment="Left" Margin="310,437,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
+        <CheckBox x:Name="cbIsManager" Content="Manager" HorizontalAlignment="Left" Margin="480,437,0,0" VerticalAlignment="Top" Height="30" Width="130"/>
+        <Button x:Name="btAdd" Content="Add" HorizontalAlignment="Left" Margin="325,555,0,0" VerticalAlignment="Top" Width="45" Click="btAdd_Click"/>
+        <Button x:Name="btDelete" Content="Delete" HorizontalAlignment="Left" Margin="385,555,0,0" VerticalAlignment="Top" Width="45" Click="btDelete_Click"/>
+        <Button x:Name="btEdit" Content="Edit" HorizontalAlignment="Left" Margin="445,555,0,0" VerticalAlignment="Top" Width="45" Click="btEdit_Click" />
+        <Button x:Name="btExit" Content="Exit" HorizontalAlignment="Left" Margin="505,555,0,0" VerticalAlignment="Top" Width="45" Click="btExit_Click"/>
+        <Button x:Name="btNew" Content="New" HorizontalAlignment="Left" Margin="565,555,0,0" VerticalAlignment="Top" Width="45" Click="btNew_Click"/>
+        <Button x:Name="btnLoadImage" Content="Load Image" HorizontalAlignment="Left" Margin="28,511,0,0" VerticalAlignment="Top" Width="95" Click="btLoadImage_Click" />
+        <Label x:Name="lblEmployeeId" Content="" Visibility="Hidden" HorizontalAlignment="Left" Height="30" Margin="303,509,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btClearImage" Content="Clear Image" HorizontalAlignment="Left" Margin="28,555,0,0" VerticalAlignment="Top" Width="95" Click="btClearImage_Click"/>
+
 
     </Grid>
 </Window>
