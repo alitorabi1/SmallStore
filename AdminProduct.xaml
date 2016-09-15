@@ -7,7 +7,7 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="Define Product" Height="541.99" Width="704">
     <Grid>
-        <DataGrid Name="dgProduct" AutoGenerateColumns="False" Margin="16,18,410,0" Height="312" VerticalAlignment="Top" IsReadOnly="True" SelectedCellsChanged="dgProduct_SelectedCellsChanged" >
+        <DataGrid SelectionMode="Single" Name="dgProduct" AutoGenerateColumns="False" Margin="16,18,410,0" Height="312" VerticalAlignment="Top" IsReadOnly="True" SelectedCellsChanged="dgProduct_SelectedCellsChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="gcCategory" Header="Category Id" Binding="{Binding CategoryId}" Width="3*" />
                 <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" Width="5*" />

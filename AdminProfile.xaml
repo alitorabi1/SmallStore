@@ -8,7 +8,7 @@
         Title="Edit Administrator Profile" Height="630" Width="640.928">
     <Grid>
 
-        <DataGrid Name="dgEmployee" AutoGenerateColumns="False" Margin="16,16,351,0" Height="309" VerticalAlignment="Top" SelectedCellsChanged="dgEmployee_SelectedCellsChanged" IsReadOnly="True">
+        <DataGrid Name="dgEmployee" SelectionMode="Single" AutoGenerateColumns="False" Margin="16,16,351,0" Height="309" VerticalAlignment="Top" SelectedCellsChanged="dgEmployee_SelectedCellsChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="2.5*" />
                 <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="5*" />
