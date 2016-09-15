@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmallStore
 {
-     class Database
+    public class Database
     {
         //const string CONN_STRING = @"Data Source=ipd8.database.windows.net;Initial Catalog=store;Integrated Security=False;User ID=ipd8abbott;Password=Abbott2000;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         const string CONN_STRING = @"Data Source=ali-ipd8.database.windows.net;Initial Catalog=store;Integrated Security=False;User ID=ali-ipd8;Password=torabi-2016;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
