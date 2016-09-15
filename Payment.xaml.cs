@@ -216,7 +216,7 @@ namespace SmallStore
             orderSum.CardExprDate = "";
            if( db.Transaction_OrderSubmit(orderSum, cashierID, customerId))
             {
-                Receipt receipt = new Receipt(orderItems, TotalPrice, TotalAndTax, Discount, Tax);
+                Receipt receipt = new Receipt(orderItems, lblTotal_Price.Content, lblTotalAndTax.Content, lblTotalDiscount.Content, lblTotalTax.Content);
             }
 
         }
