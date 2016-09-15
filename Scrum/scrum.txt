@@ -119,3 +119,30 @@ I want to use transaction for insert to two table and update the other table
 
 NEED HELP:
 pdf Printing(for print the receipt for customer) -I stuck I can't find good library for adind pdf in toolbax also
+
+15 Sep ------------------------ Ali ----------------------
+Done:
+* 
+
+NOT QUITE DONE:
+* 
+
+TODO TODAY:
+*
+
+NEED HELP:
+
+14 Sep ------------------------ Behnaz ----------------------
+Done:
+-payment window done
+-transaction for 3 table (2 insert and one update ) done
+-print pdf reciepet(bill) done
+
+NOT QUITE DONE:
+Exception handling
+
+TODO TODAY:
+I want to use testUnit for projet
+
+
+NEED HELP:

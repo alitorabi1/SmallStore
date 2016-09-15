@@ -22,7 +22,7 @@ namespace SmallStore
                 noOfRows = orderItems.Count;
 
                 float HeaderTextSize = 6;
-                float ReportNameSize = 8;
+                float ReportNameSize = 7;
                 float ReportTextSize = 6;
                 float store = 7;
 
@@ -48,7 +48,7 @@ namespace SmallStore
                 // Sets the border of the cell to zero.
                 clApplicationName.Border = PdfPCell.NO_BORDER;
                 // Sets the Horizontal Alignment of the PdfPCell to left.
-                clApplicationName.HorizontalAlignment = Element.ALIGN_LEFT;
+                clApplicationName.HorizontalAlignment = Element.ALIGN_CENTER;
 
                 // Creates a phrase to show the current date at the right hand side of the header.
                 Phrase phDate = new Phrase(DateTime.Now.Date.ToString("yyyy-MM-dd"), FontFactory.GetFont("Arial", store, iTextSharp.text.Font.NORMAL));
