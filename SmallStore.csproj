@@ -36,14 +36,14 @@
   <ItemGroup>
     <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\08-04-2016_DotNetproject\itextsharp-all-5.5.9\itextsharp-dll-core\itextsharp.dll</HintPath>
+      <HintPath>D:\behnaz\itext\itextsharp-dll-core\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp.pdfa, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\08-04-2016_DotNetproject\itextsharp-all-5.5.9\itextsharp-dll-core\itextsharp.pdfa.dll</HintPath>
+      <HintPath>D:\behnaz\itext\itextsharp-dll-core\itextsharp.pdfa.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp.xtra">
-      <HintPath>F:\08-04-2016_DotNetproject\itextsharp-all-5.5.9\itextsharp-dll-core\itextsharp.xtra.dll</HintPath>
+      <HintPath>.\itextsharp.xtra.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\ColumnBinder.cs" />
     <Compile Include="Classes\GlobalMethods.cs" />
+    <Compile Include="Classes\Receipt.cs" />
     <Compile Include="SubmitOrder.xaml.cs">
       <DependentUpon>SubmitOrder.xaml</DependentUpon>
     </Compile>

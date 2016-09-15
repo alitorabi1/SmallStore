@@ -72,8 +72,11 @@ namespace SmallStore
         {
             if (dgProducts.SelectedItem == null) return;
             Product p = (Product)dgProducts.SelectedItem;
-            if (txtNumberOfItems.Text == "" || txtNumberOfItems.Text == null) txtNumberOfItems.Text = 1 + "";
-            int numberOfUnit = Convert.ToInt32(txtNumberOfItems.Text);
+            
+            if (txtNumberOfItems.Text == "" || txtNumberOfItems.Text == null ) txtNumberOfItems.Text = 1 + "";
+           
+                int numberOfUnit = Convert.ToInt32(txtNumberOfItems.Text);
+            if (p.NumberInStock < numberOfUnit || p.NumberInStock<=0 || numberOfUnit<=0) return;
             p.NumberInStock -= numberOfUnit;
             //  productL. = p.NumberInStock;
             productL.Find(item => item == p).NumberInStock = p.NumberInStock;

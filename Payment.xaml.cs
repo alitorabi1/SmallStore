@@ -172,7 +172,10 @@ namespace SmallStore
             orderSum.CheckNumber = "";
             orderSum.CreditCardNumber = "";
             orderSum.CardExprDate = "";
-            db.Transaction_OrderSubmit(orderSum, cashierID, customerId);
+           if( db.Transaction_OrderSubmit(orderSum, cashierID, customerId))
+            {
+                Receipt receipt = new Receipt(orderItems, TotalPrice, TotalAndTax, Discount, Tax);
+            }
 
         }
     }
