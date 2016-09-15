@@ -122,13 +122,16 @@ pdf Printing(for print the receipt for customer) -I stuck I can't find good libr
 
 15 Sep ------------------------ Ali ----------------------
 Done:
+* Implementing CRUD methods for Employee
+* Image in Ribbon
 * 
 
 NOT QUITE DONE:
 * 
 
 TODO TODAY:
-*
+* Unit tests
+* Presentation
 
 NEED HELP:
 
