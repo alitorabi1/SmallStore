@@ -12,6 +12,7 @@
             <DataGrid.Resources>
                 <local:TotalPricePerItem  x:Key="tConverter" />
             </DataGrid.Resources>
+            
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1"/>
@@ -30,7 +31,7 @@
 
         </DataGrid>
 
-        <ComboBox x:Name="cmbPaymenthMethod" Text="Is not open" Margin="434,272,30,221" SelectionChanged="cmbPaymenthMethod_SelectionChanged"/>
+        <ComboBox x:Name="cmbPaymenthMethod" Text="Is not open" Margin="434,272,30,220" SelectionChanged="cmbPaymenthMethod_SelectionChanged"/>
         <Label x:Name="label" Content="Payment Method:" HorizontalAlignment="Left" Margin="318,273,0,0" VerticalAlignment="Top" Width="111"/>
         <Label x:Name="lblCardType" Content="Card Type" HorizontalAlignment="Left" Margin="15,334,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
         <Label x:Name="lblCardNumber" Content="Card number:" HorizontalAlignment="Left" Margin="359,334,0,0" VerticalAlignment="Top" Width="89" IsEnabled="False"/>

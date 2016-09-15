@@ -27,17 +27,18 @@ namespace SmallStore
         List<OrderItem> orderItemL = new List<OrderItem>();
         decimal totalDiscount;
         int customerId = 1;
+       // Database database;
         public Cashier(Employee e, DateTime d)
         {
             try
             {
                 db = new Database();
             }
-            catch (Exception e)
+            catch (Exception exp)
             {
                 MessageBox.Show("Fatal error:unable to connect to database", "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 // Environment.Exit(1);
-                throw e;
+                throw exp;
             }
             InitializeComponent();
             employee = e;
@@ -81,7 +82,7 @@ namespace SmallStore
             dgProducts.UpdateLayout();
             dgProducts.Items.Refresh();
 
-            OrderItem or = new OrderItem() { OrderId = p.Id, ProductName = p.ProductName, NumberOfUnit = numberOfUnit, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
+            OrderItem or = new OrderItem() {  ProductName = p.ProductName, NumberOfUnit = numberOfUnit, ProductId = p.Id, SalePricePerUnit = (p.SalePrice) - (p.SalePrice) * p.SpecialDiscount };
             totalDiscount += (p.SalePrice) * p.SpecialDiscount * or.NumberOfUnit;
             orderItemL.Add(or);
             dgOrders.Items.Add(or);

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmallStore
 {
-    class Database
+     class Database
     {
         //const string CONN_STRING = @"Data Source=ipd8.database.windows.net;Initial Catalog=store;Integrated Security=False;User ID=ipd8abbott;Password=Abbott2000;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         const string CONN_STRING = @"Data Source=ali-ipd8.database.windows.net;Initial Catalog=store;Integrated Security=False;User ID=ali-ipd8;Password=torabi-2016;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -28,17 +28,19 @@ namespace SmallStore
             try
             {
 
-                AddOrderSummary(orderSum);
-                int orderId = GetOrderSummaryId(orderSum);
-                AddAllOrderItem(orderSum.Items);
+                AddOrderSummary(orderSum, transaction);
                 foreach (OrderItem item in orderSum.Items)
                 {
-                    ReduceProductNumberInStuck(item.ProductId, item.NumberOfUnit);
+                    ReduceProductNumberInStuck(item.ProductId, item.NumberOfUnit, transaction);
                 }
+                int orderId = GetOrderSummaryId(orderSum,transaction);
+                AddAllOrderItem(orderSum.Items, orderId, transaction);
+                
                 transaction.Commit();
                 return true;
             }
             catch (Exception ex) {
+                string r = ex.Message;
                 transaction.Rollback();
                 return false;
             }
@@ -48,7 +50,7 @@ namespace SmallStore
 
 
 
-            return false;
+            
         }
         //  ******************* CRUD methods for Employee ************************ -->
 
@@ -110,7 +112,7 @@ namespace SmallStore
             }
 
         }
-        public Employee getEmployeeByUserName(string user)
+        public Employee GetEmployeeByUserName(string user)
         {
             Employee e = new Employee();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Employee WHERE UserName=@Username  ", conn);
@@ -126,7 +128,7 @@ namespace SmallStore
                     while (reader.Read())
                     {
 
-                        int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                        int id = reader.GetInt32(reader.GetOrdinal("EmployeeId"));
                         string fname = reader.GetString(reader.GetOrdinal("FirstName"));
                         string lname = reader.GetString(reader.GetOrdinal("LastName"));
 
@@ -172,9 +174,9 @@ namespace SmallStore
         // <--  ********************** CRUD methods for Customer ************************
 
         //  ******************* CRUD methods for Product ************************ -->
-        public void ReduceProductNumberInStuck(int productId, int numberOfItem)
+        public void ReduceProductNumberInStuck(int productId, int numberOfItem,SqlTransaction transaction)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductId=@ProductId", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductId=@ProductId", conn, transaction);
             cmd.Parameters.AddWithValue("@ProductId", productId);
             int numberInStock = 0;
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -191,14 +193,12 @@ namespace SmallStore
             }
 
 
-            using (SqlCommand cmd1 = new SqlCommand("UPDATE Product SET NumberInStock=@NumberInStock WHERE ProductId=@ProductId", conn))
+            using (SqlCommand cmd1 = new SqlCommand("UPDATE Product SET NumberInStock=@NumberInStock WHERE ProductId=@ProductId", conn,transaction))
             {
-
-                cmd1.CommandType = System.Data.CommandType.Text;
-                cmd1.Connection = conn;
+                int amount = numberInStock - numberOfItem;               
                 cmd1.Parameters.AddWithValue("@ProductId", productId);
-                cmd1.Parameters.AddWithValue("@NumberInStock", numberInStock - numberOfItem);
-                cmd.ExecuteNonQuery();
+                cmd1.Parameters.AddWithValue("@NumberInStock", amount);
+                cmd1.ExecuteNonQuery();
             }
         }
 
@@ -272,7 +272,7 @@ namespace SmallStore
         public Product GetProductById(int productId)
         {
             Product p = new Product();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE ProductId=@ProductId", conn));
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE ProductId=@ProductId", conn);
             cmd.Parameters.AddWithValue("@ProductId", productId);
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -291,7 +291,7 @@ namespace SmallStore
                             string unit = reader.GetString(reader.GetOrdinal("Unit"));
                             //byte[] productImage = reader.GetValue(reader.GetOrdinal("ProductImage")) as byte[];
                             decimal specialDiscount = reader.GetDecimal(reader.GetOrdinal("SpecialDiscount"));
-                            p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit, ProductImage = productImage, SpecialDiscount = specialDiscount };
+                           p = new Product() { Id = id, ProductName = productName, CategoryId = categoryId, Barcode = barcode, NumberInStock = numberInStock, PurchasePrice = purchasePrice, SalePrice = salePrice, Unit = unit,  SpecialDiscount = specialDiscount };
 
                             return p;
                         }
@@ -448,26 +448,34 @@ namespace SmallStore
         // <-- ******************* CRUD methods for ProductCategory ************************
         // <-- ******************* CRUD methods for OrderSummary   ************************
 
-        public void AddOrderSummary(OrderSummary orSummary)
+        public void AddOrderSummary(OrderSummary orSummary,SqlTransaction transaction)
         {
 
 
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO OrderSummary (EmployeeId, CustomerId,DatePurches,TotalPrice,Discount,Tax,Discount,TotalAndTax,PaidMethod,CheckNumber,CreditCardNumber,CardExprDate) VALUES (@EmployeeId, @CustomerId,@DatePurches,@TotalPrice,@Discount,@Tax,@Discount,@TotalAndTax,@PaidMethod,@CheckNumber,@CreditCardNumber,@CardExprDate)"))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO OrderSummary (EmployeeId,CustomerId,DatePurches,TotalPrice,Discount,Tax,TotalAndTax,PaidMethod,CheckNumber,CreditCardNumber,CardExprDate) VALUES (@EmployeeId,@CustomerId,@DatePurches,@TotalPrice,@Discount,@Tax,@TotalAndTax,@PaidMethod,@CheckNumber,@CreditCardNumber,@CardExprDate)", conn,transaction))
             {
 
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Connection = conn;
-
-                cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
+               
+                 
+       
+              cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
                 cmd.Parameters.AddWithValue("@CustomerId", orSummary.CustomerId);
                 cmd.Parameters.AddWithValue("@DatePurches", orSummary.DatePurches);
-                cmd.Parameters.AddWithValue("@TotalPrice", orSummary.TotalPrice);
-                cmd.Parameters.AddWithValue("@Discount", orSummary.Discount);
-                cmd.Parameters.AddWithValue("@Tax", orSummary.Tax);
-                cmd.Parameters.AddWithValue("@TotalAndTax", orSummary.TotalAndTax);
+               // cmd.Parameters.AddWithValue("@TotalPrice", orSummary.TotalPrice);
+                cmd.Parameters.Add("@TotalPrice", SqlDbType.Money);
+                cmd.Parameters["@TotalPrice"].Value = orSummary.TotalPrice;
+                //  cmd.Parameters.AddWithValue("@Discount", orSummary.Discount);
+                cmd.Parameters.Add("@Discount", SqlDbType.Money);
+                cmd.Parameters["@Discount"].Value = orSummary.Discount;
+                // cmd.Parameters.AddWithValue("@Tax", orSummary.Tax);
+                cmd.Parameters.Add("@Tax", SqlDbType.Money);
+                cmd.Parameters["@Tax"].Value = orSummary.Tax;
+                //cmd.Parameters.AddWithValue("@TotalAndTax", orSummary.TotalAndTax);
+                cmd.Parameters.Add("@TotalAndTax", SqlDbType.Money);
+                cmd.Parameters["@TotalAndTax"].Value = orSummary.TotalAndTax;
                 cmd.Parameters.AddWithValue("@PaidMethod", orSummary.PaidMethod);
                 cmd.Parameters.AddWithValue("@CheckNumber", orSummary.CheckNumber);
-                cmd.Parameters.AddWithValue("@CardExprDate", orSummary.CardExprDate);
+              //  cmd.Parameters.AddWithValue("@CardExprDate", orSummary.CardExprDate);
                 cmd.Parameters.AddWithValue("@CreditCardNumber", orSummary.CreditCardNumber);
                 cmd.Parameters.AddWithValue("@CardExprDate", orSummary.CardExprDate);
 
@@ -476,12 +484,12 @@ namespace SmallStore
             }
 
         }
-        public int GetOrderSummaryId(OrderSummary orSummary)
+        public int GetOrderSummaryId(OrderSummary orSummary,SqlTransaction transaction)
         {
 
 
 
-            using (SqlCommand cmd = new SqlCommand("SELECT OrderId FROM OrderSummary WHERE EmployeeId=@EmployeeId  AND DatePurches=@DatePurches AND TotalPrice=@TotalPrice AND CustomerId=@CustomerId  AND PaidMethod=@PaidMethod", conn))
+            using (SqlCommand cmd = new SqlCommand("SELECT OrderId FROM OrderSummary WHERE EmployeeId=@EmployeeId  AND DatePurches=@DatePurches AND TotalPrice=@TotalPrice AND CustomerId=@CustomerId  AND PaidMethod=@PaidMethod", conn, transaction))
             {
                 cmd.Parameters.AddWithValue("@EmployeeId", orSummary.EmployeeId);
                 cmd.Parameters.AddWithValue("@CustomerId", orSummary.CustomerId);
@@ -540,17 +548,18 @@ namespace SmallStore
             }
             return orderIList;
         }
-        public void AddAllOrderItem(List<OrderItem> Oitems)
+        public void AddAllOrderItem(List<OrderItem> Oitems,int orderId,SqlTransaction transaction)
         {
             foreach (OrderItem item in Oitems)
             {
 
-                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO OrderItem (OrderId, ProductName, ProductId,SalePricePerUnit) ) values (@OrderId, @ProductName, @ProductId,@SalePricePerUnit,@NumberOfUnit)", conn))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO OrderItem (OrderId, ProductName, ProductId,SalePricePerUnit,NumberOfUnit)  values (@OrderId, @ProductName, @ProductId,@SalePricePerUnit,@NumberOfUnit)", conn, transaction))
                 {
                     //cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@OrderId", item.OrderId);
+                    cmd.Parameters.AddWithValue("@OrderId", orderId);
                     cmd.Parameters.AddWithValue("@ProductId", item.ProductId);
                     cmd.Parameters.AddWithValue("@ProductName", item.ProductName);
+                    cmd.Parameters.AddWithValue("@NumberOfUnit", item.NumberOfUnit);
                     cmd.Parameters.AddWithValue("@SalePricePerUnit", item.SalePricePerUnit);
 
                     cmd.ExecuteNonQuery();

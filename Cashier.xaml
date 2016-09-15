@@ -33,7 +33,7 @@
                     <Grid Background="#121" Margin="0,-56,-6,-21">
                         <DataGrid x:Name="dgProducts" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,144,707,0" Height="434" VerticalAlignment="Top" MouseUp="dgProductsMouseUp" MouseDoubleClick="Row_DoubleClick"   >
                             <DataGrid.Resources>
-                                <local:DiscountProductConverter x:Key="dConverter" />
+                                <local:DiscountProductConverter x:Key="dConverter"/>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ProductName" Binding="{Binding ProductName}" Width="4*" />

@@ -62,8 +62,9 @@ namespace SmallStore
                 }
                 else if (db.LoginUser(tbUsername.Text, pbPassword.Password, out isManager) && isManager == false)
                 {
-                   
-                    Cashier dialog = new Cashier(Employee e, DateTime.Now);
+                    
+                    Employee employee = db.GetEmployeeByUserName(tbUsername.Text);
+                    Cashier dialog = new Cashier(employee, DateTime.Now);
                     this.Close();
                     dialog.ShowDialog();
                     

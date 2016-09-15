@@ -129,7 +129,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Classes\DgProductCellColorConverter.cs" />
-    <Compile Include="Classes\DiscountProductConverter.cs" />
+    <Compile Include="DiscountProductConverter.cs" />
     <Compile Include="Classes\TotalPricePerItem.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Entities\Customer.cs" />

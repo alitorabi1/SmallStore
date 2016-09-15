@@ -32,19 +32,31 @@ namespace SmallStore
         const decimal TAX_RATE = 0.5M;
         List<OrderItem> orderItems;
         int cashierID;
-            int customerId;
-        public Payment(List<OrderItem> items, int customerId, int employeeId, decimal totalDiscount,int cashID,int custId)
+        int customerId;
+        Database db;
+        public Payment(List<OrderItem> items, int customerId, int employeeId, decimal totalDiscount, int cashID, int custId)
         {
+            try
+            {
+                db = new Database();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Fatal error:unable to connect to database. " + e.Message, "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                // Environment.Exit(1);
+                //throw e;
+            }
             InitializeComponent();
             cashierID = cashID;
             customerId = custId;
+
 
             foreach (PaymentMethod p in Enum.GetValues(typeof(PaymentMethod)))
             {
                 cmbPaymenthMethod.Items.Add(p);
             }
             cmbPaymenthMethod.SelectedIndex = 0;
-           
+
             orderItems = items;
             dgOrders.ItemsSource = orderItems;
             lblTotal_Price.Content = TotalPrice() + totalDiscount + "";
@@ -55,10 +67,12 @@ namespace SmallStore
             FillMonth();
 
 
-           }
-        private void FillYear() {
-            int  dt = DateTime.Now.Year;
-            for (int i = 0; i <= 20; i++) {
+        }
+        private void FillYear()
+        {
+            int dt = DateTime.Now.Year;
+            for (int i = 0; i <= 20; i++)
+            {
                 cmbYear.Items.Add(dt + i);
             }
             cmbYear.SelectedIndex = 0;
@@ -66,12 +80,12 @@ namespace SmallStore
         }
         private void FillMonth()
         {
-           
+
             for (int i = 1; i <= 12; i++)
             {
                 cmbMonth.Items.Add(String.Format("{0:00}", i));
             }
-           cmbMonth.SelectedIndex = 0;
+            cmbMonth.SelectedIndex = 0;
 
         }
         private decimal TotalPrice()
@@ -87,7 +101,8 @@ namespace SmallStore
         private void cmbPaymenthMethod_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbPaymenthMethod.SelectedItem == null) { btnSubmitOrder.IsEnabled = false; return; }
-            if (cmbPaymenthMethod.SelectedValue.ToString() == PaymentMethod.CreditCard.ToString()) {
+            if (cmbPaymenthMethod.SelectedValue.ToString() == PaymentMethod.CreditCard.ToString())
+            {
                 cmbCardType.IsEnabled = true;
                 cmbYear.IsEnabled = true;
                 cmbMonth.IsEnabled = true;
@@ -100,7 +115,7 @@ namespace SmallStore
                 txtSecurityCode.IsEnabled = true;
                 lblCheckNumber.IsEnabled = false;
                 txtCheckNumber.IsEnabled = false;
-               
+
 
             }
             else if (cmbPaymenthMethod.SelectedValue.ToString() == PaymentMethod.Cheque.ToString())
@@ -143,6 +158,21 @@ namespace SmallStore
         private void btnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
 
+
+            OrderSummary orderSum = new OrderSummary();
+            orderSum.Items = orderItems;
+            orderSum.EmployeeId = cashierID;
+            orderSum.CustomerId = 1;
+            orderSum.PaidMethod = cmbPaymenthMethod.Text;
+            orderSum.Tax = Convert.ToDecimal(lblTotalTax.Content);
+            orderSum.TotalAndTax = Convert.ToDecimal(lblTotalAndTax.Content);
+            orderSum.TotalPrice = Convert.ToDecimal(lblTotal_Price.Content);
+            orderSum.DatePurches = DateTime.Now;
+            orderSum.Discount = Convert.ToDecimal(lblTotalDiscount.Content);
+            orderSum.CheckNumber = "";
+            orderSum.CreditCardNumber = "";
+            orderSum.CardExprDate = "";
+            db.Transaction_OrderSubmit(orderSum, cashierID, customerId);
 
         }
     }
