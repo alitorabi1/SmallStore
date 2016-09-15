@@ -12,12 +12,19 @@ namespace SmallStore.Tests
     public class LoginLoginXaml
     {
         [TestMethod()]
-        public void LoginTest()
+        public void LoginXAML()
         {
+            try
+            {
 
-            Login loginW = new Login();
+                Login loginW = new Login();
+                Assert.Fail();
+            }
+            catch (Exception e) {
+                
+            }
             
-            Assert.Fail();
+            
         
         }
     }

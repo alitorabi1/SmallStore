@@ -50,10 +50,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Classes\TotalPricePerItemTests.cs" />
     <Compile Include="Database\DatabaseTests.cs" />
     <Compile Include="Database\UnitTest1.cs" />
+    <Compile Include="DiscountProductConverterTests.cs" />
     <Compile Include="LoginLoginXaml.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

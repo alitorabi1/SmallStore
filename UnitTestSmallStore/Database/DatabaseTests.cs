@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+
 
 namespace SmallStore.Tests
 {
@@ -56,13 +56,27 @@ namespace SmallStore.Tests
 
         }
 
+
+
         [TestMethod()]
-        public void ReduceProductNumberInStuckTest()
+        public void GetProductByIdTest()
         {
             Database db = new Database();
-
-            db.ReduceProductNumberInStuck(800, 900, null);
-            Assert.Fail();
+            Product p = new Product();
+            p = db.GetProductById(1);
+            Assert.AreEqual(p.CategoryId, 8);
+            //  Assert.Fail();
         }
+        [TestMethod()]
+        public void GetProductByWronGIdTest()
+        {
+            Database db = new Database();
+            Product p = new Product();
+            p = db.GetProductById(-1);
+            Assert.AreEqual(p.CategoryId, 0);
+            //  Assert.Fail();
+        }
+
+       
     }
 }

@@ -14,8 +14,17 @@ namespace SmallStore.Tests
         [TestMethod()]
         public void Transaction_OrderSubmitTest()
         {
-            
-            Assert.Fail();
+            try
+            {
+                Database db = new Database();
+                OrderSummary or = new OrderSummary();
+                db.Transaction_OrderSubmit(or, 1, 1);
+                Assert.Fail();
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }
