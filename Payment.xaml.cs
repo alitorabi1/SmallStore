@@ -218,6 +218,7 @@ namespace SmallStore
             {
                 Receipt receipt = new Receipt(orderItems, Convert.ToDecimal(lblTotal_Price.Content), Convert.ToDecimal(lblTotalAndTax.Content), Convert.ToDecimal(lblTotalDiscount.Content), Convert.ToDecimal(lblTotalTax.Content));
                 this.Close();
+               // Cashier.ResetDatagrids();
 
             }
 

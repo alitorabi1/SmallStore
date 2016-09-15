@@ -76,7 +76,7 @@ namespace SmallStore
                 mainTable.AddCell(cellHeader);
                
                 // Creates a phrase which holds the file name.
-                Phrase phHeader = new Phrase("Merci et a bientot ", FontFactory.GetFont("Arial", ReportNameSize, iTextSharp.text.Font.BOLD));
+                Phrase phHeader = new Phrase("Merci et à bientôt ", FontFactory.GetFont("Arial", ReportNameSize, iTextSharp.text.Font.BOLD));
                 PdfPCell clHeader = new PdfPCell(phHeader);
                 clHeader.Colspan = noOfColumns;
                 clHeader.Border = PdfPCell.NO_BORDER;

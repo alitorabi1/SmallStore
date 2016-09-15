@@ -69,9 +69,6 @@
     <Compile Include="Classes\ColumnBinder.cs" />
     <Compile Include="Classes\GlobalMethods.cs" />
     <Compile Include="Classes\Receipt.cs" />
-    <Compile Include="SubmitOrder.xaml.cs">
-      <DependentUpon>SubmitOrder.xaml</DependentUpon>
-    </Compile>
     <Page Include="Admin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,10 +97,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CashierOrder.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CashierPassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,12 +116,7 @@
     </Compile>
     <Compile Include="Cashier.xaml.cs" />
     <Compile Include="CashierCustomer.xaml.cs" />
-    <Compile Include="CashierOrder.xaml.cs" />
     <Compile Include="CashierPassword.xaml.cs" />
-    <Page Include="SubmitOrder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Resource Include="Classes\DgProductCellColorConverter.cs" />
     <Compile Include="DiscountProductConverter.cs" />
     <Compile Include="Classes\TotalPricePerItem.cs" />

@@ -156,10 +156,19 @@ namespace SmallStore
             Payment dialog = new Payment(orderItemL, 0, 0, totalDiscount, employee.Id, customerId);
             // this.Close();
             dialog.ShowDialog();
+            ResetDatagrids();
         }
         void MainWindow_Closed(object sender, EventArgs e)
         {
             App.Current.Shutdown();
+        }
+        public  void ResetDatagrids()
+        {
+            orderItemL.Clear();
+            dgOrders.Items.Clear();
+            dgOrders.UpdateLayout();
+            dgOrders.Items.Refresh();
+
         }
 
 
