@@ -33,46 +33,19 @@ namespace SmallStore
             }
             catch (Exception e)
             {
-                // TODO: show a message box
                 MessageBox.Show("Fatal error: unable to connect to database",
                     "Fatal error", MessageBoxButton.OK, MessageBoxImage.Stop);
-                // TODO: write details of the exception to log text file
                 Environment.Exit(1);
-                //throw e;
             }
             InitializeComponent();
-            // create a model object
-            //ColumnBinder columnBinder = new ColumnBinder() { CategoryName = db.getCategoryNameById(p.CategoryId) };
-
-            //gcCategory.Binding = new Binding("CategoryName")
-            //{
-            //    Source = columnBinder,
-            //    Mode = BindingMode.TwoWay
-            //};
 
             try
             {
                 pList = db.GetAllProducts();
                 dgProduct.ItemsSource = pList;
-                //List<ProductCategory> pcList = new List<ProductCategory>();
-                //pcList = db.GetAllCategories();
-                //foreach (ProductCategory id in pcList)
-                //{
-                //    if (id.CategoryId == p.CategoryId)
-                //    {
-                //        gcCategory.Binding = new Binding("CategoryName")
-                //        {
-                //            Source = id.Category,
-                //            Mode = BindingMode.TwoWay
-                //        };
-                //    }
-                //}
             }
             catch (Exception e)
             {
-                // TODO: show a message box
-                //MessageBox.Show("Unable to fetch records from database",
-                //    "Database error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 MessageBox.Show(e.StackTrace, "Database error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
