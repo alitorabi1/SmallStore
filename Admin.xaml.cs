@@ -59,25 +59,15 @@ namespace SmallStore
 
         private void RibbonTutorial_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Office.Interop.Word.Application application = new Microsoft.Office.Interop.Word.Application();
-            //            Microsoft.Office.Interop.Word.Document document = application.Documents.Open("pack://application:,,,/Documents/proposal.doc");
-            Microsoft.Office.Interop.Word.Document document = application.Documents.Open(@"C:\Users\lenovo\Documents\Visual Studio 2015\Projects\SmallStore\Documents\proposal.doc");
-
-
-            //var msWord = new Microsoft.Office.Interop.Word.Application("pack://application:,,,/Documents/proposal.doc");
-            //msWord.Visible = true;
-
-            //Documents document = new Documents();
-            //document.LoadFromFile(@"E:\Work\Documents\Spire.Doc for .NET.docx");
-
-            //ProcessStartInfo startInfo = new ProcessStartInfo("pack://application:,,,/Documents/proposal.doc");
-            //AdminProduct dialog = new AdminProduct();
-            //dialog.ShowDialog();
+            Microsoft.Office.Interop.Word.Application application = 
+                new Microsoft.Office.Interop.Word.Application();
+            Microsoft.Office.Interop.Word.Document document = 
+                application.Documents.Open("Documents/Tutorial.docx");
         }
 
         private void RibbonAbout_Click(object sender, RoutedEventArgs e)
         {
-            //AdminProduct dialog = new AdminProduct();
+            //About dialog = new Aboutt();
             //dialog.ShowDialog();
         }
 

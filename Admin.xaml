@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Ribbon x:Name="RibbonWin" SelectedIndex="0">
-            <!-- Ribbon Tab #1: Home -->
+            <!-- Ribbon Tab #1: File -->
             <RibbonTab Header="File" KeyTip="F" >
                 <RibbonGroup x:Name="Login" Header="Go to login page">
                     <RibbonMenuItem Header="Go to login page" ImageSource="Images/login.jpg" KeyTip="L" Click="RibbonGoToLogin_Click"/>
@@ -28,7 +28,7 @@
                     <RibbonMenuItem Header="Exit" ImageSource="Images/exit.jpg" KeyTip="L" Click="RibbonExit_Click"/>
                 </RibbonGroup>
             </RibbonTab>
-            <!-- Ribbon Tab #2: -->
+            <!-- Ribbon Tab #2: Dashboard -->
             <RibbonTab Header="Dashboard" KeyTip="D" >
                 <RibbonGroup x:Name="Category" Header="Category">
                     <RibbonMenuItem Header="Category" ImageSource="Images/Category.png" KeyTip="G" Click="RibbonCategory_Click" />
@@ -43,7 +43,7 @@
                     <RibbonMenuItem Header="Reports" ImageSource="Images/Reports.png" KeyTip="T" Click="RibbonReport_Click" />
                 </RibbonGroup>
             </RibbonTab>
-            <!-- Ribbon Tab #3: -->
+            <!-- Ribbon Tab #3: Help -->
             <RibbonTab Header="Help" KeyTip="H" >
                 <RibbonGroup x:Name="Tutorial" Header="Tutorial">
                     <RibbonMenuItem Header="Tutorial" ImageSource="Images/Tutorial.png" KeyTip="L" Click="RibbonTutorial_Click" />
