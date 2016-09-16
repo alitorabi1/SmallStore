@@ -1,0 +1,262 @@
+USE [store]
+GO
+
+/****** Object: Table [dbo].[Customer] Script Date: 9/16/2016 10:31:44 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Customer] (
+    [CustomerId]         INT             IDENTITY (1, 1) NOT NULL,
+    [FirstName]          NVARCHAR (100)  NULL,
+    [LastName]           NCHAR (10)      NULL,
+    [Phone]              INT             NULL,
+    [CellPhone]          INT             NULL,
+    [Address]            NVARCHAR (MAX)  NULL,
+    [PostalCode]         NVARCHAR (50)   NULL,
+    [DiscountPercentage] DECIMAL (18, 2) NULL,
+    [RegisterDate]       DATETIME        NULL,
+    [ModifyDate]         DATETIME        NULL
+);
+
+************************************************************************************
+
+USE [store]
+GO
+
+/****** Object: Table [dbo].[Employee] Script Date: 9/16/2016 11:14:31 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Employee] (
+    [EmployeeId]    INT            IDENTITY (1, 1) NOT NULL,
+    [FirstName]     NVARCHAR (100) NULL,
+    [LastName]      NCHAR (10)     NULL,
+    [Phone]         INT            NULL,
+    [CellPhone]     INT            NULL,
+    [Address]       NVARCHAR (MAX) NULL,
+    [PostalCode]    NVARCHAR (50)  NULL,
+    [BirthDate]     DATETIME       NULL,
+    [JobTitle]      NVARCHAR (50)  NULL,
+    [HireDate]      DATETIME       NULL,
+    [FireDate]      DATETIME       NULL,
+    [Salary]        MONEY          NULL,
+    [IsPermenant]   BIT            NULL,
+    [IsManager]     BIT            NULL,
+    [UserName]      NVARCHAR (50)  NULL,
+    [Password]      NVARCHAR (15)  NULL,
+    [EmployeeImage] IMAGE          NULL,
+    [SIN]           NVARCHAR (40)  NULL
+);
+
+
+************************************************************************************
+
+USE [store]
+GO
+
+/****** Object: Table [dbo].[OrderItem] Script Date: 9/16/2016 11:15:08 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OrderItem] (
+    [OrderId]          INT             NOT NULL,
+    [ProductId]        INT             NOT NULL,
+    [SalePricePerUnit] MONEY           NULL,
+    [NumberOfUnit]     INT             NULL,
+    [ProductName]      NVARCHAR (250)  NULL,
+    [SpecialDiscount]  DECIMAL (18, 2) NULL
+);
+
+
+************************************************************************************
+
+USE [store]
+GO
+
+/****** Object: Table [dbo].[OrderSummary] Script Date: 9/16/2016 11:15:22 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OrderSummary] (
+    [OrderId]          INT           IDENTITY (1, 1) NOT NULL,
+    [EmployeeId]       INT           NOT NULL,
+    [CustomerId]       INT           NULL,
+    [DatePurches]      DATETIME      NOT NULL,
+    [TotalPrice]       MONEY         NOT NULL,
+    [Discount]         MONEY         NOT NULL,
+    [Tax]              MONEY         NOT NULL,
+    [TotalAndTax]      MONEY         NOT NULL,
+    [PaidMethod]       NVARCHAR (80) NOT NULL,
+    [CheckNumber]      NVARCHAR (50) NULL,
+    [CreditCardNumber] NVARCHAR (50) NULL,
+    [CardExprDate]     NCHAR (10)    NULL
+);
+
+
+************************************************************************************
+
+USE [store]
+GO
+
+/****** Object: Table [dbo].[Product] Script Date: 9/16/2016 11:15:35 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Product] (
+    [ProductId]       INT             IDENTITY (1, 1) NOT NULL,
+    [ProductName]     NVARCHAR (250)  NOT NULL,
+    [CategoryId]      INT             NOT NULL,
+    [Barcode]         VARCHAR (30)    NOT NULL,
+    [NumberInStock]   INT             NOT NULL,
+    [PurchasePrice]   MONEY           NOT NULL,
+    [SalePrice]       MONEY           NOT NULL,
+    [Unit]            NVARCHAR (100)  NOT NULL,
+    [ProductImage]    IMAGE           NULL,
+    [SpecialDiscount] DECIMAL (18, 2) NOT NULL
+);
+
+
+************************************************************************************
+
+USE [store]
+GO
+
+/****** Object: Table [dbo].[ProductCategory] Script Date: 9/16/2016 11:15:49 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ProductCategory] (
+    [CategoryId]  INT            IDENTITY (1, 1) NOT NULL,
+    [Category]    NVARCHAR (80)  NOT NULL,
+    [Description] NVARCHAR (MAX) NOT NULL
+);
+
+
+**********************************************************************************************
+**********************************************************************************************
+
+
+SET IDENTITY_INSERT [dbo].[Customer] ON
+INSERT INTO [dbo].[Customer] ([CustomerId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [DiscountPercentage], [RegisterDate], [ModifyDate]) VALUES (1, N'Cashier_Automathique', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Customer] OFF
+
+**********************************************************************************************
+
+SET IDENTITY_INSERT [dbo].[Employee] ON
+INSERT INTO [dbo].[Employee] ([EmployeeId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [BirthDate], [JobTitle], [HireDate], [FireDate], [Salary], [IsPermenant], [IsManager], [UserName], [Password], [EmployeeImage], [SIN]) VALUES (1, N'Behnaz', N'A.Afshar  ', 34346, 546356, N'lake shore', N'B6H6J8', N'1977-07-07 00:00:00', N'Cashier', N'1977-07-07 00:00:00', N'1977-07-07 00:00:00', CAST(20000.0000 AS Money), 0, 0, N'behnaz', N'11', <Binary Data>, N'654-987-548')
+INSERT INTO [dbo].[Employee] ([EmployeeId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [BirthDate], [JobTitle], [HireDate], [FireDate], [Salary], [IsPermenant], [IsManager], [UserName], [Password], [EmployeeImage], [SIN]) VALUES (2, N'Jerry', N'Joe       ', 789679, 3646437, N'7 Toronto', N'N6B7V8', N'1977-07-07 00:00:00', N'Manager', N'1977-07-07 00:00:00', N'1977-07-07 00:00:00', CAST(30000.0000 AS Money), 1, 0, N'11', N'22', <Binary Data>, N'158-965-875')
+INSERT INTO [dbo].[Employee] ([EmployeeId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [BirthDate], [JobTitle], [HireDate], [FireDate], [Salary], [IsPermenant], [IsManager], [UserName], [Password], [EmployeeImage], [SIN]) VALUES (3, N'Ali', N'Torabi    ', 6548795, 2564879, N'51 Charron', N'H4B1R9', N'1977-07-07 00:00:00', N'Developer', N'2016-12-16 00:00:00', N'1977-07-07 00:00:00', CAST(170000.0000 AS Money), 1, 1, N'ali', N'123', <Binary Data>, N'123-456-978')
+INSERT INTO [dbo].[Employee] ([EmployeeId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [BirthDate], [JobTitle], [HireDate], [FireDate], [Salary], [IsPermenant], [IsManager], [UserName], [Password], [EmployeeImage], [SIN]) VALUES (13, N'Merry', N'Mc        ', 134346, 1546356, N'20 st', N'B6H6J8', N'1977-07-07 00:00:00', N'Manager', N'1977-07-07 00:00:00', N'1977-07-07 00:00:00', CAST(20000.0000 AS Money), 1, 1, N'ggg', N'11', <Binary Data>, N'111-987-548')
+INSERT INTO [dbo].[Employee] ([EmployeeId], [FirstName], [LastName], [Phone], [CellPhone], [Address], [PostalCode], [BirthDate], [JobTitle], [HireDate], [FireDate], [Salary], [IsPermenant], [IsManager], [UserName], [Password], [EmployeeImage], [SIN]) VALUES (15, N'Betta', N'Sranly    ', 1134346, 11546356, N'50 Peery rue', N'B6H6J8', N'1977-07-07 00:00:00', N'Manager', N'1977-07-07 00:00:00', N'1977-07-07 00:00:00', CAST(20000.0000 AS Money), 0, 0, N'gggg', N'11', <SQLVARIANT>, N'222-987-548')
+SET IDENTITY_INSERT [dbo].[Employee] OFF
+
+**********************************************************************************************
+
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (8, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (8, 14, CAST(25.2000 AS Money), 1, N'vrtert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (8, 23, CAST(18.4000 AS Money), 1, N'eqwer werwert wert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (9, 14, CAST(25.2000 AS Money), 1, N'vrtert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (9, 23, CAST(18.4000 AS Money), 1, N'eqwer werwert wert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (10, 1, CAST(18.4000 AS Money), 1, N'hghgyhg', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (10, 2, CAST(36.4000 AS Money), 1, N'uiuiu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (11, 1, CAST(18.4000 AS Money), 5, N'hghgyhg', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (13, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (15, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (15, 23, CAST(18.4000 AS Money), 5, N'eqwer werwert wert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (15, 24, CAST(23.1000 AS Money), 1, N'opipry yteyi', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (16, 1, CAST(18.4000 AS Money), 1, N'hghgyhg', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (16, 2, CAST(36.4000 AS Money), 1, N'uiuiu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (16, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (16, 9, CAST(15.0000 AS Money), 1, N'fdghrt rtu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (17, 2, CAST(36.4000 AS Money), 1, N'uiuiu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (17, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (17, 9, CAST(15.0000 AS Money), 1, N'fdghrt rtu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (18, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (18, 9, CAST(15.0000 AS Money), 1, N'fdghrt rtu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (18, 14, CAST(25.2000 AS Money), 1, N'vrtert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (19, 2, CAST(36.4000 AS Money), 1, N'uiuiu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (19, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (20, 5, CAST(63.7500 AS Money), 1, N'sdfwe', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (20, 9, CAST(15.0000 AS Money), 1, N'fdghrt rtu', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (20, 14, CAST(25.2000 AS Money), 1, N'vrtert', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (21, 1, CAST(18.4000 AS Money), 1, N'hghgyhg', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (22, 1, CAST(18.4000 AS Money), 1, N'Tomato Paste', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (22, 23, CAST(18.4000 AS Money), 3, N'Spagethi', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (22, 25, CAST(90.4400 AS Money), 2, N'Bread', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (23, 5, CAST(63.7500 AS Money), 1, N'Apple', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (26, 1, CAST(18.4000 AS Money), 1, N'Tomato Paste', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (26, 2, CAST(36.4000 AS Money), 1, N'Strawberry', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (26, 5, CAST(63.7500 AS Money), 1, N'Dog Dolls', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (33, 23, CAST(18.4000 AS Money), 1, N'Spagethi', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (34, 1, CAST(18.4000 AS Money), 2, N'Tomato Paste', CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[OrderItem] ([OrderId], [ProductId], [SalePricePerUnit], [NumberOfUnit], [ProductName], [SpecialDiscount]) VALUES (34, 5, CAST(63.7500 AS Money), 5, N'Dog Dolls', CAST(0.00 AS Decimal(18, 2)))
+
+**********************************************************************************************
+
+SET IDENTITY_INSERT [dbo].[OrderSummary] ON
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (1, 1, 1, N'2016-09-14 20:32:46', CAST(1.0000 AS Money), CAST(1.0000 AS Money), CAST(1.0000 AS Money), CAST(1.0000 AS Money), N'kk', N'1', N'1', N'11        ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (8, 2, 1, N'2016-09-14 21:52:09', CAST(126.0000 AS Money), CAST(18.6500 AS Money), CAST(53.6750 AS Money), CAST(161.0250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (9, 2, 1, N'2016-09-14 22:02:34', CAST(51.0000 AS Money), CAST(7.4000 AS Money), CAST(21.8000 AS Money), CAST(65.4000 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (10, 2, 1, N'2016-09-14 22:09:43', CAST(75.0000 AS Money), CAST(20.2000 AS Money), CAST(27.4000 AS Money), CAST(82.2000 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (11, 2, 1, N'2016-09-14 22:15:09', CAST(115.0000 AS Money), CAST(23.0000 AS Money), CAST(46.0000 AS Money), CAST(138.0000 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (13, 2, 1, N'2016-09-15 00:20:24', CAST(75.0000 AS Money), CAST(11.2500 AS Money), CAST(31.8750 AS Money), CAST(95.6250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (15, 2, 1, N'2016-09-15 00:26:34', CAST(223.0000 AS Money), CAST(44.1500 AS Money), CAST(89.4250 AS Money), CAST(268.2750 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (16, 2, 1, N'2016-09-15 00:34:28', CAST(165.0000 AS Money), CAST(31.4500 AS Money), CAST(66.7750 AS Money), CAST(200.3250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (17, 2, 1, N'2016-09-15 00:35:43', CAST(142.0000 AS Money), CAST(26.8500 AS Money), CAST(57.5750 AS Money), CAST(172.7250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (18, 2, 1, N'2016-09-15 00:39:26', CAST(118.0000 AS Money), CAST(14.0500 AS Money), CAST(51.9750 AS Money), CAST(155.9250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (19, 2, 1, N'2016-09-15 00:40:11', CAST(127.0000 AS Money), CAST(26.8500 AS Money), CAST(50.0750 AS Money), CAST(150.2250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (20, 2, 1, N'2016-09-15 00:41:35', CAST(118.0000 AS Money), CAST(14.0500 AS Money), CAST(51.9750 AS Money), CAST(155.9250 AS Money), N'Select_Method', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (21, 2, 1, N'2016-09-15 10:26:41', CAST(23.0000 AS Money), CAST(4.6000 AS Money), CAST(9.2000 AS Money), CAST(27.6000 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (22, 1, 1, N'2016-09-15 10:55:07', CAST(358.0000 AS Money), CAST(103.5200 AS Money), CAST(127.2400 AS Money), CAST(381.7200 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (23, 2, 1, N'2016-09-15 11:13:46', CAST(75.0000 AS Money), CAST(11.2500 AS Money), CAST(31.8750 AS Money), CAST(95.6250 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (26, 2, 1, N'2016-09-15 18:23:16', CAST(150.0000 AS Money), CAST(31.4500 AS Money), CAST(59.2750 AS Money), CAST(177.8250 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (28, 2, 1, N'2016-09-15 18:28:35', CAST(150.0000 AS Money), CAST(31.4500 AS Money), CAST(59.2750 AS Money), CAST(177.8250 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (29, 2, 1, N'2016-09-15 18:30:21', CAST(118.0000 AS Money), CAST(14.0500 AS Money), CAST(51.9750 AS Money), CAST(155.9250 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (30, 2, 1, N'2016-09-15 18:44:07', CAST(75.0000 AS Money), CAST(20.2000 AS Money), CAST(27.4000 AS Money), CAST(82.2000 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (31, 2, 1, N'2016-09-15 18:44:54', CAST(90.0000 AS Money), CAST(11.2500 AS Money), CAST(39.3750 AS Money), CAST(118.1250 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (32, 2, 1, N'2016-09-15 18:46:58', CAST(51.0000 AS Money), CAST(7.4000 AS Money), CAST(21.8000 AS Money), CAST(65.4000 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (33, 2, 1, N'2016-09-15 18:54:12', CAST(66.0000 AS Money), CAST(7.4000 AS Money), CAST(29.3000 AS Money), CAST(87.9000 AS Money), N'Cash', N'', N'', N'          ')
+INSERT INTO [dbo].[OrderSummary] ([OrderId], [EmployeeId], [CustomerId], [DatePurches], [TotalPrice], [Discount], [Tax], [TotalAndTax], [PaidMethod], [CheckNumber], [CreditCardNumber], [CardExprDate]) VALUES (34, 1, 1, N'2016-09-15 23:20:09', CAST(421.0000 AS Money), CAST(65.4500 AS Money), CAST(177.7800 AS Money), CAST(533.3300 AS Money), N'Cash', N'', N'', N'          ')
+SET IDENTITY_INSERT [dbo].[OrderSummary] OFF
+
+**********************************************************************************************
+
+SET IDENTITY_INSERT [dbo].[Product] ON
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (1, N'Tomato Paste', 8, N'123456', 56, CAST(20.0000 AS Money), CAST(23.0000 AS Money), N'kg', <SQLVARIANT>, CAST(0.20 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (2, N'Strawberry', 9, N'129865', 140, CAST(50.0000 AS Money), CAST(52.0000 AS Money), N'kg', <SQLVARIANT>, CAST(0.30 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (5, N'Dog Dolls', 9, N'145868', 83, CAST(65.0000 AS Money), CAST(75.0000 AS Money), N'lb', <Binary Data>, CAST(0.15 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (9, N'Chips', 8, N'145643', 36, CAST(5.0000 AS Money), CAST(15.0000 AS Money), N'lb', <Binary Data>, CAST(0.00 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (14, N'Choclot Madam', 8, N'145644', 44, CAST(22.0000 AS Money), CAST(28.0000 AS Money), N'box', <Binary Data>, CAST(0.10 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (23, N'Spagethi', 8, N'123457', 40, CAST(20.0000 AS Money), CAST(23.0000 AS Money), N'kg', <SQLVARIANT>, CAST(0.20 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (24, N'Apricot', 9, N'123458', 99, CAST(23.0000 AS Money), CAST(33.0000 AS Money), N'box', <Binary Data>, CAST(0.30 AS Decimal(18, 2)))
+INSERT INTO [dbo].[Product] ([ProductId], [ProductName], [CategoryId], [Barcode], [NumberInStock], [PurchasePrice], [SalePrice], [Unit], [ProductImage], [SpecialDiscount]) VALUES (25, N'Bread', 11, N'123422', 150, CAST(113.0000 AS Money), CAST(133.0000 AS Money), N'Unit', <SQLVARIANT>, CAST(0.32 AS Decimal(18, 2)))
+SET IDENTITY_INSERT [dbo].[Product] OFF
+
+**********************************************************************************************
+
+SET IDENTITY_INSERT [dbo].[ProductCategory] ON
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (8, N'Meal', N'Assign to meals')
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (9, N'Fruit', N'Assign to fruits')
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (11, N'Bread', N'Assign to breads')
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (12, N'Drink', N'Assigned to drink products')
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (20, N'Vegetables', N'Assigned to vegetable products')
+INSERT INTO [dbo].[ProductCategory] ([CategoryId], [Category], [Description]) VALUES (21, N'Shoes', N'Clothes and Shoes')
+SET IDENTITY_INSERT [dbo].[ProductCategory] OFF
