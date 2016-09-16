@@ -28,14 +28,16 @@ namespace SmallStore
             try
             {
 
-                AddOrderSummary(orderSum, transaction);
+                AddOrderSummary(orderSum, transaction);//insert to OrderSummary Table
+               
+                int orderId = GetOrderSummaryId(orderSum,transaction);//get this new id after insert
+                AddAllOrderItem(orderSum.Items, orderId, transaction);//add list of orderitems
                 foreach (OrderItem item in orderSum.Items)
                 {
-                    ReduceProductNumberInStuck(item.ProductId, item.NumberOfUnit, transaction);
+                    //for each product it must reduce QTY in stack
+                    ReduceProductNumberInStack(item.ProductId, item.NumberOfUnit, transaction);
                 }
-                int orderId = GetOrderSummaryId(orderSum,transaction);
-                AddAllOrderItem(orderSum.Items, orderId, transaction);
-                
+
                 transaction.Commit();
                 return true;
             }
@@ -174,7 +176,7 @@ namespace SmallStore
         // <--  ********************** CRUD methods for Customer ************************
 
         //  ******************* CRUD methods for Product ************************ -->
-        public void ReduceProductNumberInStuck(int productId, int numberOfItem,SqlTransaction transaction)
+        public void ReduceProductNumberInStack(int productId, int numberOfItem,SqlTransaction transaction)
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM Product where ProductId=@ProductId", conn, transaction);
             cmd.Parameters.AddWithValue("@ProductId", productId);

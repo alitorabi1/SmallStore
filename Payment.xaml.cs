@@ -65,10 +65,13 @@ namespace SmallStore
 
             orderItems = items;
             dgOrders.ItemsSource = orderItems;
-            lblTotal_Price.Content = TotalPrice() + totalDiscount + "";
-            lblTotalTax.Content = TotalPrice() * TAX_RATE;
-            lblTotalAndTax.Content = TotalPrice() + TotalPrice() * TAX_RATE;
-            lblTotalDiscount.Content = totalDiscount;
+            decimal total = TotalPrice() + totalDiscount;
+            lblTotal_Price.Content = String.Format("{0:0.00}",total );
+            decimal tax= TotalPrice() * TAX_RATE; ;
+            lblTotalTax.Content = String.Format("{0:0.00}", tax);
+            decimal totalAndTax= TotalPrice() + TotalPrice() * TAX_RATE;
+            lblTotalAndTax.Content = String.Format("{0:0.00}", totalAndTax);
+            lblTotalDiscount.Content = String.Format("{0:0.00}", totalDiscount); 
             FillYear();
             FillMonth();
 
@@ -220,6 +223,11 @@ namespace SmallStore
                 this.Close();
                // Cashier.ResetDatagrids();
 
+            }
+           else
+            {
+                MessageBox.Show("This operation did n't be completed!!!,Try Again");
+                this.Close();
             }
 
         }
